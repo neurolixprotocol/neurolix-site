@@ -1,105 +1,502 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta
-	
-	
-		
-	
-	
-		Attivare fino a 3,50% cashback
-	
- charset="UTF-8">
-    <meta
-	
-	
-		
-	
-	
-		Attivare fino a 3,50% cashback
-	
- name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neurolix Protocol | Decentralized AI Infrastructure</title>
-    <style>
-        body { 
-            background-color: #0d1117; 
-            color: #e6edf3; 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-            margin: 0; 
-            display: flex; 
-            flex-direction: column;
-            align-items: center; 
-            justify-content: center; 
-            height: 100vh; 
-            text-align: center; 
-        }
-        .container { max-width: 800px; padding: 40px; }
-        h1 { 
-            font-size
-	
-	
-		
-	
-	
-		Attivare fino a 3,50% cashback
-	
-: 3.5rem; 
-            margin-bottom: 20px; 
-            background: linear-gradient(90deg, #58a6ff, #bc8cff); 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-            letter-spacing: -1px;
-        }
-        p { font-size
-	
-	
-		
-	
-	
-		Attivare fino a 3,50% cashback
-	
-: 1.4rem; color: #8b949e; line-height: 1.6; margin-bottom: 40px; }
-        .btn { 
-            display: inline-block; 
-            padding: 16px 32px; 
-            background-color: #238636; 
-            color: white; 
-            text-decoration: none; 
-            border-radius: 6px; 
-            font-weight: 600; 
-            font-size
-	
-	
-		
-	
-	
-		Attivare fino a 3,50% cashback
-	
-: 1.1rem;
-            transition: background 0.2s;
-        }
-        .btn:hover { background-color: #2ea043; }
-        .footer { position: absolute; bottom: 40px; font-size
-	
-	
-		
-	
-	
-		Attivare fino a 3,50% cashback
-	
-: 0.9rem; color: #484f58; }
-        a { color: #58a6ff; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neurolix Protocol — Confidential AI Compute Infrastructure</title>
+<meta name="description" content="Neurolix Protocol is a DePIN infrastructure for confidential AI compute on regulated data. Hardware-enforced privacy, verified on-chain.">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg-primary: #0a0e1a;
+    --bg-secondary: #111827;
+    --bg-card: #1a2234;
+    --border: #1f2937;
+    --text-primary: #f3f4f6;
+    --text-secondary: #9ca3af;
+    --accent: #00E5FF;
+    --accent-dim: rgba(0, 229, 255, 0.1);
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    background: rgba(10, 14, 26, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 0;
+    z-index: 100;
+  }
+
+  nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: -0.5px;
+  }
+
+  .logo span { color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--text-primary); }
+
+  /* HERO */
+  .hero {
+    padding: 120px 0 80px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero-badge {
+    display: inline-block;
+    padding: 6px 14px;
+    background: var(--accent-dim);
+    border: 1px solid var(--accent);
+    border-radius: 20px;
+    font-size: 12px;
+    color: var(--accent);
+    margin-bottom: 24px;
+    letter-spacing: 0.5px;
+  }
+
+  .hero h1 {
+    font-size: 56px;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+    margin-bottom: 24px;
+    background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero p {
+    font-size: 20px;
+    color: var(--text-secondary);
+    max-width: 720px;
+    margin: 0 auto 40px;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--bg-primary);
+  }
+
+  .btn-primary:hover {
+    background: #00b8cc;
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text-primary);
+    border-color: var(--border);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 80px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin-bottom: 16px;
+  }
+
+  .section-subtitle {
+    font-size: 18px;
+    color: var(--text-secondary);
+    max-width: 700px;
+    margin-bottom: 48px;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+
+  .about-block h3 {
+    font-size: 20px;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+  }
+
+  .about-block p {
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+  }
+
+  /* FEATURES */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .feature-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    transition: border-color 0.2s;
+  }
+
+  .feature-card:hover {
+    border-color: var(--accent);
+  }
+
+  .feature-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--accent-dim);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 20px;
+  }
+
+  .feature-card h3 {
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+
+  .feature-card p {
+    color: var(--text-secondary);
+    font-size: 15px;
+  }
+
+  /* PROOF */
+  .proof-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+  }
+
+  .proof-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .proof-row:last-child { border-bottom: none; }
+
+  .proof-label {
+    color: var(--text-secondary);
+    font-size: 14px;
+  }
+
+  .proof-value {
+    font-family: 'SF Mono', Consolas, monospace;
+    font-size: 13px;
+    color: var(--accent);
+    word-break: break-all;
+    text-align: right;
+    max-width: 60%;
+  }
+
+  .proof-value a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .proof-value a:hover { text-decoration: underline; }
+
+  /* CONTACT */
+  .contact-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 48px;
+    text-align: center;
+  }
+
+  .contact-email {
+    font-size: 24px;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block;
+    margin: 16px 0 24px;
+  }
+
+  .contact-email:hover { text-decoration: underline; }
+
+  .contact-links {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 24px;
+  }
+
+  .contact-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    transition: all 0.2s;
+  }
+
+  .contact-links a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 48px 0 32px;
+    text-align: center;
+  }
+
+  .disclaimer {
+    font-size: 12px;
+    color: var(--text-secondary);
+    max-width: 800px;
+    margin: 24px auto 0;
+    line-height: 1.7;
+  }
+
+  .footer-meta {
+    color: var(--text-secondary);
+    font-size: 13px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 36px; }
+    .hero p { font-size: 16px; }
+    .section-title { font-size: 28px; }
+    .about-grid { grid-template-columns: 1fr; gap: 32px; }
+    .features-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .proof-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .proof-value { max-width: 100%; text-align: left; }
+  }
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>Neurolix Protocol</h1>
-        <p>The Neural Backbone of Decentralized AI.<br>Scalable, confidential, and high-performance computing power.</p>
-        <a href="https://medium.com" class="btn">Read our Vision on Medium</a>
+
+<nav>
+  <div class="container">
+    <div class="logo">NEUR<span>OLIX</span> Protocol</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#proof">Proof</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge">DePIN · CONFIDENTIAL AI · BASE L2</div>
+    <h1>Confidential AI Compute<br>for Regulated Data.</h1>
+    <p>Neurolix Protocol is a decentralized infrastructure for AI workloads on sensitive data — with hardware-enforced privacy and cryptographic proof of confidentiality, verified on-chain.</p>
+    <div class="hero-cta">
+      <a href="#about" class="btn btn-primary">Learn More</a>
+      <a href="https://paragraph.com" class="btn btn-secondary" target="_blank" rel="noopener">Read the Build Log →</a>
     </div>
-    <div class="footer">
-        Contact us: <a href="mailto:info@neurolixprotocol.com">info@neurolixprotocol.com</a>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="section-label">About</div>
+    <h2 class="section-title">What is Neurolix Protocol</h2>
+    <p class="section-subtitle">A vertical DePIN protocol built specifically for AI teams operating on regulated data — healthcare, finance, biotech, and legal.</p>
+
+    <div class="about-grid">
+      <div class="about-block">
+        <h3>The Problem</h3>
+        <p>78% of enterprises cite data privacy as the #1 barrier to AI adoption. Healthcare, finance, biotech, and legal sectors cannot use modern AI on their most valuable data because public cloud providers offer no cryptographic proof that sensitive data stays private.</p>
+        <p>The bottleneck is not compute power. It is the absence of mathematical proof.</p>
+      </div>
+
+      <div class="about-block">
+        <h3>Our Approach</h3>
+        <p>Neurolix Protocol runs AI workloads inside hardware-secured Trusted Execution Environments (AMD SEV, Intel TDX, AWS Nitro). Every compute session produces a cryptographic attestation token, verified by the cloud provider and anchored on Base L2.</p>
+        <p>The result: enterprises gain a tamper-proof audit trail of AI computation on regulated data — without ever exposing the data itself.</p>
+      </div>
+
+      <div class="about-block">
+        <h3>Our Vision</h3>
+        <p>In the coming years, no serious enterprise will train AI on sensitive data without cryptographic proof of confidentiality. Neurolix Protocol is building the infrastructure layer that will make regulated AI possible at scale.</p>
+      </div>
+
+      <div class="about-block">
+        <h3>Building in Public</h3>
+        <p>We document every milestone — successes and unfinished edges. The protocol is in active development. Every iteration, every audit finding, every architectural decision is published openly. Trust is earned through transparency, not promises.</p>
+      </div>
     </div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="container">
+    <div class="section-label">Architecture</div>
+    <h2 class="section-title">Three Foundational Pillars</h2>
+    <p class="section-subtitle">Built on hardware guarantees, verified by cryptographic attestation, anchored on a public blockchain.</p>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🛡️</div>
+        <h3>Confidential Compute</h3>
+        <p>AI workloads run inside hardware-secured TEE enclaves where memory is encrypted at the silicon level. No data exposure — not to the cloud provider, not to the network operator, not to us.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🔗</div>
+        <h3>On-Chain Attestation</h3>
+        <p>Every compute session produces a cryptographic commitment hash, anchored on Base L2. Tamper-proof audit trail, publicly verifiable, immutable. Mathematics replaces institutional trust.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🏥</div>
+        <h3>Regulated AI Ready</h3>
+        <p>Designed for healthcare, finance, biotech, and legal — sectors where data privacy is a legal requirement. GDPR and HIPAA compliance built into the protocol primitive.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="proof">
+  <div class="container">
+    <div class="section-label">Verified Proof of Concept</div>
+    <h2 class="section-title">Live, Verifiable, On-Chain</h2>
+    <p class="section-subtitle">Our first proof of concept ran a real AI model inside an AMD SEV hardware enclave on Google Cloud. The attestation is verifiable by anyone, forever.</p>
+
+    <div class="proof-box">
+      <div class="proof-row">
+        <span class="proof-label">Model</span>
+        <span class="proof-value">GPT-2 · 124M parameters</span>
+      </div>
+      <div class="proof-row">
+        <span class="proof-label">Enclave Type</span>
+        <span class="proof-value">AMD SEV</span>
+      </div>
+      <div class="proof-row">
+        <span class="proof-label">Cloud Provider</span>
+        <span class="proof-value">Google Cloud Confidential Computing</span>
+      </div>
+      <div class="proof-row">
+        <span class="proof-label">Attestation</span>
+        <span class="proof-value">instance_confidentiality: 1 ✓ VERIFIED</span>
+      </div>
+      <div class="proof-row">
+        <span class="proof-label">Network</span>
+        <span class="proof-value">Base Sepolia Testnet</span>
+      </div>
+      <div class="proof-row">
+        <span class="proof-label">On-Chain Transaction</span>
+        <span class="proof-value"><a href="https://base-sepolia.blockscout.com/tx/0x6c9a8e68ddc3b96b70b09785e1efbc519b371132aaf7b7ac5e428954de010046" target="_blank" rel="noopener">View on Blockscout →</a></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="section-label">Contact</div>
+    <h2 class="section-title">Get in Touch</h2>
+    <p class="section-subtitle">If you work in regulated AI, confidential computing, or DePIN — reach out. Even if just to compare notes.</p>
+
+    <div class="contact-box">
+      <div class="section-label">Official Email</div>
+      <a href="mailto:info@neurolixprotocol.com" class="contact-email">info@neurolixprotocol.com</a>
+
+      <div class="contact-links">
+        <a href="https://x.com/NEUROLIX" target="_blank" rel="noopener">@NEUROLIX on X</a>
+        <a href="https://paragraph.com" target="_blank" rel="noopener">Build Log on Paragraph</a>
+        <a href="https://base-sepolia.blockscout.com/tx/0x6c9a8e68ddc3b96b70b09785e1efbc519b371132aaf7b7ac5e428954de010046" target="_blank" rel="noopener">On-Chain Proof</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p class="footer-meta">© 2026 Neurolix Protocol · Building in public · Base L2</p>
+    <p class="disclaimer">
+      This website is for informational and technical purposes only. Neurolix Protocol is in active development and currently operates a proof of concept on testnet. The $OLIX token, when launched, will be a utility token designed to access protocol computational resources. It does not constitute a financial product, investment advice, or an offer to buy or sell securities. Participation in any future token event involves risk. Please conduct your own research.
+    </p>
+  </div>
+</footer>
+
 </body>
 </html>
