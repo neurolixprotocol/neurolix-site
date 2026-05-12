@@ -357,20 +357,44 @@
     border-color: #00E5FF !important;
   }
 
-  /* RESET PER LINK VISITATI (PC) */
+  /* SEZIONE CONTATTI - FIX COLORI FORZATI */
   .contact-email, 
-  .contact-email:visited, 
-  .contact-email:active {
-      color: #00E5FF !important;
-      text-decoration: none !important;
+  .contact-email:visited {
+    font-size: 24px;
+    color: #00E5FF !important; /* Azzurro Neurolix */
+    text-decoration: none !important;
+    font-weight: 600;
+    display: inline-block;
+    margin: 16px 0 24px;
+  }
+
+  .contact-email:hover {
+    text-decoration: underline !important;
+    color: #00E5FF !important;
+  }
+
+  .contact-links {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 24px;
   }
 
   .contact-links a, 
-  .contact-links a:visited, 
-  .contact-links a:active {
-      color: #9ca3af !important;
-      border-color: #1f2937 !important;
-      text-decoration: none !important;
+  .contact-links a:visited {
+    color: #f3f4f6 !important; /* Bianco/Grigio chiaro */
+    text-decoration: none !important;
+    font-size: 14px;
+    padding: 8px 16px;
+    border: 1px solid #1f2937 !important;
+    border-radius: 8px;
+    transition: all 0.2s;
+  }
+
+  .contact-links a:hover {
+    color: #00E5FF !important;
+    border-color: #00E5FF !important;
   }
 
   /* FOOTER */
