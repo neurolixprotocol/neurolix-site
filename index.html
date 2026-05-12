@@ -353,8 +353,24 @@
 }
 
   .contact-links a:hover {
-    color: var(--accent);
-    border-color: var(--accent);
+    color: #00E5FF !important;
+    border-color: #00E5FF !important;
+  }
+
+  /* RESET PER LINK VISITATI (PC) */
+  .contact-email, 
+  .contact-email:visited, 
+  .contact-email:active {
+      color: #00E5FF !important;
+      text-decoration: none !important;
+  }
+
+  .contact-links a, 
+  .contact-links a:visited, 
+  .contact-links a:active {
+      color: #9ca3af !important;
+      border-color: #1f2937 !important;
+      text-decoration: none !important;
   }
 
   /* FOOTER */
@@ -386,6 +402,15 @@
     .nav-links { display: none; }
     .proof-row { flex-direction: column; align-items: flex-start; gap: 8px; }
     .proof-value { max-width: 100%; text-align: left; }
+    
+    /* FIX MOBILE EMAIL */
+    .contact-box {
+      padding: 32px 15px;
+    }
+    .contact-email {
+      font-size: 16px !important;
+      white-space: nowrap;
+    }
   }
 </style>
 </head>
