@@ -241,6 +241,7 @@
     border: 1px solid var(--border);
     border-radius: 12px;
     padding: 32px;
+    margin-bottom: 48px;
   }
 
   .proof-row {
@@ -274,6 +275,31 @@
 
   .proof-value a:hover { text-decoration: underline; }
 
+  /* VIDEO EMBED */
+  .video-container {
+    margin-top: 48px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+
+  .video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
   /* CONTACT */
   .contact-box {
     background: var(--bg-card);
@@ -282,16 +308,12 @@
     padding: 48px;
     text-align: center;
   }
-@media (max-width: 768px) {
-  .contact-box {
-    padding: 32px 24px;
+
+  @media (max-width: 768px) {
+    .contact-box { padding: 32px 24px; }
+    .contact-email { font-size: 18px; word-break: break-all; }
   }
-  
-  .contact-email {
-    font-size: 18px;
-    word-break: break-all;
-  }
-}
+
   .contact-email {
     font-size: 24px;
     color: var(--accent);
@@ -379,7 +401,7 @@
     <p>Neurolix Protocol is a decentralized infrastructure for AI workloads on sensitive data — with hardware-enforced privacy and cryptographic proof of confidentiality, verified on-chain.</p>
     <div class="hero-cta">
       <a href="#about" class="btn btn-primary">Learn More</a>
-      <a href="https://paragraph.com/@0xba2b7775c09914bf8eb05a53ace30204f0061c27/we-ran-a-medical-ai-model-inside-a-hardware-enclave?referrer=0xba2B7775c09914BF8EB05A53AcE30204F0061c27" class="btn btn-secondary" target="_blank" rel="noopener">Read the Build Log →</a>
+      <a href="https://paragraph.xyz/@0xba2b7775c09914bf8eb05a53ace30204f0061c27/we-ran-a-medical-ai-model-inside-a-hardware-enclave" class="btn btn-secondary" target="_blank" rel="noopener">Read the Build Log →</a>
     </div>
   </div>
 </section>
@@ -394,23 +416,21 @@
       <div class="about-block">
         <h3>The Problem</h3>
         <p>78% of enterprises cite data privacy as the #1 barrier to AI adoption. Healthcare, finance, biotech, and legal sectors cannot use modern AI on their most valuable data because public cloud providers offer no cryptographic proof that sensitive data stays private.</p>
-        <p>The bottleneck is not compute power. It is the absence of mathematical proof.</p>
       </div>
 
       <div class="about-block">
         <h3>Our Approach</h3>
-        <p>Neurolix Protocol runs AI workloads inside hardware-secured Trusted Execution Environments (AMD SEV, Intel TDX, AWS Nitro). Every compute session produces a cryptographic attestation token, verified by the cloud provider and anchored on Base L2.</p>
-        <p>The result: enterprises gain a tamper-proof audit trail of AI computation on regulated data — without ever exposing the data itself.</p>
+        <p>Neurolix Protocol runs AI workloads inside hardware-secured Trusted Execution Environments (AMD SEV, Intel TDX). Every compute session produces a cryptographic attestation token, verified by the provider and anchored on Base L2.</p>
       </div>
 
       <div class="about-block">
         <h3>Our Vision</h3>
-        <p>In the coming years, no serious enterprise will train AI on sensitive data without cryptographic proof of confidentiality. Neurolix Protocol is building the infrastructure layer that will make regulated AI possible at scale.</p>
+        <p>In the coming years, no serious enterprise will train AI on sensitive data without cryptographic proof of confidentiality. Neurolix is building that infrastructure layer.</p>
       </div>
 
       <div class="about-block">
         <h3>Building in Public</h3>
-        <p>We document every milestone — successes and unfinished edges. The protocol is in active development. Every iteration, every audit finding, every architectural decision is published openly. Trust is earned through transparency, not promises.</p>
+        <p>We document every milestone. The protocol is in active development. Every iteration and architectural decision is published openly on our Build Log.</p>
       </div>
     </div>
   </div>
@@ -426,19 +446,19 @@
       <div class="feature-card">
         <div class="feature-icon">🛡️</div>
         <h3>Confidential Compute</h3>
-        <p>AI workloads run inside hardware-secured TEE enclaves where memory is encrypted at the silicon level. No data exposure — not to the cloud provider, not to the network operator, not to us.</p>
+        <p>AI workloads run inside hardware-secured TEE enclaves where memory is encrypted at the silicon level. No data exposure to anyone.</p>
       </div>
 
       <div class="feature-card">
         <div class="feature-icon">🔗</div>
         <h3>On-Chain Attestation</h3>
-        <p>Every compute session produces a cryptographic commitment hash, anchored on Base L2. Tamper-proof audit trail, publicly verifiable, immutable. Mathematics replaces institutional trust.</p>
+        <p>Every compute session produces a cryptographic commitment hash, anchored on Base L2. Tamper-proof and immutable audit trail.</p>
       </div>
 
       <div class="feature-card">
         <div class="feature-icon">🏥</div>
         <h3>Regulated AI Ready</h3>
-        <p>Designed for healthcare, finance, biotech, and legal — sectors where data privacy is a legal requirement. GDPR and HIPAA compliance built into the protocol primitive.</p>
+        <p>Designed for sectors where data privacy is a legal requirement. GDPR and HIPAA compliance built into the protocol primitive.</p>
       </div>
     </div>
   </div>
@@ -448,7 +468,7 @@
   <div class="container">
     <div class="section-label">Verified Proof of Concept</div>
     <h2 class="section-title">Live, Verifiable, On-Chain</h2>
-    <p class="section-subtitle">Our first proof of concept ran a real AI model inside an AMD SEV hardware enclave on Google Cloud. The attestation is verifiable by anyone, forever.</p>
+    <p class="section-subtitle">Our first proof of concept ran a real AI model inside an AMD SEV hardware enclave. Watch the demo and check the on-chain proof below.</p>
 
     <div class="proof-box">
       <div class="proof-row">
@@ -460,14 +480,6 @@
         <span class="proof-value">AMD SEV</span>
       </div>
       <div class="proof-row">
-        <span class="proof-label">Cloud Provider</span>
-        <span class="proof-value">Google Cloud Confidential Computing</span>
-      </div>
-      <div class="proof-row">
-        <span class="proof-label">Attestation</span>
-        <span class="proof-value">instance_confidentiality: 1 ✓ VERIFIED</span>
-      </div>
-      <div class="proof-row">
         <span class="proof-label">Network</span>
         <span class="proof-value">Base Sepolia Testnet</span>
       </div>
@@ -475,6 +487,21 @@
         <span class="proof-label">On-Chain Transaction</span>
         <span class="proof-value"><a href="https://base-sepolia.blockscout.com/tx/0x6c9a8e68ddc3b96b70b09785e1efbc519b371132aaf7b7ac5e428954de010046" target="_blank" rel="noopener">View on Blockscout →</a></span>
       </div>
+    </div>
+
+    <div class="video-container">
+      <div class="video-wrapper">
+        <iframe 
+          src="https://www.loom.com/embed/bc8aa2bbdc6745d1a1568d29b1b124e8" 
+          frameborder="0" 
+          webkitallowfullscreen 
+          mozallowfullscreen 
+          allowfullscreen>
+        </iframe>
+      </div>
+      <p style="text-align: center; color: var(--text-secondary); font-size: 14px; margin-top: 16px;">
+        Protocol Demo: GPT-2 inference running inside an AMD SEV confidential enclave.
+      </p>
     </div>
   </div>
 </section>
@@ -491,7 +518,7 @@
 
       <div class="contact-links">
         <a href="https://x.com/NEUROLIX" target="_blank" rel="noopener">@NEUROLIX on X</a>
-        <a href="https://paragraph.com/@0xba2b7775c09914bf8eb05a53ace30204f0061c27/we-ran-a-medical-ai-model-inside-a-hardware-enclave?referrer=0xba2B7775c09914BF8EB05A53AcE30204F0061c27" target="_blank" rel="noopener">Build Log on Paragraph</a>
+        <a href="https://paragraph.xyz/@0xba2b7775c09914bf8eb05a53ace30204f0061c27/we-ran-a-medical-ai-model-inside-a-hardware-enclave" target="_blank" rel="noopener">Build Log on Paragraph</a>
         <a href="https://base-sepolia.blockscout.com/tx/0x6c9a8e68ddc3b96b70b09785e1efbc519b371132aaf7b7ac5e428954de010046" target="_blank" rel="noopener">On-Chain Proof</a>
       </div>
     </div>
@@ -502,7 +529,7 @@
   <div class="container">
     <p class="footer-meta">© 2026 Neurolix Protocol · Building in public · Base L2</p>
     <p class="disclaimer">
-      This website is for informational and technical purposes only. Neurolix Protocol is in active development and currently operates a proof of concept on testnet. The $OLIX token, when launched, will be a utility token designed to access protocol computational resources. It does not constitute a financial product, investment advice, or an offer to buy or sell securities. Participation in any future token event involves risk. Please conduct your own research.
+      This website is for informational and technical purposes only. Neurolix Protocol is in active development and currently operates a proof of concept on testnet. The $OLIX token, when launched, will be a utility token designed to access protocol computational resources.
     </p>
   </div>
 </footer>
