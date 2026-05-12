@@ -324,13 +324,13 @@
   }
 
   .contact-email {
-    font-size: 24px;
-    color: var(--accent);
-    text-decoration: none;
-    font-weight: 600;
-    display: inline-block;
-    margin: 16px 0 24px;
-  }
+  font-size: 24px;
+  color: var(--accent) !important; /* Forza il colore azzurro anche se cliccato */
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+  margin: 16px 0 24px;
+}
 
   .contact-email:hover { text-decoration: underline; }
 
@@ -343,14 +343,14 @@
   }
 
   .contact-links a {
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-size: 14px;
-    padding: 8px 16px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    transition: all 0.2s;
-  }
+  color: var(--text-secondary) !important; /* Forza il grigio chiaro anche se cliccato */
+  text-decoration: none;
+  font-size: 14px;
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: all 0.2s;
+}
 
   .contact-links a:hover {
     color: var(--accent);
