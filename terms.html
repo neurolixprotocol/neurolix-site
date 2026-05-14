@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a0e1a">
+<title>Terms of Use — Neurolix Protocol</title>
+<meta name="description" content="Terms of Use for Neurolix Protocol — Confidential AI Compute Infrastructure. MiCA-compliant utility token framework. Sole technology provider, no CASP qualification.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://neurolixprotocol.com/terms.html">
+<link rel="icon" type="image/png" href="favicon.png">
+
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg-primary: #0a0e1a;
+    --bg-secondary: #111827;
+    --bg-card: #1a2234;
+    --border: #1f2937;
+    --text-primary: #f3f4f6;
+    --text-secondary: #9ca3af;
+    --accent: #00E5FF;
+    --accent-dim: rgba(0, 229, 255, 0.1);
+    --warning: #fbbf24;
+    --warning-dim: rgba(251, 191, 36, 0.08);
+    --danger: #ef4444;
+    --danger-dim: rgba(239, 68, 68, 0.08);
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  nav {
+    position: sticky;
+    top: 0;
+    background: rgba(10, 14, 26, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 0;
+    z-index: 100;
+  }
+
+  nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo { font-weight: 700; font-size: 18px; letter-spacing: -0.5px; text-decoration: none; color: var(--text-primary); }
+  .logo span { color: var(--accent); }
+
+  .back-link { color: var(--text-secondary); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+  .back-link:hover { color: var(--accent); }
+
+  .hero {
+    padding: 72px 0 48px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .doc-badge {
+    display: inline-block;
+    padding: 6px 14px;
+    background: var(--accent-dim);
+    border: 1px solid var(--accent);
+    border-radius: 20px;
+    font-size: 12px;
+    color: var(--accent);
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+  }
+
+  h1 {
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .meta-line {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .meta-line strong { color: var(--text-primary); font-weight: 600; }
+
+  main { padding: 56px 0 80px; }
+
+  .risk-banner {
+    background: var(--danger-dim);
+    border: 1px solid var(--danger);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 48px;
+  }
+
+  .risk-banner h2 {
+    color: var(--danger);
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .risk-banner p {
+    font-size: 15px;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+  }
+
+  .risk-banner p:last-child { margin-bottom: 0; }
+
+  h2.section-heading {
+    font-size: 26px;
+    font-weight: 700;
+    margin: 56px 0 16px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+    letter-spacing: -0.3px;
+  }
+
+  h2.section-heading:first-of-type { padding-top: 0; border-top: none; margin-top: 0; }
+
+  h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 28px 0 12px;
+    color: var(--text-primary);
+  }
+
+  p {
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    font-size: 15px;
+  }
+
+  p strong { color: var(--text-primary); font-weight: 600; }
+
+  ul, ol {
+    color: var(--text-secondary);
+    margin: 0 0 20px 24px;
+    font-size: 15px;
+  }
+
+  li { margin-bottom: 8px; line-height: 1.7; }
+
+  li strong { color: var(--text-primary); }
+
+  .definition-list dt {
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-top: 16px;
+    font-size: 15px;
+  }
+
+  .definition-list dd {
+    color: var(--text-secondary);
+    margin-left: 0;
+    margin-bottom: 4px;
+    font-size: 15px;
+  }
+
+  .callout {
+    background: var(--bg-card);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: 18px 24px;
+    margin: 24px 0;
+  }
+
+  .callout p { color: var(--text-primary); margin-bottom: 0; font-size: 14px; }
+
+  .warning-block {
+    background: var(--warning-dim);
+    border-left: 3px solid var(--warning);
+    border-radius: 0 8px 8px 0;
+    padding: 18px 24px;
+    margin: 24px 0;
+  }
+
+  .warning-block p { color: var(--text-primary); margin-bottom: 0; font-size: 14px; }
+  .warning-block strong { color: var(--warning); }
+
+  code {
+    font-family: 'SF Mono', Menlo, monospace;
+    background: var(--bg-card);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 13px;
+    color: var(--accent);
+  }
+
+  a { color: var(--accent); text-decoration: none; transition: opacity 0.2s; }
+  a:hover { opacity: 0.75; }
+
+  footer {
+    padding: 32px 0;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+
+  footer p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    h1 { font-size: 30px; }
+    h2.section-heading { font-size: 22px; }
+    .container { padding: 0 18px; }
+    .risk-banner { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="container">
+      <a href="https://neurolixprotocol.com" class="logo">NEUR<span>OLIX</span> Protocol</a>
+      <a href="https://neurolixprotocol.com" class="back-link">← Home</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="doc-badge">LEGAL · TERMS OF USE</div>
+    <h1>Terms of Use</h1>
+    <p class="meta-line"><strong>Last updated:</strong> 14 May 2026</p>
+    <p class="meta-line"><strong>Effective date:</strong> 14 May 2026</p>
+    <p class="meta-line"><strong>Version:</strong> 1.0</p>
+  </div>
+</section>
+
+<main>
+  <div class="container">
+
+    <div class="risk-banner">
+      <h2>⚠ Risk Disclosure — Read Before Use</h2>
+      <p>Neurolix Protocol is experimental decentralized infrastructure currently operating on testnet. The <code>$OLIX</code> token, when launched, will be a <strong>utility token</strong> only — not a financial product, security, e-money, or investment.</p>
+      <p>You may <strong>lose the entire value</strong> of any crypto-asset interacting with this Protocol due to smart contract bugs, hardware vulnerabilities, market volatility, regulatory action, or operational failure of third-party providers (Google Cloud, Coinbase Base L2, AMD, Intel). <strong>No party guarantees recovery of any loss.</strong></p>
+      <p>If you do not understand the technical and legal risks of decentralized protocols and Trusted Execution Environments, <strong>do not use this Protocol</strong>.</p>
+    </div>
+
+    <h2 class="section-heading">1. Acceptance of Terms</h2>
+    <p>These Terms of Use (the "<strong>Terms</strong>") constitute a binding legal agreement between you ("<strong>User</strong>", "<strong>You</strong>") and the Neurolix Protocol team ("<strong>Neurolix</strong>", "<strong>We</strong>", "<strong>Us</strong>"), governing your access to and use of the Neurolix Protocol, the website <a href="https://neurolixprotocol.com">neurolixprotocol.com</a>, the related smart contracts deployed on Base L2, and any associated software, documentation, or interfaces (collectively, the "<strong>Protocol</strong>").</p>
+    <p>By accessing, interacting with, or otherwise using the Protocol, you confirm that you have read, understood, and agreed to be bound by these Terms in their entirety. <strong>If you do not agree, you must not use the Protocol.</strong></p>
+
+    <h2 class="section-heading">2. Definitions</h2>
+    <dl class="definition-list">
+      <dt>Protocol</dt>
+      <dd>The set of open-source smart contracts, off-chain software, attestation infrastructure, and supporting components that together implement Neurolix Protocol on Base L2.</dd>
+
+      <dt>$OLIX Token</dt>
+      <dd>The native utility token of the Protocol, used exclusively to (i) pay for confidential compute sessions, (ii) serve as node operator collateral, and (iii) participate in protocol governance. It does not represent an equity interest, debt instrument, reference asset, or e-money.</dd>
+
+      <dt>Node Operator</dt>
+      <dd>Any third party operating computing infrastructure that registers a node on the Protocol and stakes $OLIX as collateral.</dd>
+
+      <dt>TEE / Trusted Execution Environment</dt>
+      <dd>Hardware-isolated execution environments (including AMD SEV, AMD SEV-SNP, Intel TDX, AWS Nitro Enclaves) used to run AI workloads in a memory-encrypted state.</dd>
+
+      <dt>Attestation</dt>
+      <dd>Cryptographic proof, generated by TEE hardware and verified by the cloud provider's attestation service, that a specific computation occurred inside a verified enclave.</dd>
+
+      <dt>Smart Contracts</dt>
+      <dd>The set of contracts (including <code>OLIXToken</code>, <code>NodeRegistry</code>, <code>NeurolixGovernor</code>, <code>VotingEscrow</code>, <code>ProtocolVault</code>, and <code>NeurolixAttestation</code>) deployed on Base L2.</dd>
+    </dl>
+
+    <h2 class="section-heading">3. Nature of the Service — Sole Technology Provider</h2>
+    <p><strong>Neurolix is a provider of open-source software and decentralized infrastructure technology only.</strong> We do not, at any time, provide any of the following services as defined by Regulation (EU) 2023/1114 ("MiCA"):</p>
+    <ul>
+      <li><strong>Custody and administration of crypto-assets</strong> on behalf of clients (MiCA Art. 3(1)(16)(a));</li>
+      <li><strong>Operation of a trading platform</strong> for crypto-assets (MiCA Art. 3(1)(16)(b));</li>
+      <li><strong>Exchange of crypto-assets</strong> for funds or other crypto-assets (MiCA Art. 3(1)(16)(c)–(d));</li>
+      <li><strong>Execution of orders</strong> for crypto-assets on behalf of clients (MiCA Art. 3(1)(16)(e));</li>
+      <li><strong>Placing</strong> of crypto-assets (MiCA Art. 3(1)(16)(f));</li>
+      <li><strong>Reception and transmission of orders</strong> (MiCA Art. 3(1)(16)(g));</li>
+      <li><strong>Advice on crypto-assets</strong> (MiCA Art. 3(1)(16)(h));</li>
+      <li><strong>Portfolio management</strong> of crypto-assets (MiCA Art. 3(1)(16)(i));</li>
+      <li><strong>Transfer services</strong> for crypto-assets on behalf of clients (MiCA Art. 3(1)(16)(j)).</li>
+    </ul>
+    <p>Consequently, <strong>Neurolix does not qualify as a Crypto-Asset Service Provider ("CASP")</strong> under MiCA and is not subject to authorisation under Title V of that Regulation.</p>
+    <p>All interactions with the Protocol occur directly between the User and autonomous smart contracts deployed on the Base L2 blockchain. Neurolix:</p>
+    <ul>
+      <li>Does not hold, control, or have access to User funds or private keys at any time;</li>
+      <li>Does not match buyers and sellers of $OLIX or any other crypto-asset;</li>
+      <li>Does not operate or maintain any centralized exchange, order book, or settlement mechanism;</li>
+      <li>Does not provide financial advice, investment recommendations, or portfolio management services.</li>
+    </ul>
+    <div class="callout">
+      <p>Any decision to acquire, hold, or dispose of $OLIX is made solely by the User on the User's own responsibility, through third-party venues outside of Neurolix's control.</p>
+    </div>
+
+    <h2 class="section-heading">4. Nature of the $OLIX Token — Utility Token Classification</h2>
+    <p>$OLIX is designed and operated exclusively as a <strong>utility token</strong> intended to provide digital access to Protocol functionality (MiCA Art. 3(1)(9): "a type of crypto-asset that is only intended to provide access to a good or a service supplied by its issuer").</p>
+    <p>$OLIX is <strong>not</strong>:</p>
+    <ul>
+      <li>An <strong>asset-referenced token</strong> under MiCA Title III (it does not reference the value of any fiat currency, commodity, or basket of assets);</li>
+      <li>An <strong>e-money token</strong> under MiCA Title IV (it is not pegged to a single fiat currency and does not represent a claim on an issuer);</li>
+      <li>A <strong>transferable security</strong>, <strong>financial instrument</strong>, or <strong>investment product</strong> under MiFID II, the Prospectus Regulation, or any analogous regime;</li>
+      <li>A <strong>deposit</strong> or claim on a regulated financial institution;</li>
+      <li>A <strong>derivative</strong>, <strong>collective investment scheme</strong>, or share in any legal entity.</li>
+    </ul>
+    <p>$OLIX confers <strong>no rights</strong> to dividends, profit-sharing, voting in any company, residual claims on assets, or any other economic or governance right outside the Protocol itself. Holding $OLIX does not create any contractual or fiduciary relationship between the User and Neurolix.</p>
+    <div class="warning-block">
+      <p><strong>Regulatory note:</strong> The regulatory classification of crypto-assets is jurisdiction-specific and evolving. Users are responsible for determining whether their acquisition, holding, or use of $OLIX is permitted under their local laws.</p>
+    </div>
+
+    <h2 class="section-heading">5. Eligibility and Prohibited Jurisdictions</h2>
+    <p>To use the Protocol, you must be at least eighteen (18) years of age and have the legal capacity to enter into binding contracts in your jurisdiction.</p>
+    <p>You may <strong>not</strong> access, use, or interact with the Protocol if you are:</p>
+    <ul>
+      <li>A natural or legal person located in, organised under the laws of, or resident in any country or territory subject to comprehensive sanctions administered by the European Union, the United States Office of Foreign Assets Control ("OFAC"), the United Kingdom, or the United Nations (currently including but not limited to North Korea, Iran, Syria, Cuba, the Crimea, Donetsk and Luhansk regions);</li>
+      <li>Identified on any sanctions list (OFAC SDN List, EU Consolidated Sanctions List, UK HMT List, UN Sanctions List);</li>
+      <li>A "U.S. Person" as defined in Regulation S under the U.S. Securities Act of 1933, unless qualified as an "accredited investor" under Rule 501 of Regulation D and explicitly permitted under applicable U.S. law;</li>
+      <li>Located in the People's Republic of China or any other jurisdiction where the use of decentralized protocols, crypto-assets, or utility tokens is prohibited or restricted;</li>
+      <li>Acting on behalf of any of the foregoing.</li>
+    </ul>
+    <p>You represent and warrant that none of the above restrictions apply to you, and that your use of the Protocol does not violate any applicable law in your jurisdiction.</p>
+
+    <h2 class="section-heading">6. Use of the Protocol</h2>
+    <h3>6.1 Non-Custodial Interaction</h3>
+    <p>All transactions with the Protocol occur via non-custodial interactions with self-executing smart contracts. You retain full control of your private keys at all times. <strong>Neurolix cannot recover lost keys, reverse transactions, or restore access to lost funds.</strong></p>
+
+    <h3>6.2 Permitted Use</h3>
+    <p>You may use the Protocol exclusively to: (i) submit AI compute workloads to be executed inside TEE enclaves; (ii) verify on-chain attestations; (iii) operate Node Operator infrastructure in accordance with the Protocol's technical specifications; (iv) participate in protocol governance through veOLIX voting.</p>
+
+    <h3>6.3 Prohibited Use</h3>
+    <p>You shall not use the Protocol to:</p>
+    <ul>
+      <li>Process data you do not have lawful authority to process (e.g., stolen medical records, copyrighted material, personal data lacking a valid GDPR legal basis);</li>
+      <li>Train or run AI models designed to facilitate illegal activity, including weapons of mass destruction development, child sexual abuse material, fraud, or critical infrastructure attacks;</li>
+      <li>Attempt to circumvent enclave isolation, extract attestation private keys, or exploit hardware side channels;</li>
+      <li>Engage in market manipulation, wash trading, or other abusive market conduct involving $OLIX;</li>
+      <li>Operate a Node Operator that submits falsified heartbeats, fake workload commitments, or otherwise defrauds the Protocol;</li>
+      <li>Violate any applicable law, regulation, or third-party right.</li>
+    </ul>
+
+    <h2 class="section-heading">7. No Warranty — "As Is" Provision</h2>
+    <p>THE PROTOCOL, INCLUDING ALL SOFTWARE, SMART CONTRACTS, ATTESTATION INFRASTRUCTURE, AND ASSOCIATED DOCUMENTATION, IS PROVIDED <strong>"AS IS"</strong> AND <strong>"AS AVAILABLE"</strong>, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, TO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW.</p>
+    <p>Neurolix expressly disclaims all warranties, including but not limited to:</p>
+    <ul>
+      <li>Warranties of <strong>merchantability</strong>, <strong>fitness for a particular purpose</strong>, <strong>title</strong>, and <strong>non-infringement</strong>;</li>
+      <li>Any warranty that the Protocol will be <strong>uninterrupted, error-free, secure, or free of vulnerabilities</strong>;</li>
+      <li>Any warranty regarding the <strong>accuracy, reliability, or completeness</strong> of attestations, inference outputs, or any data produced by the Protocol;</li>
+      <li>Any warranty that the <strong>cryptographic primitives</strong> (SHA-256, ECDSA, AES, etc.) underlying the Protocol will remain secure against future cryptanalytic advances, including but not limited to quantum computing attacks.</li>
+    </ul>
+
+    <h2 class="section-heading">8. Limitation of Liability</h2>
+    <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, NEUROLIX AND ITS CONTRIBUTORS, DEVELOPERS, AGENTS, AND AFFILIATES SHALL <strong>NOT BE LIABLE</strong> FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, PUNITIVE, OR EXEMPLARY DAMAGES, INCLUDING WITHOUT LIMITATION:</p>
+    <ul>
+      <li><strong>Losses arising from smart contract bugs</strong>, exploits, reentrancy attacks, oracle failures, MEV extraction, or other vulnerabilities in code deployed to Base L2;</li>
+      <li><strong>Losses arising from hardware vulnerabilities</strong> in third-party processors, including but not limited to side-channel attacks (Spectre, Meltdown and their variants), microarchitectural data sampling, or undisclosed manufacturer defects in AMD SEV, AMD SEV-SNP, Intel TDX, or NVIDIA TEE implementations;</li>
+      <li><strong>Losses arising from third-party cloud providers</strong>, including service interruptions, attestation service failures, or breaches of confidentiality at Google Cloud, AWS, Microsoft Azure, or any other cloud provider hosting TEE infrastructure;</li>
+      <li><strong>Losses arising from Node Operator misconduct</strong>, including slashing events, prolonged downtime, or fraudulent attestations;</li>
+      <li><strong>Losses arising from the Base L2 blockchain</strong> or its sequencer, including reorganisations, downtime, censorship, or actions of Coinbase, the OP Stack, or any successor operator;</li>
+      <li><strong>Losses arising from market volatility</strong>, illiquidity, or price movements of $OLIX or any other crypto-asset;</li>
+      <li><strong>Losses arising from forks, network upgrades, or governance decisions</strong>;</li>
+      <li><strong>Losses arising from regulatory action</strong>, including but not limited to MiCA enforcement, sanctions, or changes in legal classification of crypto-assets in any jurisdiction;</li>
+      <li><strong>Losses arising from User error</strong>, including loss of private keys, transmission of funds to wrong addresses, or interaction with malicious contracts.</li>
+    </ul>
+    <p><strong>Back-to-back warranty disclaimer:</strong> Where the Protocol depends on third-party hardware, software, or services (including AMD SEV, Intel TDX, Google Cloud, AWS, Coinbase Base L2), Neurolix passes through such providers' warranties (if any) without assumption of independent obligation. Any claim regarding such components must be addressed to the relevant third-party provider.</p>
+    <p>In jurisdictions that do not permit the exclusion of certain warranties or liabilities, Neurolix's aggregate liability shall in any event be capped at the lesser of (i) the amount actually paid by the User to interact with the Protocol in the twelve (12) months preceding the event giving rise to liability, or (ii) one hundred euros (€100).</p>
+
+    <h2 class="section-heading">9. No Fiduciary Duty</h2>
+    <p>Neurolix is a software provider, not a fiduciary. Nothing in these Terms or in the operation of the Protocol creates any fiduciary, advisory, trustee, agency, partnership, or similar relationship between Neurolix and any User, Node Operator, or third party.</p>
+
+    <h2 class="section-heading">10. Intellectual Property</h2>
+    <p>The Protocol source code is or will be released under the open-source licences indicated in the respective code repositories. Subject to those licences, you may use, copy, modify, and distribute the source code in accordance with their terms.</p>
+    <p>The names "Neurolix", "Neurolix Protocol", "$OLIX", the Neurolix logo, the visual identity, the website content, and all related trademarks and trade dress remain the intellectual property of Neurolix or its contributors. No right to use these marks is granted except as expressly permitted in writing.</p>
+
+    <h2 class="section-heading">11. User Indemnification</h2>
+    <p>You agree to indemnify, defend, and hold harmless Neurolix and its contributors, developers, agents, and affiliates from any and all claims, damages, losses, liabilities, costs, and expenses (including reasonable legal fees) arising from or related to:</p>
+    <ul>
+      <li>Your breach of these Terms;</li>
+      <li>Your use of the Protocol, including any data you process through it;</li>
+      <li>Your violation of any applicable law, regulation, or third-party right (including data protection, intellectual property, sanctions, and tax obligations);</li>
+      <li>Your operation of a Node Operator;</li>
+      <li>Any tax obligations arising from your acquisition, holding, transfer, or disposal of $OLIX.</li>
+    </ul>
+
+    <h2 class="section-heading">12. Risk Disclosure (MiCA Art. 88 — Best Practice)</h2>
+    <p>You acknowledge and accept the following risks, which are inherent to the use of decentralized protocols and crypto-assets:</p>
+
+    <h3>12.1 Market and Liquidity Risk</h3>
+    <p>The value of $OLIX may fluctuate significantly in short periods. There is no guarantee of liquidity or that any market for $OLIX will exist or persist. You may be unable to sell $OLIX at the price you paid or at all.</p>
+
+    <h3>12.2 Technological Risk</h3>
+    <p>The Protocol relies on emerging technologies (TEE hardware, blockchain consensus, attestation infrastructure) that may contain undiscovered vulnerabilities, may be subject to coordinated attacks, and may fail in ways that cannot be fully anticipated.</p>
+
+    <h3>12.3 Hardware Vendor Risk</h3>
+    <p>The confidentiality guarantees of the Protocol depend on the integrity of hardware manufactured by AMD, Intel, NVIDIA and others. Vendor backdoors, firmware vulnerabilities, side-channel attacks, and supply-chain compromises could undermine these guarantees.</p>
+
+    <h3>12.4 Cloud Provider Risk</h3>
+    <p>The PoC and early-stage Protocol rely on third-party cloud providers (initially Google Cloud, later including AWS and Azure). Provider downtime, terms-of-service changes, or coordinated action against the Protocol could disrupt service.</p>
+
+    <h3>12.5 Regulatory Risk</h3>
+    <p>The legal status of utility tokens, DePIN protocols, and confidential computing services is evolving across jurisdictions. Future regulatory action — including under MiCA, GDPR, AML directives, or analogous regimes — could restrict, suspend, or terminate Protocol operations.</p>
+
+    <h3>12.6 Governance Risk</h3>
+    <p>Protocol parameters may be modified through on-chain governance. Adverse governance decisions, voter apathy, or governance capture by large $OLIX holders could materially affect the Protocol.</p>
+
+    <h3>12.7 Total Loss Risk</h3>
+    <p><strong>You acknowledge that you may lose the entire value of any $OLIX you hold or any funds you interact with through the Protocol. You should not commit any value you cannot afford to lose.</strong></p>
+
+    <h2 class="section-heading">13. Force Majeure</h2>
+    <p>Neurolix shall not be liable for any failure or delay in performance caused by events beyond its reasonable control, including but not limited to: blockchain network outages or reorganisations, 51% attacks, cloud provider failures, hardware manufacturer recalls or vulnerabilities, regulatory action, court orders, war, terrorism, natural disasters, pandemics, or labour disputes.</p>
+
+    <h2 class="section-heading">14. Modifications to the Protocol and to These Terms</h2>
+    <p>Neurolix may modify the Protocol, the website, or these Terms at any time. Material changes will be announced via the Protocol's official channels (<a href="https://x.com/NEUROLIX" target="_blank" rel="noopener noreferrer">@NEUROLIX on X</a>, <a href="https://neurolixprotocol.com">neurolixprotocol.com</a>) at least thirty (30) days before they take effect, where reasonably practicable. Your continued use of the Protocol after the effective date of any modification constitutes acceptance of the modified Terms.</p>
+
+    <h2 class="section-heading">15. Termination</h2>
+    <p>Neurolix reserves the right to suspend or terminate access to the website, the official user interface, and supporting infrastructure at any time and for any reason, including suspected violation of these Terms or applicable law. The autonomous smart contracts deployed on Base L2 will remain accessible directly via the blockchain regardless of any such termination.</p>
+
+    <h2 class="section-heading">16. Governing Law and Dispute Resolution</h2>
+    <p>These Terms are governed by and construed in accordance with the laws of <strong>Italy</strong>, without regard to its conflict of law principles.</p>
+    <p><strong>For consumer Users</strong> domiciled in the European Union, mandatory consumer protection provisions of the User's country of habitual residence (Regulation (EU) No 1215/2012, "Brussels I-bis") apply notwithstanding this choice of law, and the User may bring proceedings in their local courts.</p>
+    <p><strong>For non-consumer Users</strong>, any dispute arising out of or in connection with these Terms shall be finally resolved by binding arbitration administered by the <strong>Milan Chamber of Arbitration (CAM)</strong> under its Arbitration Rules in force at the time of the dispute. The seat of arbitration shall be Milan, Italy. The language of arbitration shall be English. The award shall be final and binding on the parties.</p>
+    <p>Notwithstanding the above, Neurolix may seek injunctive or other equitable relief in any court of competent jurisdiction to protect its intellectual property or to address abuse of the Protocol.</p>
+
+    <h2 class="section-heading">17. Severability</h2>
+    <p>If any provision of these Terms is held invalid, illegal, or unenforceable by a court of competent jurisdiction, the remaining provisions shall remain in full force and effect, and the invalid provision shall be replaced by a valid provision that most closely reflects the original intent.</p>
+
+    <h2 class="section-heading">18. Entire Agreement</h2>
+    <p>These Terms, together with the <a href="https://neurolixprotocol.com/privacy.html">Privacy Policy</a>, constitute the entire agreement between you and Neurolix regarding the Protocol and supersede all prior agreements, representations, and understandings, written or oral.</p>
+
+    <h2 class="section-heading">19. Contact</h2>
+    <p>For any questions regarding these Terms, please contact:</p>
+    <p>
+      <strong>Neurolix Protocol</strong><br>
+      <span style="font-size: 13px; color: var(--text-secondary);">Operating as an unincorporated developer collective.</span><br>
+      Email: <a href="mailto:info@neurolixprotocol.com">info@neurolixprotocol.com</a><br>
+      Website: <a href="https://neurolixprotocol.com">neurolixprotocol.com</a>
+    </p>
+
+    <div class="warning-block" style="margin-top: 56px;">
+      <p><strong>Final notice:</strong> Nothing in these Terms constitutes legal, tax, investment, or accounting advice. You should consult your own qualified advisors before using the Protocol, acquiring $OLIX, or relying on any technical guarantees described in connection with the Protocol.</p>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <p>© 2026 Neurolix Protocol · <a href="https://neurolixprotocol.com">Home</a> · <a href="https://neurolixprotocol.com/privacy.html">Privacy Policy</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
