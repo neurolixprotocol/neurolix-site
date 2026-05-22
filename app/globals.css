@@ -195,3 +195,36 @@ body {
 .hover-primary { color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
 .hover-primary:hover { color: var(--text-primary); }
 .hover-accent:hover  { color: var(--accent); }
+/* Stage C */
+@keyframes dotTravel {
+  0%   { transform: translateX(0);   opacity: 0; }
+  12%  { opacity: 1; }
+  88%  { opacity: 1; }
+  100% { transform: translateX(40px); opacity: 0; }
+}
+.pulse-dot   { animation: dotTravel 4s linear infinite; }
+.pulse-dot-1 { animation-delay: 0s;  }
+.pulse-dot-2 { animation-delay: 1s;  }
+.pulse-dot-3 { animation-delay: 2s;  }
+.pulse-dot-4 { animation-delay: 3s;  }
+
+.btn-primary {
+  background-color: var(--accent);
+  color: #0a0e1a;
+  transition: opacity 0.2s;
+}
+.btn-primary:hover { opacity: 0.82; }
+
+.btn-secondary {
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-secondary:hover { border-color: var(--accent); color: var(--text-primary); }
+
+.proof-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  transition: border-color 0.2s;
+}
+.proof-card:hover { border-color: var(--accent); }
