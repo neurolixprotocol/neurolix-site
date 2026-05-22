@@ -191,3 +191,7 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+/* Hover utilities — used by nav and footer links */
+.hover-primary { color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+.hover-primary:hover { color: var(--text-primary); }
+.hover-accent:hover  { color: var(--accent); }
