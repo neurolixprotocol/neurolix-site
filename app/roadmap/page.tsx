@@ -11,10 +11,10 @@ const phases = [
     title: "Proof of Concept",
     status: "completed",
     items: [
-      "GPT-2 inference inside AMD SEV enclave on Google Cloud",
-      "Commitment hash anchored on Base Sepolia",
+      "GPT-2 inference inside AMD SEV enclave on Google Cloud Confidential Computing",
+      "Commitment hash anchored on Base Sepolia testnet",
       "NeurolixAttestation.sol live on Base Mainnet",
-      "Six core smart contracts at v1.16 after 17-round adversarial audit",
+      "Core smart contract suite at v1.16 — 9 contracts, 17 patch rounds of cross-LLM adversarial review, 128/128 Foundry tests passing",
     ],
   },
   {
@@ -22,11 +22,11 @@ const phases = [
     title: "Protocol Hardening",
     status: "current",
     items: [
-      "ComputeSession.sol — bilateral session lifecycle",
-      "VotingEscrow.sol — governance vote-escrow",
-      "Composability debt audit across all contracts",
-      "Foundry test suite at 95%+ line coverage",
-    ],
+  "Full v1.16 suite live on Base Sepolia",
+  "Bug bounty program — Immunefi (payouts in $OLIX at TGE) + Code4rena or Sherlock community-tier contest",
+  "Off-chain monitoring infrastructure — L2 sequencer and TEE vendor health watchers",
+  "Public testnet open for node operator onboarding",
+   ],
   },
   {
     id: "03",
@@ -34,9 +34,10 @@ const phases = [
     status: "next",
     items: [
       "Full v1.16 suite live on Base Sepolia",
-      "Bug bounty program — Immunefi + GitHub ($2–5K budget)",
-      "Community contest — Code4rena / Sherlock",
-      "Public testnet for node operators",
+      "Bug bounty program — Immunefi (payouts in $OLIX) + GitHub community bounty ($2K–$5K cash)",
+      "Community contest — Code4rena or Sherlock community-tier",
+      "Off-chain monitoring infrastructure — L2 sequencer and TEE vendor health watchers",
+      "Public testnet open for node operator onboarding",
     ],
   },
   {
@@ -45,8 +46,9 @@ const phases = [
     status: "future",
     items: [
       "Paid external smart contract audit (Trail of Bits / Spearbit class)",
+      "Legal compliance review — MiCA + GDPR with external counsel",
       "Capped mainnet deployment — $100K USDC initial cap",
-      "Progressive cap expansion based on operational data",
+      "Progressive cap expansion based on operational telemetry",
     ],
   },
   {
@@ -54,8 +56,8 @@ const phases = [
     title: "Token Launch & Multi-Cloud",
     status: "future",
     items: [
-      "$OLIX mainnet deployment",
-      "Public tokenomics whitepaper",
+      "Public tokenomics whitepaper (published prior to launch)",
+      "$OLIX mainnet deployment per published distribution schedule",
       "Azure Confidential Computing integration",
       "AWS Nitro Enclaves integration",
     ],
@@ -65,9 +67,9 @@ const phases = [
     title: "GPU Confidential Compute",
     status: "future",
     items: [
-      "NVIDIA H100 with TEE-IO support",
-      "Production-grade LLM inference inside enclaves",
-      "Enterprise pilot program — regulated-sector partners",
+      "NVIDIA H100 CC mode — confidential compute for GPU workloads with attestation chain to NVIDIA root of trust",
+      "Production-grade LLM inference inside hardware enclaves",
+      "Enterprise pilot program for healthcare and finance partners",
     ],
   },
   {
@@ -75,9 +77,9 @@ const phases = [
     title: "General Availability",
     status: "future",
     items: [
-      "Permissionless node onboarding",
+      "Permissionless node onboarding (no whitelist)",
       "Public SDK and developer documentation",
-      "Open network — no whitelist required",
+      "Open network operations",
     ],
   },
 ];
