@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a0e1a">
+<title>Privacy Policy — Neurolix Protocol</title>
+<meta name="description" content="Privacy Policy for Neurolix Protocol — GDPR-compliant data processing for confidential AI compute infrastructure. Hardware-enforced privacy via Trusted Execution Environments.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://neurolixprotocol.com/privacy.html">
+<link rel="icon" type="image/png" href="favicon.png">
+
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg-primary: #0a0e1a;
+    --bg-secondary: #111827;
+    --bg-card: #1a2234;
+    --border: #1f2937;
+    --text-primary: #f3f4f6;
+    --text-secondary: #9ca3af;
+    --accent: #00E5FF;
+    --accent-dim: rgba(0, 229, 255, 0.1);
+    --warning: #fbbf24;
+    --warning-dim: rgba(251, 191, 36, 0.08);
+    --danger: #ef4444;
+    --danger-dim: rgba(239, 68, 68, 0.08);
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  nav {
+    position: sticky;
+    top: 0;
+    background: rgba(10, 14, 26, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 0;
+    z-index: 100;
+  }
+
+  nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo { font-weight: 700; font-size: 18px; letter-spacing: -0.5px; text-decoration: none; color: var(--text-primary); }
+  .logo span { color: var(--accent); }
+
+  .back-link { color: var(--text-secondary); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+  .back-link:hover { color: var(--accent); }
+
+  .hero {
+    padding: 72px 0 48px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .doc-badge {
+    display: inline-block;
+    padding: 6px 14px;
+    background: var(--accent-dim);
+    border: 1px solid var(--accent);
+    border-radius: 20px;
+    font-size: 12px;
+    color: var(--accent);
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+  }
+
+  h1 {
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .meta-line {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .meta-line strong { color: var(--text-primary); font-weight: 600; }
+
+  main { padding: 56px 0 80px; }
+
+  .controller-box {
+    background: var(--accent-dim);
+    border: 1px solid var(--accent);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 48px;
+  }
+
+  .controller-box h2 {
+    color: var(--accent);
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .controller-box p {
+    font-size: 15px;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+  }
+
+  .controller-box a { color: var(--accent); text-decoration: none; font-weight: 600; }
+  .controller-box a:hover { opacity: 0.75; }
+
+  h2.section-heading {
+    font-size: 26px;
+    font-weight: 700;
+    margin: 56px 0 16px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+    letter-spacing: -0.3px;
+  }
+
+  h2.section-heading:first-of-type { padding-top: 0; border-top: none; margin-top: 0; }
+
+  h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 28px 0 12px;
+    color: var(--text-primary);
+  }
+
+  p {
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    font-size: 15px;
+  }
+
+  p strong { color: var(--text-primary); font-weight: 600; }
+
+  ul, ol {
+    color: var(--text-secondary);
+    margin: 0 0 20px 24px;
+    font-size: 15px;
+  }
+
+  li { margin-bottom: 8px; line-height: 1.7; }
+
+  li strong { color: var(--text-primary); }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 14px;
+    background: var(--bg-card);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  th {
+    background: var(--bg-secondary);
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  td { color: var(--text-secondary); }
+  td strong { color: var(--text-primary); }
+
+  tr:last-child td { border-bottom: none; }
+
+  .callout {
+    background: var(--bg-card);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: 18px 24px;
+    margin: 24px 0;
+  }
+
+  .callout p { color: var(--text-primary); margin-bottom: 0; font-size: 14px; }
+
+  .warning-block {
+    background: var(--warning-dim);
+    border-left: 3px solid var(--warning);
+    border-radius: 0 8px 8px 0;
+    padding: 18px 24px;
+    margin: 24px 0;
+  }
+
+  .warning-block p { color: var(--text-primary); margin-bottom: 0; font-size: 14px; }
+  .warning-block strong { color: var(--warning); }
+
+  .danger-block {
+    background: var(--danger-dim);
+    border-left: 3px solid var(--danger);
+    border-radius: 0 8px 8px 0;
+    padding: 18px 24px;
+    margin: 24px 0;
+  }
+
+  .danger-block p { color: var(--text-primary); margin-bottom: 0; font-size: 14px; }
+  .danger-block strong { color: var(--danger); }
+
+  code {
+    font-family: 'SF Mono', Menlo, monospace;
+    background: var(--bg-card);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 13px;
+    color: var(--accent);
+  }
+
+  a { color: var(--accent); text-decoration: none; transition: opacity 0.2s; }
+  a:hover { opacity: 0.75; }
+
+  footer {
+    padding: 32px 0;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+
+  footer p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    h1 { font-size: 30px; }
+    h2.section-heading { font-size: 22px; }
+    .container { padding: 0 18px; }
+    .controller-box { padding: 20px; }
+    table { font-size: 13px; }
+    th, td { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="container">
+      <a href="https://neurolixprotocol.com" class="logo">NEUR<span>OLIX</span> Protocol</a>
+      <a href="https://neurolixprotocol.com" class="back-link">← Home</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="doc-badge">LEGAL · PRIVACY POLICY</div>
+    <h1>Privacy Policy</h1>
+    <p class="meta-line"><strong>Last updated:</strong> 14 May 2026</p>
+    <p class="meta-line"><strong>Effective date:</strong> 14 May 2026</p>
+    <p class="meta-line"><strong>Version:</strong> 1.0</p>
+    <p class="meta-line"><strong>Applicable regulation:</strong> Regulation (EU) 2016/679 ("GDPR") and national implementing legislation</p>
+  </div>
+</section>
+
+<main>
+  <div class="container">
+
+    <div class="controller-box">
+      <h2>🔒 Data Controller — Identification</h2>
+      <p><strong>Neurolix Protocol</strong></p>
+      <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 10px;">Operating as an unincorporated developer collective. No registered legal entity at this stage of development.</p>
+      <p>Email: <a href="mailto:info@neurolixprotocol.com">info@neurolixprotocol.com</a></p>
+      <p>Website: <a href="https://neurolixprotocol.com">neurolixprotocol.com</a></p>
+      <p style="margin-top: 12px; font-size: 13px; color: var(--text-secondary);">
+        For all questions concerning the processing of personal data described in this Policy, including the exercise of your rights under Articles 15–22 GDPR, please contact us at the email above. We will respond within thirty (30) days as required by Article 12(3) GDPR.
+      </p>
+    </div>
+
+    <h2 class="section-heading">1. Introduction and Scope</h2>
+    <p>This Privacy Policy describes how Neurolix Protocol ("<strong>Neurolix</strong>", "<strong>We</strong>", "<strong>Us</strong>") processes personal data in connection with:</p>
+    <ul>
+      <li>The website <a href="https://neurolixprotocol.com">neurolixprotocol.com</a> (the "<strong>Website</strong>").</li>
+      <li>Direct communications with users via email or social channels.</li>
+      <li>The Neurolix Protocol smart contracts deployed on Base L2 (the "<strong>Smart Contracts</strong>").</li>
+      <li>The confidential compute infrastructure operating in Trusted Execution Environments (the "<strong>TEE Infrastructure</strong>").</li>
+    </ul>
+    <p>This Policy is published in compliance with Articles 13 and 14 GDPR.</p>
+
+    <h2 class="section-heading">2. Categories of Personal Data Processed</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Examples</th>
+          <th>Source</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Navigation data</strong></td>
+          <td>IP address, browser type, device type, referrer URL, pages visited, timestamps, language preference</td>
+          <td>Automatic — collected on visit to the Website</td>
+        </tr>
+        <tr>
+          <td><strong>Contact data</strong></td>
+          <td>Email address, name (if provided), content of communications</td>
+          <td>Voluntary — submitted by you via email or contact form</td>
+        </tr>
+        <tr>
+          <td><strong>Wallet addresses</strong></td>
+          <td>Public blockchain addresses interacting with the Smart Contracts</td>
+          <td>On-chain — recorded immutably on Base L2</td>
+        </tr>
+        <tr>
+          <td><strong>Cookie data</strong></td>
+          <td>Technical session identifiers (no advertising or profiling cookies)</td>
+          <td>Automatic — see Cookie section</td>
+        </tr>
+        <tr>
+          <td><strong>Workload metadata</strong></td>
+          <td>Commitment hashes, model identifiers, attestation tokens, timestamps (not raw input data)</td>
+          <td>Generated by the TEE Infrastructure</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="warning-block">
+      <p><strong>Wallet addresses are personal data.</strong> Although blockchain addresses are pseudonymous, the European Data Protection Board and the Court of Justice of the European Union have confirmed that pseudonymous identifiers may constitute personal data under Article 4(1) GDPR when the data subject is identifiable directly or indirectly. We treat wallet addresses interacting with our Smart Contracts as personal data accordingly.</p>
+    </div>
+
+    <h2 class="section-heading">3. Two-Tier Controller / Processor Model</h2>
+    <p>It is critical to distinguish between two distinct data flows, governed by different responsibilities under the GDPR.</p>
+
+    <h3>3.1 Data for which Neurolix is Controller</h3>
+    <p>Neurolix acts as <strong>Data Controller</strong> within the meaning of Article 4(7) GDPR for:</p>
+    <ul>
+      <li>Navigation data collected from the Website;</li>
+      <li>Contact data submitted via email, contact forms, or social channels;</li>
+      <li>Wallet addresses identified through interactions with the official Website and Smart Contracts that Neurolix actively monitors for compliance and operational purposes;</li>
+      <li>Workload metadata used for protocol-level analytics and SLA enforcement.</li>
+    </ul>
+
+    <h3>3.2 Data for which Neurolix is NOT Controller</h3>
+    <p>For <strong>data that you, the User, submit to the TEE Infrastructure for confidential processing</strong> (for example: medical records, financial transactions, legal documents, proprietary datasets):</p>
+    <ul>
+      <li><strong>You are the Data Controller</strong> within the meaning of Article 4(7) GDPR. You determine the purposes and means of processing that data.</li>
+      <li>Neurolix and the relevant Node Operators act, at most, as <strong>Data Processors</strong> under Article 4(8) and Article 28 GDPR — strictly providing technical processing on your instructions, inside a hardware-isolated enclave that prevents Neurolix and Node Operators from seeing your data.</li>
+      <li><strong>You alone are responsible</strong> for: (i) identifying a valid legal basis under Article 6 GDPR (and Article 9 GDPR for special categories); (ii) informing your own data subjects; (iii) executing any required Data Processing Agreement with us prior to processing personal data through the TEE Infrastructure; (iv) carrying out a Data Protection Impact Assessment (Article 35) where required.</li>
+    </ul>
+    <div class="danger-block">
+      <p><strong>Compliance obligation:</strong> You must not submit personal data (and especially special categories of personal data under Article 9 GDPR — health, biometric, genetic, religious, etc.) to the TEE Infrastructure without first executing a Data Processing Agreement with Neurolix and ensuring you have a valid legal basis for the processing.</p>
+    </div>
+
+    <h2 class="section-heading">4. Purposes and Legal Bases of Processing</h2>
+    <p>Where Neurolix acts as Controller, we process personal data on the following bases:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Purpose</th>
+          <th>Legal basis (Art. 6 GDPR)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Operating the Website and ensuring its security</td>
+          <td><strong>Legitimate interest</strong> — Art. 6(1)(f)</td>
+        </tr>
+        <tr>
+          <td>Responding to enquiries you submit by email</td>
+          <td><strong>Pre-contractual measures / consent</strong> — Art. 6(1)(b) and 6(1)(a)</td>
+        </tr>
+        <tr>
+          <td>Sending technical updates or build-log notifications (only if you have explicitly opted in)</td>
+          <td><strong>Consent</strong> — Art. 6(1)(a)</td>
+        </tr>
+        <tr>
+          <td>Compliance with legal obligations (including AML, sanctions screening where applicable)</td>
+          <td><strong>Legal obligation</strong> — Art. 6(1)(c)</td>
+        </tr>
+        <tr>
+          <td>Anchoring attestation hashes on Base L2 for protocol integrity</td>
+          <td><strong>Legitimate interest</strong> — Art. 6(1)(f)</td>
+        </tr>
+        <tr>
+          <td>Defending against fraud, abuse, or security threats</td>
+          <td><strong>Legitimate interest</strong> — Art. 6(1)(f)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="section-heading">5. Privacy by Design — The TEE Architecture</h2>
+    <p>Neurolix Protocol is designed in accordance with the principle of <strong>Privacy by Design and by Default</strong> (Article 25 GDPR). The technical and organisational measures (Article 32 GDPR) implemented include:</p>
+    <ul>
+      <li><strong>Hardware-level memory encryption</strong> through AMD SEV (and, in subsequent phases, AMD SEV-SNP, Intel TDX, and confidential GPU TEEs). Memory contents inside the enclave are encrypted at the silicon level and inaccessible to the host operating system, the cloud provider, the Node Operator, or Neurolix.</li>
+      <li><strong>Cryptographic attestation</strong> proving, on a per-session basis, that the enclave was active and that a specific computation occurred inside it.</li>
+      <li><strong>Hashed commitments</strong> recorded on the blockchain rather than raw data. <span style="color: var(--text-primary);"><strong>No personal data submitted to the TEE Infrastructure is ever written directly on-chain.</strong></span></li>
+      <li><strong>Pseudonymisation</strong> of identifiers within the protocol layer where technically feasible.</li>
+      <li><strong>Data minimisation</strong>: Neurolix collects only what is strictly necessary for the operation of the Protocol and the Website.</li>
+    </ul>
+
+    <div class="warning-block">
+      <p><strong>Honest limit:</strong> No security technology offers absolute protection. TEE hardware may be vulnerable to side-channel attacks (Spectre, Meltdown and their variants), microarchitectural data sampling, firmware vulnerabilities, or undisclosed manufacturer defects. The Protocol's confidentiality guarantees depend on the integrity of third-party hardware vendors (AMD, Intel, NVIDIA) and cloud providers (Google Cloud, AWS, Azure) which Neurolix does not control.</p>
+    </div>
+
+    <h2 class="section-heading">6. Cookies</h2>
+    <p>The Website uses <strong>only strictly necessary technical cookies</strong> required for the functioning of the site (session identifiers, language preference, security tokens). These cookies do not require prior consent under Article 5(3) of Directive 2002/58/EC (ePrivacy Directive) as amended.</p>
+    <p>The Website does <strong>not</strong> use:</p>
+    <ul>
+      <li>Profiling cookies.</li>
+      <li>Third-party advertising cookies.</li>
+      <li>Tracking pixels or fingerprinting techniques.</li>
+      <li>Cross-site tracking technologies.</li>
+    </ul>
+    <p>If this changes in the future, we will request your prior consent through a compliant cookie banner.</p>
+
+    <h2 class="section-heading">7. Data Sharing and Recipients</h2>
+    <p>We do not sell personal data. We may share data with the following categories of recipients, only as strictly necessary:</p>
+    <ul>
+      <li><strong>Cloud infrastructure providers</strong> hosting the TEE Infrastructure (currently Google Cloud Confidential Computing; future phases may include AWS and Microsoft Azure).</li>
+      <li><strong>Email and communication providers</strong> handling our official inbox (info@neurolixprotocol.com).</li>
+      <li><strong>Domain and DNS providers</strong>, including content-delivery networks where applicable.</li>
+      <li><strong>Public blockchain infrastructure</strong> (Base L2, operated by Coinbase / OP Stack), where data anchored on-chain becomes publicly accessible by design.</li>
+      <li><strong>Professional advisors</strong> (legal, accounting, security) bound by confidentiality.</li>
+      <li><strong>Public authorities</strong> when required by law, court order, or valid administrative request.</li>
+    </ul>
+    <p>All third-party processors are engaged under written agreements compliant with Article 28 GDPR.</p>
+
+    <h2 class="section-heading">8. International Data Transfers</h2>
+    <p>Some of our service providers — in particular Google Cloud and other cloud infrastructure suppliers — may process data outside the European Economic Area, including in the United States.</p>
+    <p>Such transfers are carried out on the basis of:</p>
+    <ul>
+      <li>The European Commission's <strong>adequacy decision</strong> for the <strong>EU–U.S. Data Privacy Framework</strong> (Commission Implementing Decision (EU) 2023/1795 of 10 July 2023), where the recipient is certified under the Framework; or</li>
+      <li>The <strong>Standard Contractual Clauses</strong> adopted by Commission Implementing Decision (EU) 2021/914 of 4 June 2021, supplemented by additional technical and organisational measures where required by the EDPB's recommendations following <em>Schrems II</em> (Case C-311/18).</li>
+    </ul>
+    <p>You may request a copy of the relevant transfer safeguards by writing to <a href="mailto:info@neurolixprotocol.com">info@neurolixprotocol.com</a>.</p>
+
+    <h2 class="section-heading">9. Data Retention</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Retention period</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Navigation logs (IP, user agent)</td>
+          <td>Up to <strong>12 months</strong> for security and analytics, then deleted or anonymised</td>
+        </tr>
+        <tr>
+          <td>Email communications</td>
+          <td>Up to <strong>24 months</strong> after last interaction, unless longer retention is required by law</td>
+        </tr>
+        <tr>
+          <td>Contractual records (where applicable)</td>
+          <td>Up to <strong>10 years</strong> as required by tax and accounting obligations</td>
+        </tr>
+        <tr>
+          <td>Wallet addresses anchored on Base L2</td>
+          <td><strong>Indefinite</strong> — by design, blockchain data cannot be deleted (see Section 10)</td>
+        </tr>
+        <tr>
+          <td>Workload data submitted to TEE</td>
+          <td>Deleted from enclave memory immediately upon session termination — <strong>never persisted</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="section-heading">10. Blockchain Immutability — A Material Limit on Your Rights</h2>
+    <div class="danger-block">
+      <p><strong>Important disclosure:</strong> Data written to a public blockchain (including the Base L2 network) is <strong>permanent and cannot be deleted, modified, or "forgotten"</strong> by Neurolix or by any party. This is a structural property of blockchain technology, not a choice by Neurolix.</p>
+    </div>
+    <p>The following implications follow:</p>
+    <ul>
+      <li>The <strong>right to erasure</strong> (Article 17 GDPR) and the <strong>right to rectification</strong> (Article 16 GDPR) cannot be exercised in respect of data already recorded on-chain (such as your wallet address as the registrant of an attestation, or a commitment hash).</li>
+      <li>To minimise this impact, Neurolix architecturally limits on-chain data to <strong>commitment hashes</strong>, <strong>pseudonymous wallet addresses</strong>, and <strong>technical metadata</strong> (TEE type, cloud provider, timestamp). <strong>Raw personal data is never written on-chain.</strong></li>
+      <li>If you do not wish your wallet address to be associated with on-chain attestations, you must refrain from interacting with the Smart Contracts using that address.</li>
+    </ul>
+
+    <h2 class="section-heading">11. User-Submitted Content — Limit of Neurolix Responsibility</h2>
+    <p>The TEE Infrastructure may be used by you to process data on your own behalf. <strong>Neurolix does not validate, review, or have visibility into the content you submit to the enclave</strong> — that is precisely the privacy guarantee of the architecture.</p>
+    <p>Consequently, Neurolix accepts no responsibility for:</p>
+    <ul>
+      <li>The <strong>lawfulness</strong> of the data you submit (including whether you have a valid legal basis under Article 6 or Article 9 GDPR);</li>
+      <li>Your compliance with <strong>sector-specific regulations</strong> (HIPAA, MiFID II, AI Act, etc.) applicable to the data;</li>
+      <li>The accuracy or quality of the data;</li>
+      <li>Any third-party rights (data subject rights, intellectual property, trade secrets) affected by your processing;</li>
+      <li>The outputs of any AI model executed on the data.</li>
+    </ul>
+    <p>You indemnify Neurolix from any claim arising from your use of the TEE Infrastructure for unlawful or unauthorised data processing, as further detailed in the <a href="https://neurolixprotocol.com/terms.html">Terms of Use</a>.</p>
+
+    <h2 class="section-heading">12. Your Rights Under the GDPR</h2>
+    <p>Subject to the conditions of the GDPR and to the structural limits described in Section 10, you have the following rights in respect of personal data of which Neurolix is the Controller:</p>
+    <ul>
+      <li><strong>Right of access</strong> (Article 15) — obtain confirmation of processing and a copy of your data;</li>
+      <li><strong>Right to rectification</strong> (Article 16) — correct inaccurate data (subject to blockchain immutability);</li>
+      <li><strong>Right to erasure</strong> (Article 17) — request deletion of data we hold off-chain;</li>
+      <li><strong>Right to restriction of processing</strong> (Article 18);</li>
+      <li><strong>Right to data portability</strong> (Article 20) — for data processed on the basis of consent or contract;</li>
+      <li><strong>Right to object</strong> (Article 21) — including objection to processing based on legitimate interest;</li>
+      <li><strong>Right not to be subject to automated decision-making</strong> (Article 22), where applicable;</li>
+      <li><strong>Right to withdraw consent</strong> at any time, where processing is based on consent (Article 7(3)), without affecting the lawfulness of processing carried out before withdrawal.</li>
+    </ul>
+    <p>To exercise these rights, contact <a href="mailto:info@neurolixprotocol.com">info@neurolixprotocol.com</a>. We will respond within thirty (30) days of receipt of a verifiable request, in accordance with Article 12(3) GDPR.</p>
+
+    <h2 class="section-heading">13. Right to Lodge a Complaint with a Supervisory Authority</h2>
+    <p>Without prejudice to any other administrative or judicial remedy, you have the right to lodge a complaint with the supervisory authority of your habitual residence, place of work, or place of the alleged infringement (Article 77 GDPR).</p>
+    <p>The Italian supervisory authority is:</p>
+    <p>
+      <strong>Garante per la protezione dei dati personali</strong><br>
+      Piazza Venezia 11 — 00187 Roma, Italy<br>
+      Website: <a href="https://www.garanteprivacy.it" target="_blank" rel="noopener noreferrer">www.garanteprivacy.it</a><br>
+      Email: <a href="mailto:protocollo@gpdp.it">protocollo@gpdp.it</a>
+    </p>
+
+    <h2 class="section-heading">14. Children</h2>
+    <p>The Protocol and the Website are not directed to individuals under the age of <strong>eighteen (18)</strong>. We do not knowingly collect personal data from minors. If you become aware that a minor has provided us with personal data, please contact <a href="mailto:info@neurolixprotocol.com">info@neurolixprotocol.com</a> so that we may take appropriate action.</p>
+
+    <h2 class="section-heading">15. Data Security</h2>
+    <p>We implement technical and organisational measures designed to protect personal data against unauthorised or unlawful processing, accidental loss, destruction, or damage (Article 32 GDPR), including encryption in transit (TLS) and at rest where applicable, access controls, logging, and the TEE-based privacy-by-design architecture described in Section 5.</p>
+    <p>In the event of a personal data breach likely to result in a risk to your rights and freedoms, we will notify the competent supervisory authority within 72 hours where feasible (Article 33 GDPR) and, where the risk is high, we will inform affected data subjects without undue delay (Article 34 GDPR).</p>
+
+    <h2 class="section-heading">16. Changes to This Policy</h2>
+    <p>This Privacy Policy may be updated to reflect changes in the Protocol, in applicable law, or in our processing practices. Material changes will be announced via the Website and our official channels at least thirty (30) days before they take effect, where reasonably practicable. The version and date at the top of this document indicate the latest revision.</p>
+
+    <h2 class="section-heading">17. Contact</h2>
+    <p>For any questions, requests, or concerns regarding the processing of your personal data:</p>
+    <p>
+      <strong>Neurolix Protocol</strong><br>
+      Email: <a href="mailto:info@neurolixprotocol.com">info@neurolixprotocol.com</a><br>
+      Website: <a href="https://neurolixprotocol.com">neurolixprotocol.com</a>
+    </p>
+
+    <div class="callout" style="margin-top: 56px;">
+      <p><strong>This Privacy Policy is provided in English.</strong> An Italian-language version may be made available upon request. In case of discrepancy between language versions, the English text shall prevail.</p>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <p>© 2026 Neurolix Protocol · <a href="https://neurolixprotocol.com">Home</a> · <a href="https://neurolixprotocol.com/terms.html">Terms of Use</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
