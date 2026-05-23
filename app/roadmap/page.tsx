@@ -32,13 +32,12 @@ const phases = [
     id: "03",
     title: "Testnet Deployment",
     status: "next",
-    items: [
-      "Full v1.16 suite live on Base Sepolia",
-      "Bug bounty program — Immunefi (payouts in $OLIX) + GitHub community bounty ($2K–$5K cash)",
-      "Community contest — Code4rena or Sherlock community-tier",
-      "Off-chain monitoring infrastructure — L2 sequencer and TEE vendor health watchers",
-      "Public testnet open for node operator onboarding",
-    ],
+   items: [
+  "Full v1.16 suite live on Base Sepolia",
+  "Bug bounty program — Immunefi (payouts in $OLIX at TGE) + Code4rena or Sherlock community-tier contest",
+  "Off-chain monitoring infrastructure — L2 sequencer and TEE vendor health watchers",
+  "Public testnet open for node operator onboarding",
+   ],
   },
   {
     id: "04",
