@@ -16,9 +16,14 @@ export function Footer() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           <div>
-            <div className="text-[18px] font-bold tracking-tight mb-3" style={{ color: "var(--text-primary)" }}>
-              NEUR<span style={{ color: "var(--accent)" }}>OLIX</span>
-            </div>
+            <div className="flex flex-col leading-none gap-0.5 mb-3">
+           <span className="text-[18px] font-bold tracking-tight leading-none" style={{ color: "var(--text-primary)" }}>
+           NEUR<span style={{ color: "var(--accent)" }}>OLIX</span>
+            </span>
+           <span className="text-[8px] font-semibold tracking-[0.25em] uppercase leading-none" style={{ color: "var(--text-secondary)" }}>
+            PROTOCOL
+           </span>
+           </div>
             <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
               Compliance-ready Confidential AI compute on Base L2. Hardware-enforced privacy for regulated sectors.
             </p>

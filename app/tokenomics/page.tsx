@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Tokenomics",
-  description: "$OLIX token economics on Base L2. Hard cap 100,000,000 OLIX. Burn-and-Mint Equilibrium. Full specification under finalization.",
+  title: "$OLIX Tokenomics — BME, Hard Cap 100M, Base L2",
+  description: "$OLIX utility token economics. 100,000,000 hard cap. Burn-and-Mint Equilibrium with session-level deflation. 10,000 OLIX minimum node stake. MiCA-compliant utility token on Base L2.",
 };
 
 export default function TokenomicsPage() {

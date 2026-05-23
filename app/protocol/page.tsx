@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { CONTRACTS, PROOF, LINKS } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "The Protocol",
-  description: "Architecture of Neurolix Protocol. TEE enclaves, cryptographic attestation, on-chain SLA on Base L2. Smart contract suite v1.16.",
+  title: "Protocol Architecture — TEE, Attestation, Base L2",
+  description: "Technical architecture of Neurolix Protocol: AMD SEV-SNP enclaves, cryptographic attestation via Google Cloud OIDC, commitment hashes anchored on Base Mainnet. Smart contract suite v1.16 with 17-round adversarial audit.",
 };
 
 export default function ProtocolPage() {
