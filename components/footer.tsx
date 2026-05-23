@@ -50,9 +50,9 @@ export function Footer() {
 
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pt-8" style={{ borderTop: "1px solid var(--border)" }}>
           <div className="flex flex-wrap items-center gap-6">
-            <span className="text-xs" style={{ color: "var(--text-secondary)" }}>© 2025 Neurolix Protocol</span>
-            <Link href="/terms" className="text-xs hover-primary">Terms of Use</Link>
-            <Link href="/privacy" className="text-xs hover-primary">Privacy Policy</Link>
+            <span className="text-xs" style={{ color: "var(--text-secondary)" }}>© 2026 Neurolix Protocol</span>
+            <Link href="/terms.html" className="text-xs hover-primary">Terms of Use</Link>
+            <Link href="/privacy.html" className="text-xs hover-primary">Privacy Policy</Link>
           </div>
 
           <a href={LINKS.basescan} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-xs no-underline font-chain hover-accent" style={{ color: "var(--text-secondary)" }}>

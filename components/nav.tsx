@@ -24,13 +24,14 @@ export function Nav() {
     >
       <div className="mx-auto max-w-[1100px] px-6">
         <div className="flex h-16 items-center justify-between">
-          <Link
-            href="/"
-            className="text-[18px] font-bold tracking-tight no-underline"
-            style={{ color: "var(--text-primary)" }}
-          >
-            NEUR<span style={{ color: "var(--accent)" }}>OLIX</span>
-          </Link>
+          <Link href="/" className="flex flex-col no-underline leading-none" style={{ color: "var(--text-primary)" }}>
+           <span className="text-[18px] font-bold tracking-tight">
+           NEUR<span style={{ color: "var(--accent)" }}>OLIX</span>
+          </span>
+          <span className="text-[9px] font-medium tracking-[0.2em] uppercase" style={{ color: "var(--text-secondary)" }}>
+          PROTOCOL
+         </span>
+         </Link>
 
           <nav className="hidden md:flex items-center gap-8">
             {links.map((l) => (
