@@ -21,12 +21,13 @@ const phases = [
     id: "02",
     title: "Protocol Hardening",
     status: "current",
-    items: [
-  "Full v1.16 suite live on Base Sepolia",
-  "Bug bounty program — Immunefi (payouts in $OLIX at TGE) + Code4rena or Sherlock community-tier contest",
-  "Off-chain monitoring infrastructure — L2 sequencer and TEE vendor health watchers",
-  "Public testnet open for node operator onboarding",
-   ],
+   items: [
+  "ComputeSession.sol — session lifecycle FSM (spec v0.2.2 complete, code generation in progress)",
+  "NeurolixGateway.sol — USDC to CCC conversion and take rate routing",
+  "CCCToken.sol — non-transferable Confidential Compute Credit ERC-20",
+  "VotingEscrow.sol — IVotes source for Governor (required for governance deployment)",
+  "Composability debt audit + deploy dependency refactor (initializeOnce() pattern)",
+  ],
   },
   {
     id: "03",

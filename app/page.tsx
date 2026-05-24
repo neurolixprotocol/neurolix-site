@@ -45,7 +45,7 @@ export default function HomePage() {
             <div className="flex flex-wrap gap-8 mt-12 pt-6" style={{ borderTop: "1px solid var(--border)" }}>
               {[
                 { label: "Attestation contract", value: "Base Mainnet" },
-                { label: "TEE hardware", value: "AMD SEV-SNP" },
+                { label: "TEE hardware", value: "AMD SEV (PoC)" },
                 { label: "Contract suite", value: "v1.16 · 52 patches integrated" },
               ].map((s) => (
                 <div key={s.label}>

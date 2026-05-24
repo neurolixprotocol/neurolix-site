@@ -3,7 +3,7 @@ import { CONTRACTS, PROOF, LINKS } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Protocol Architecture — TEE, Attestation, Base L2",
-  description: "Technical architecture of Neurolix Protocol: AMD SEV-SNP enclaves, cryptographic attestation via Google Cloud OIDC, commitment hashes anchored on Base Mainnet. Smart contract suite v1.16 with 17-round adversarial audit.",
+  description: "Technical architecture of Neurolix Protocol: AMD SEV enclaves on Google Cloud Confidential Computing (PoC), cryptographic attestation anchored on Base Mainnet. Smart contract suite v1.16 — 9 contracts, 52 cumulative patches across cross-LLM adversarial review.",
 };
 
 export default function ProtocolPage() {
@@ -33,8 +33,8 @@ export default function ProtocolPage() {
               {
                 step: "01",
                 title: "Confidential VM",
-                body: "AI workloads run inside AMD SEV-SNP or Intel TDX enclaves on Google Cloud Confidential Computing. The CPU enforces memory isolation — neither the cloud provider nor the node operator can access the plaintext data or model inputs.",
-                tag: "AMD SEV-SNP · Intel TDX",
+                body: "AI workloads run inside AMD SEV enclaves on Google Cloud Confidential Computing (PoC). Roadmap extends to AMD SEV-SNP, Intel TDX, and NVIDIA H100 CC. The CPU enforces memory isolation — neither the cloud provider nor the node operator can access the plaintext data or model inputs.",
+                tag: "AMD SEV (live) · SEV-SNP · Intel TDX · H100 CC (roadmap)",
               },
               {
                 step: "02",
@@ -63,7 +63,7 @@ export default function ProtocolPage() {
       {/* SMART CONTRACT SUITE */}
       <section className="mx-auto max-w-[1100px] px-6 py-20" style={{ borderBottom: "1px solid var(--border)" }}>
         <p className="text-xs uppercase tracking-widest mb-3" style={{ color: "var(--accent)" }}>Smart Contracts</p>
-        <h2 className="text-3xl font-bold mb-3" style={{ color: "var(--text-primary)" }}>Contract suite v1.16</h2>
+        <h2 className="text-3xl font-bold mb-3" style={{ color: "var(--text-primary)" }}>Contract suite v1.16 — 9 contracts</h2>
         <p className="text-sm mb-10" style={{ color: "var(--text-secondary)" }}>
           17-round cross-LLM adversarial audit cycle. Gemini declared the suite ready for testnet deployment at Round 17.
         </p>
@@ -73,9 +73,12 @@ export default function ProtocolPage() {
             { name: "OLIXToken.sol", desc: "ERC-20 utility token. Hard cap 100M. No transfer tax.", status: "pre-testnet" },
             { name: "NodeRegistry.sol", desc: "Node operator registration, staking (min 10K OLIX), slashing.", status: "pre-testnet" },
             { name: "LiquidityVault.sol", desc: "BME buyback and burn mechanics. Counter-cyclical pricing.", status: "pre-testnet" },
-            { name: "NeurolixGovernor.sol", desc: "On-chain governance. Technical scope only.", status: "pre-testnet" },
+            { name: "NeurolixGovernor.sol", desc: "OpenZeppelin Governor pattern. Requires VotingEscrow.sol (under development) before deployment.", status: "pre-testnet" },
             { name: "PriceOracle.sol", desc: "Triple-feed median oracle with MEV-resistant execution.", status: "pre-testnet" },
-          ].map((c) => (
+            { name: "Interfaces.sol", desc: "Shared ABI boundary across all v1.16 contracts.", status: "pre-testnet" },
+            { name: "AttestationOracle.sol", desc: "TEE attestation verifier with ECDSA. Replay protection via session-bound hardware salt.", status: "pre-testnet" },
+            { name: "SlashingManager.sol", desc: "Multi-tier slashing state machine (T0–T4). Challenge window for behavioral breaches.", status: "pre-testnet" },
+           ].map((c) => (
             <div key={c.name} className="flex items-start gap-4 p-4 rounded-sm" style={{ backgroundColor: "var(--bg-card)", border: "1px solid var(--border)" }}>
               <div className="flex-1">
                 <p className="text-sm font-medium font-chain mb-1" style={{ color: "var(--text-primary)" }}>{c.name}</p>
@@ -99,26 +102,26 @@ export default function ProtocolPage() {
         <p className="text-xs uppercase tracking-widest mb-3" style={{ color: "var(--accent)" }}>Transparency</p>
         <h2 className="text-3xl font-bold mb-3" style={{ color: "var(--text-primary)" }}>Open mainnet blockers</h2>
         <p className="text-sm mb-8" style={{ color: "var(--text-secondary)", maxWidth: 580 }}>
-          We document known security gaps publicly. This is the difference between security theater and actual security.
+          These three issues were identified in v1.16 and are addressed by the v1.17 workstream (ComputeSession.sol + NeurolixGateway.sol + CCCToken.sol, specification v0.2.2 complete, code generation in progress).
           These are not deployment blockers for testnet — they are blockers for mainnet token launch.
         </p>
         <div className="flex flex-col gap-4" style={{ maxWidth: 680 }}>
           {[
             {
-              id: "01",
-              title: "Heartbeat farming",
-              desc: "A node can submit heartbeats without a valid workload commitment, gaming uptime rewards. Requires oracle-signed workloadCommitment integration to resolve.",
-            },
-            {
-              id: "02",
-              title: "MEV exit during SLA breach",
-              desc: "A node operator can front-run a slashing event by calling deregisterNode. Requires a deregisterNode revert check when an active SLA breach is pending.",
-            },
-            {
-              id: "03",
-              title: "SLA parameter trust",
-              desc: "SLA parameters are currently client-specified without bilateral validation. Requires bilateral client+miner signature on session opening.",
-            },
+            id: "01",
+            title: "Heartbeat farming — in resolution",
+            desc: "Resolved by sessionId-bound workload commitment (spec v0.2.2 §8, patch P6). Deployment pending ComputeSession.sol.",
+           },
+           {
+           id: "02",
+           title: "MEV exit during SLA breach — in resolution",
+           desc: "Resolved by NodeRegistry transfer gating with investigation flag (spec v0.2.2 §7, patches P5+P13+P17).",
+           },
+           {
+           id: "03",
+           title: "SLA parameter trust — in resolution",
+           desc: "Resolved by EIP-712 bilateral signature scheme (spec v0.2.2 §5). Deployment pending ComputeSession.sol.",
+           },
           ].map((issue) => (
             <div key={issue.id} className="flex gap-4 p-5 rounded-sm"
               style={{ backgroundColor: "var(--bg-card)", border: "1px solid var(--border)" }}>
