@@ -9,8 +9,7 @@ export default function HomePage() {
     <>
       {/* HERO */}
       <section
-        className="relative overflow-hidden"
-        className="min-h-[70vh] md:min-h-[88vh]"
+      className="relative overflow-hidden min-h-[70vh] md:min-h-[88vh]"
       >
         <HeroLattice />
         <div className="relative z-10 mx-auto w-full max-w-[1100px] px-6 py-24">
