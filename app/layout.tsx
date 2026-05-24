@@ -17,6 +17,13 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+import type { Metadata, Viewport } from "next";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 export const metadata: Metadata = {
  keywords: [
   // Brand

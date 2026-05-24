@@ -10,7 +10,7 @@ export default function HomePage() {
       {/* HERO */}
       <section
         className="relative overflow-hidden"
-        style={{ minHeight: "88vh", borderBottom: "1px solid var(--border)", display: "flex", alignItems: "center" }}
+        className="min-h-[70vh] md:min-h-[88vh]"
       >
         <HeroLattice />
         <div className="relative z-10 mx-auto w-full max-w-[1100px] px-6 py-24">
