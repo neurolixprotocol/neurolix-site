@@ -108,16 +108,7 @@ export default function TokenomicsPage() {
           </div>
         </div>
       </section>
-
-      {/* DISCLAIMER */}
-      <section className="mx-auto max-w-[1100px] px-6 py-12">
-        <p className="text-xs leading-relaxed" style={{ color: "var(--text-secondary)", maxWidth: 680 }}>
-          $OLIX is a utility token. It is not an investment instrument, security, or financial product.
-          Nothing on this page constitutes financial advice. Token economics are subject to refinement
-          before the public whitepaper. Protocol participation is bound by the{" "}
-          <a href="/terms" className="hover-accent" style={{ color: "var(--text-secondary)" }}>Terms of Use</a>.
-        </p>
-      </section>
+    
     </>
   );
 }
