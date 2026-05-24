@@ -23,6 +23,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+ manifest: "/manifest.json",
  keywords: [
   // Brand
   "Neurolix", "Neurolix Protocol", "OLIX", "$OLIX", "OLIX token", "neurolixprotocol.eth",
