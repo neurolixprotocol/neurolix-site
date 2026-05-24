@@ -67,7 +67,11 @@ export function Footer() {
           </a>
         </div>
 
-      </div>
-    </footer>
+      <p className="text-xs mt-4 leading-relaxed" style={{ color: "var(--text-secondary)", maxWidth: 680 }}>
+        $OLIX is a utility token for accessing protocol computational resources. It is not an investment instrument, security, or financial product. Neurolix Protocol is in active development — the $OLIX token has not been issued. Token economics described herein are subject to refinement before external legal review and public whitepaper publication. This site does not target persons in jurisdictions where such content is unlawful.
+      </p>
+
+    </div> 
+  </footer>
   );
 }

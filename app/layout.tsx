@@ -47,7 +47,7 @@ export const metadata: Metadata = {
   "biotech AI compute", "legal AI confidentiality",
   
   // Tokenomics
-  "Burn and Mint Equilibrium", "BME tokenomics", "MiCA compliant utility token",
+  "Burn and Mint Equilibrium", "BME tokenomics", "utility token Base L2",
   "AI compute token", "DePIN node staking",
   
   // Long-tail high-intent

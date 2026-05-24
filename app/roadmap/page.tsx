@@ -14,7 +14,7 @@ const phases = [
       "GPT-2 inference inside AMD SEV enclave on Google Cloud Confidential Computing",
       "Commitment hash anchored on Base Sepolia testnet",
       "NeurolixAttestation.sol live on Base Mainnet",
-      "Core smart contract suite at v1.16 — 9 contracts, 17 patch rounds of cross-LLM adversarial review, 128/128 Foundry tests passing",
+      "Core smart contract suite at v1.16 — 9 contracts, 52 cumulative patches across 6 cross-LLM adversarial review rounds, 128/128 Foundry tests passing",
     ],
   },
   {

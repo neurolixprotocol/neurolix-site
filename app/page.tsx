@@ -19,7 +19,7 @@ export default function HomePage() {
               className="inline-block mb-6 text-xs px-3 py-1.5 rounded-full font-medium tracking-wide"
               style={{ backgroundColor: "var(--accent-dim)", border: "1px solid var(--accent)", color: "var(--accent)" }}
             >
-              Mainnet · Base L2 · Confidential AI
+              Building in public · Base L2 · Confidential AI
             </span>
             <h1
               className="font-bold tracking-tight mb-6"
@@ -46,7 +46,7 @@ export default function HomePage() {
               {[
                 { label: "Attestation contract", value: "Base Mainnet" },
                 { label: "TEE hardware", value: "AMD SEV-SNP" },
-                { label: "Contract suite", value: "v1.16 · 17 audit rounds" },
+                { label: "Contract suite", value: "v1.16 · 52 patches integrated" },
               ].map((s) => (
                 <div key={s.label}>
                   <p className="text-xs mb-1" style={{ color: "var(--text-secondary)" }}>{s.label}</p>
@@ -70,7 +70,7 @@ export default function HomePage() {
             {
               badge: "Attestation",
               title: "Cryptographically Verified",
-              body: "Every compute session emits a hardware-signed attestation report. A commitment hash anchored on Base L2 before execution. Verifiable forever.",
+              body: "Every compute session emits a hardware-signed attestation report. The commitment hash is anchored on Base L2 before execution. Verifiable forever.",
             },
             {
               badge: "Settlement",

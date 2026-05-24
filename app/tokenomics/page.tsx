@@ -17,7 +17,7 @@ export default function TokenomicsPage() {
         <h1 className="text-5xl font-bold mb-6" style={{ color: "var(--text-primary)" }}>Tokenomics</h1>
         <p className="text-lg leading-relaxed" style={{ color: "var(--text-secondary)", maxWidth: 580 }}>
           $OLIX is the utility token of Neurolix Protocol. It powers confidential compute sessions,
-          secures node operators through collateral, and anchors protocol-level deflation to real demand.
+          secures node operators through collateral, and implements a Burn-and-Mint Equilibrium where Confidential Compute Credits (CCC) are burned in proportion to network usage.
         </p>
       </section>
 
@@ -52,17 +52,13 @@ export default function TokenomicsPage() {
               IN DEVELOPMENT
             </span>
             <h3 className="text-lg font-semibold" style={{ color: "var(--text-primary)" }}>
-              Deflationary Burn Mechanism
+              Burn-and-Mint Equilibrium
             </h3>
           </div>
           <p className="text-sm leading-relaxed" style={{ color: "var(--text-secondary)" }}>
-            A session-level burn mechanism is integrated into the protocol design. A defined percentage
-            of $OLIX is permanently burned as compute demand consumes Confidential Compute Credits (CCC),
-            structurally reducing circulating supply over time.
-          </p>
-          <p className="text-sm mt-3" style={{ color: "var(--text-secondary)" }}>
-            Exact burn parameters, the CCC-to-$OLIX conversion model, and the demand-supply equilibrium
-            math are under final review. Full specification will be published with the public whitepaper.
+            Confidential Compute Credits (CCC) are burned at session settlement as the protocol's demand-pull primitive. 
+            A portion of USDC collected at session opening is routed to the on-chain Buyback Engine, which acquires and burns OLIX on the open market. 
+            Exact buyback parameters and CCC-to-OLIX conversion math will be published in the public whitepaper.
           </p>
         </div>
       </section>
@@ -78,7 +74,7 @@ export default function TokenomicsPage() {
             style={{ filter: "blur(4px)", opacity: 0.2, pointerEvents: "none" }}>
             <div>
               <p className="text-sm font-medium mb-4" style={{ color: "var(--text-secondary)" }}>Token Distribution</p>
-              {["Foundation Reserve", "Team & Advisors", "Ecosystem & Grants", "Investors", "Community & Public"].map((l) => (
+              {["Foundation Reserve", "Team & Advisors", "Ecosystem & Grants", "Strategic Partners", "Community & Public"].map((l) => (
                 <div key={l} className="flex justify-between py-2" style={{ borderBottom: "1px solid var(--border)" }}>
                   <span className="text-sm" style={{ color: "var(--text-secondary)" }}>{l}</span>
                   <span className="text-sm font-chain" style={{ color: "var(--text-primary)" }}>—%</span>
@@ -87,7 +83,7 @@ export default function TokenomicsPage() {
             </div>
             <div>
               <p className="text-sm font-medium mb-4" style={{ color: "var(--text-secondary)" }}>Vesting Schedules</p>
-              {["Team cliff", "Team linear", "Investor cliff", "Investor linear", "Community unlock"].map((l) => (
+              {["Team cliff", "Team linear", "Strategic cliff", "Strategic linear", "Community unlock"].map((l) => (
                 <div key={l} className="flex justify-between py-2" style={{ borderBottom: "1px solid var(--border)" }}>
                   <span className="text-sm" style={{ color: "var(--text-secondary)" }}>{l}</span>
                   <span className="text-sm font-chain" style={{ color: "var(--text-primary)" }}>—</span>
