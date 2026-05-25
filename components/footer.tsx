@@ -20,7 +20,7 @@ export function Footer() {
            <span className="text-[30px] font-bold tracking-tight leading-none" style={{ color: "var(--text-primary)" }}>
            NEUR<span style={{ color: "var(--accent)" }}>OLIX</span>
             </span>
-           <span className="text-[8px] font-semibold tracking-[0.25em] uppercase leading-none" style={{ color: "var(--text-secondary)" }}>
+           <span className="text-[13px] font-semibold tracking-[0.25em] uppercase leading-none" style={{ color: "var(--text-secondary)" }}>
             PROTOCOL
            </span>
            </div>

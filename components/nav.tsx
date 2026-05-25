@@ -28,7 +28,7 @@ export function Nav() {
            <span className="text-[30px] font-bold tracking-tight">
            NEUR<span style={{ color: "var(--accent)" }}>OLIX</span>
           </span>
-          <span className="text-[9px] font-medium tracking-[0.2em] uppercase" style={{ color: "var(--text-secondary)" }}>
+          <span className="text-[13px] font-medium tracking-[0.2em] uppercase" style={{ color: "var(--text-secondary)" }}>
           PROTOCOL
          </span>
          </Link>
