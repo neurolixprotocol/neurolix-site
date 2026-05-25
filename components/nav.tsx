@@ -25,7 +25,7 @@ export function Nav() {
       <div className="mx-auto max-w-[1100px] px-6">
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="flex flex-col no-underline leading-none" style={{ color: "var(--text-primary)" }}>
-           <span className="text-[23px] font-bold tracking-tight">
+           <span className="text-[30px] font-bold tracking-tight">
            NEUR<span style={{ color: "var(--accent)" }}>OLIX</span>
           </span>
           <span className="text-[9px] font-medium tracking-[0.2em] uppercase" style={{ color: "var(--text-secondary)" }}>
