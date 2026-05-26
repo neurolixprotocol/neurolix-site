@@ -8,7 +8,6 @@ const links = [
   { href: "/protocol",   label: "Protocol" },
   { href: "/tokenomics", label: "Tokenomics" },
   { href: "/roadmap",    label: "Roadmap" },
-  { href: "/community",  label: "Community" },
 ];
 
 export function Nav() {

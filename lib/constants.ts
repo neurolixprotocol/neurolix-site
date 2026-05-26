@@ -21,7 +21,7 @@ export const LINKS = {
   email:     "info@neurolixprotocol.com",
   x:         "https://x.com/NEUROLIX",
   medium:    "https://medium.com/@neurolixprotocol",
-  paragraph: "https://paragraph.xyz/@0xba2b7775c09914bf8eb05a53ace30204f0061c27",
+  paragraph: "https://paragraph.com/@neurolixprotocol",
   github:    "https://github.com/neurolixprotocol",
   loomEmbed: "https://www.loom.com/embed/bc8aa2bbdc6745d1a1568d29b1b124e8",
   loomShare: "https://www.loom.com/share/bc8aa2bbdc6745d1a1568d29b1b124e8",

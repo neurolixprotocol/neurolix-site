@@ -6,7 +6,6 @@ const navLinks = [
   { href: "/protocol",   label: "Protocol" },
   { href: "/tokenomics", label: "Tokenomics" },
   { href: "/roadmap",    label: "Roadmap" },
-  { href: "/community",  label: "Community" },
 ];
 
 export function Footer() {
@@ -14,15 +13,15 @@ export function Footer() {
     <footer style={{ borderTop: "1px solid var(--border)", backgroundColor: "var(--bg-secondary)" }}>
       <div className="mx-auto max-w-[1100px] px-6 py-16">
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+       <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           <div>
-            <div className="flex flex-col leading-none gap-0.5 mb-3">
-           <span className="text-[30px] font-bold tracking-tight leading-none" style={{ color: "var(--text-primary)" }}>
-           NEUR<span style={{ color: "var(--accent)" }}>OLIX</span>
-            </span>
-           <span className="text-[13px] font-semibold tracking-[0.25em] uppercase leading-none" style={{ color: "var(--text-secondary)" }}>
-            PROTOCOL
-           </span>
+            <div className="flex flex-col leading-none gap-0.5 mb-3 text-white">
+              <span className="text-[24px] font-bold tracking-tight leading-none">
+                NEUROLIX
+              </span>
+              <span className="text-[8px] font-semibold tracking-[0.25em] uppercase leading-none opacity-90">
+                PROTOCOL
+              </span>
            </div>
             <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
               Compliance-ready Confidential AI compute on Base L2. Hardware-enforced privacy for regulated sectors.
@@ -47,7 +46,7 @@ export function Footer() {
 
           <div>
             <p className="text-xs uppercase tracking-widest mb-4" style={{ color: "var(--text-secondary)" }}>
-              Community
+              Join the Network
             </p>
             <SocialIcons className="flex flex-col gap-3" />
           </div>

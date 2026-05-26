@@ -164,32 +164,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* BUILD IN PUBLIC */}
-      <section className="py-20" style={{ backgroundColor: "var(--bg-secondary)" }}>
-        <div className="mx-auto max-w-[1100px] px-6 grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div>
-            <h3 className="text-xl font-bold mb-3" style={{ color: "var(--text-primary)" }}>Build on Neurolix</h3>
-            <p className="text-sm mb-6" style={{ color: "var(--text-secondary)" }}>
-              Technical articles, protocol specifications, and build logs published openly.
-            </p>
-            <div className="flex flex-col gap-3">
-              <a href={LINKS.medium} target="_blank" rel="noopener noreferrer" className="text-sm hover-primary">Read on Medium →</a>
-              <a href={LINKS.paragraph} target="_blank" rel="noopener noreferrer" className="text-sm hover-primary">Read on Paragraph →</a>
-            </div>
-          </div>
-          <div>
-            <h3 className="text-xl font-bold mb-3" style={{ color: "var(--text-primary)" }}>Follow the Build</h3>
-            <p className="text-sm mb-6" style={{ color: "var(--text-secondary)" }}>
-              Updates on protocol development, testnet deployment, and node operator program.
-            </p>
-            <div className="flex flex-col gap-3">
-              <a href={LINKS.x} target="_blank" rel="noopener noreferrer" className="text-sm hover-primary">Follow @NEUROLIX on X →</a>
-              <a href={LINKS.github} target="_blank" rel="noopener noreferrer" className="text-sm hover-primary">View source on GitHub →</a>
-            </div>
-          </div>
-        </div>
-      </section>
     </>
   );
 }
