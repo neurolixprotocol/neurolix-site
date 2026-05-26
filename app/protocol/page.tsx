@@ -3,7 +3,7 @@ import { CONTRACTS, PROOF, LINKS } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Protocol Architecture — TEE, Attestation, Base L2",
-  description: "Technical architecture of Neurolix Protocol: AMD SEV enclaves on Google Cloud Confidential Computing (PoC), cryptographic attestation anchored on Base Mainnet. Smart contract suite v1.16 — 9 contracts, 52 cumulative patches across cross-LLM adversarial review.",
+  description: "Technical architecture of Neurolix Protocol: Confidential AI compute layer on Base L2. Smart contract suite v1.16 — 9 contracts, 52 cumulative patches across 6 cross-LLM adversarial review rounds. 128/128 Foundry tests passing.",
 };
 
 export default function ProtocolPage() {
@@ -65,7 +65,7 @@ export default function ProtocolPage() {
         <p className="text-xs uppercase tracking-widest mb-3" style={{ color: "var(--accent)" }}>Smart Contracts</p>
         <h2 className="text-3xl font-bold mb-3" style={{ color: "var(--text-primary)" }}>Contract suite v1.16 — 9 contracts</h2>
         <p className="text-sm mb-10" style={{ color: "var(--text-secondary)" }}>
-          17-round cross-LLM adversarial audit cycle. Gemini declared the suite ready for testnet deployment at Round 17.
+          52 cumulative patches across 6 cross-LLM adversarial review rounds. 128/128 Foundry tests passing.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
