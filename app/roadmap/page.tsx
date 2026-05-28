@@ -23,7 +23,7 @@ const phases = [
     status: "current",
    items: [
   "ComputeSession.sol — session lifecycle FSM (spec v0.2.2 complete, code generation in progress)",
-  "NeurolixGateway.sol — USDC to CCC conversion and take rate routing",
+  "NeurolixGateway.sol v1.0 — USDC to CCC conversion and take rate routing (8/4/88) — code generated, compile-clean under solc 0.8.20 + optimizer-runs=200, 221 SLOC, awaiting Gemini cross-LLM round on 7 candidate areas (G1-G7)",
   "CCCToken.sol — non-transferable Confidential Compute Credit ERC-20",
   "VotingEscrow.sol — IVotes source for Governor (required for governance deployment)",
   "Composability debt audit + deploy dependency refactor (initializeOnce() pattern)",
