@@ -102,7 +102,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       image: "https://neurolixprotocol.com/og-neurolix-mainnet.jpg",
       description: "DePIN infrastructure for confidential AI compute on regulated data. Hardware-enforced privacy in TEE enclaves, cryptographic attestation anchored on Base L2.",
       email: "info@neurolixprotocol.com",
-      foundingDate: "2025",
+      foundingDate: "2026",
       sameAs: [
         "https://x.com/NEUROLIX",
         "https://medium.com/@neurolixprotocol",
