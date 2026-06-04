@@ -1,0 +1,13 @@
+version: 2
+updates:
+  # Controlla se ci sono dipendenze npm (sito web o Hardhat)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+
+  # Controlla se ci sono sottomoduli Git (Foundry)
+  - package-ecosystem: "gitsubmodule"
+    directory: "/"
+    schedule:
+      interval: "weekly"
