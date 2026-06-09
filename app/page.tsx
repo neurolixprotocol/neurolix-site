@@ -95,26 +95,37 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* THE PROBLEM */}
-      <section className="mx-auto max-w-[1100px] px-6 py-20" style={{ borderBottom: "1px solid var(--border)" }}>
-        <div style={{ maxWidth: 680 }}>
-          <p className="text-xs uppercase tracking-widest mb-4" style={{ color: "var(--accent)" }}>The Problem</p>
-          <h2 className="text-3xl font-bold mb-6" style={{ color: "var(--text-primary)" }}>
-            Regulated sectors cannot run AI on sensitive data today.
-          </h2>
-          <p className="text-base leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
-            No compliant pipeline exists for training AI on protected data — patient records,
-            financial transactions, biometric inputs, legal documents. Organizations face a
-            binary choice: deploy on public clouds and accept legal exposure, or build
-            internal HIPAA/GDPR/MiFID-compliant infrastructure at enterprise capex scale.
-          </p>
-          <p className="text-base leading-relaxed" style={{ color: "var(--text-secondary)" }}>
-            Neurolix Protocol provides the missing third option: confidential compute as a
-            network primitive, with verifiable cryptographic proof of isolation anchored to
-            a public blockchain.
-          </p>
-        </div>
-      </section>
+      {/* THE PROBLEM & SOLUTION SECTION */}
+<section className="mx-auto max-w-[1100px] px-6 py-20" style={{ borderBottom: "1px solid var(--border)" }}>
+  <div style={{ maxWidth: 680 }}>
+    
+    {/* --- PROBLEM BLOCK --- */}
+    <div className="mb-12">
+      <p className="text-xs uppercase tracking-widest mb-4" style={{ color: "var(--accent)" }}>
+        The Problem
+      </p>
+      <h2 className="text-3xl font-bold mb-6">
+        Regulated sectors cannot run AI on sensitive data today.
+      </h2>
+      <p className="text-base leading-relaxed text-slate-400">
+        No compliant pipeline exists for training AI on highly protected datasets—from clinical trials and patient genomes to non-public financial records and legal archives. 
+        Organizations face a binary choice: deploy on public clouds and accept legal exposure, 
+        or build internal HIPAA/GDPR/MiFID-compliant infrastructure at enterprise capex scale.
+      </p>
+    </div>
+
+    {/* --- SOLUTION BLOCK (Con accento visivo) --- */}
+    <div className="pl-6 border-l-2 border-indigo-500">
+      <p className="text-xs uppercase tracking-widest mb-4" style={{ color: "var(--accent)" }}>
+        The Solution
+      </p>
+      <p className="text-base leading-relaxed text-slate-200">
+        <strong>Neurolix Protocol delivers the missing third option:</strong> confidential compute as a network primitive. By anchoring verifiable cryptographic proofs of isolation to a public blockchain, Neurolix enables secure, decentralized AI without data exposure.
+      </p>
+    </div>
+
+  </div>
+</section>
 
       {/* HOW IT WORKS */}
       <section className="py-20" style={{ backgroundColor: "var(--bg-secondary)", borderBottom: "1px solid var(--border)" }}>
