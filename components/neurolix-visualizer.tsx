@@ -412,19 +412,11 @@ export default function NeurolixVisualizer() {
           <canvas ref={canvasARef} className="absolute inset-0 w-full h-full block" aria-hidden="true" />
           <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(120% 100% at 50% 50%, transparent 60%, rgba(10,14,26,0.6) 100%)' }} aria-hidden="true"></div>
           
-        {/* HERO TEXT OVERLAY (Pixel-Perfect Mirror del Prototipo Originale) */}
-          <div id="hero-text" style={{
-            position: 'absolute',
-            inset: 0,
-            zIndex: 20,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '0 24px',
-            textAlign: 'center',
-            transition: 'opacity 0.1s'
-          }}>
+        {/* HERO TEXT OVERLAY (Ottimizzato per Mobile) */}
+          <div id="hero-text" 
+            className="absolute inset-0 z-20 flex flex-col items-center justify-center px-6 text-center pb-[14vh] md:pb-0"
+            style={{ transition: 'opacity 0.1s' }}
+          >
             {/* Il Badge superiore */}
             <span style={{
               display: 'inline-block',
