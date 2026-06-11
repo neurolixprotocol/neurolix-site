@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { CONTRACTS, PROOF, LINKS } from "@/lib/constants";
 
+// IMPORTANTE: Assicurati di importare il diagramma statico
+import { ProtocolFlowDiagram } from "@/components/protocol-flow-diagram";
+
 export const metadata: Metadata = {
   title: "Protocol Architecture — TEE, Attestation, Base L2",
   description: "Technical architecture of Neurolix Protocol: Confidential AI compute layer on Base L2. Smart contract suite v1.16 — 9 contracts, 52 cumulative patches across 6 cross-LLM adversarial review rounds. 128/128 Foundry tests passing.",
@@ -10,21 +13,49 @@ export default function ProtocolPage() {
   return (
     <>
       {/* HERO */}
-      <section className="mx-auto max-w-[1100px] px-6 py-20" style={{ borderBottom: "1px solid var(--border)" }}>
+      <section className="mx-auto max-w-[1100px] px-6 py-20 text-center flex flex-col items-center" style={{ borderBottom: "1px solid var(--border)" }}>
         <span className="inline-block mb-6 text-xs px-3 py-1.5 rounded-full font-medium tracking-wide"
           style={{ backgroundColor: "var(--accent-dim)", border: "1px solid var(--accent)", color: "var(--accent)" }}>
           Architecture · v1.16 · Base L2
         </span>
-        <h1 className="text-5xl font-bold mb-6" style={{ color: "var(--text-primary)" }}>The Protocol</h1>
-        <p className="text-lg leading-relaxed" style={{ color: "var(--text-secondary)", maxWidth: 620 }}>
+        <h1 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight" style={{ color: "var(--text-primary)" }}>
+          The Protocol
+        </h1>
+        <p className="text-lg leading-relaxed max-w-[620px]" style={{ color: "var(--text-secondary)" }}>
           Neurolix Protocol is a compliance-ready Confidential AI compute layer on Base L2.
           It combines hardware-isolated TEE enclaves with cryptographic attestation and
           trust-minimized on-chain SLA enforcement.
         </p>
       </section>
 
-      {/* ARCHITECTURE */}
+      {/* HOW IT WORKS (Recuperato dalla Home e ottimizzato) */}
       <section className="py-20" style={{ backgroundColor: "var(--bg-secondary)", borderBottom: "1px solid var(--border)" }}>
+        <div className="mx-auto max-w-[1100px] px-6">
+          <div className="mb-12">
+            <p className="text-xs uppercase tracking-widest mb-3" style={{ color: "var(--accent)" }}>How It Works</p>
+            <h2 className="text-3xl font-bold" style={{ color: "var(--text-primary)" }}>
+              The TEE → Attestation → Base L2 loop.
+            </h2>
+            <p className="text-sm mt-4 leading-relaxed text-slate-400 max-w-[620px]">
+              A step-by-step breakdown of how data remains encrypted in transit and in use, ensuring that only the cryptographic commitment leaves the secure boundary.
+            </p>
+          </div>
+          
+          {/* Il contenitore per il diagramma. 
+            Se il diagramma non è nativamente responsive, potremmo aver bisogno di 
+            un overflow-x-auto per consentire lo scroll orizzontale su mobile senza rompere il layout.
+          */}
+          <div className="w-full overflow-x-auto pb-4 custom-scrollbar">
+             <div className="min-w-[800px] md:min-w-full">
+               <ProtocolFlowDiagram />
+             </div>
+          </div>
+          
+        </div>
+      </section>
+
+      {/* ARCHITECTURE */}
+      <section className="py-20" style={{ borderBottom: "1px solid var(--border)" }}>
         <div className="mx-auto max-w-[1100px] px-6">
           <p className="text-xs uppercase tracking-widest mb-3" style={{ color: "var(--accent)" }}>Architecture</p>
           <h2 className="text-3xl font-bold mb-12" style={{ color: "var(--text-primary)" }}>How the stack works</h2>

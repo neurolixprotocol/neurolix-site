@@ -94,13 +94,16 @@ const statusConfig = {
 export default function RoadmapPage() {
   return (
     <>
-      <section className="mx-auto max-w-[1100px] px-6 py-20" style={{ borderBottom: "1px solid var(--border)" }}>
+      {/* 1. AGGIUNGI QUESTO BLOCCO HERO CENTRATO */}
+      <section className="mx-auto max-w-[1100px] px-6 py-20 text-center flex flex-col items-center" style={{ borderBottom: "1px solid var(--border)" }}>
         <span className="inline-block mb-6 text-xs px-3 py-1.5 rounded-full font-medium tracking-wide"
           style={{ backgroundColor: "var(--accent-dim)", border: "1px solid var(--accent)", color: "var(--accent)" }}>
           No dates — sequential milestones
         </span>
-        <h1 className="text-5xl font-bold mb-6" style={{ color: "var(--text-primary)" }}>Roadmap</h1>
-        <p className="text-lg leading-relaxed" style={{ color: "var(--text-secondary)", maxWidth: 560 }}>
+        <h1 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight" style={{ color: "var(--text-primary)" }}>
+          Roadmap
+        </h1>
+        <p className="text-lg leading-relaxed max-w-[620px]" style={{ color: "var(--text-secondary)" }}>
           Sequential phases from PoC to general availability. No artificial deadlines —
           each phase unlocks the next based on technical readiness and security gates.
         </p>

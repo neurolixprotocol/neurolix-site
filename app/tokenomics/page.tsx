@@ -9,15 +9,19 @@ export default function TokenomicsPage() {
   return (
     <>
       {/* HERO */}
-      <section className="mx-auto max-w-[1100px] px-6 py-20" style={{ borderBottom: "1px solid var(--border)" }}>
+      <section className="mx-auto max-w-[1100px] px-6 py-20 text-center flex flex-col items-center" style={{ borderBottom: "1px solid var(--border)" }}>
         <span className="inline-block mb-6 text-xs px-3 py-1.5 rounded-full font-medium tracking-wide"
           style={{ backgroundColor: "var(--accent-dim)", border: "1px solid var(--accent)", color: "var(--accent)" }}>
           $OLIX · Base L2 · Utility Token
         </span>
-        <h1 className="text-5xl font-bold mb-6" style={{ color: "var(--text-primary)" }}>Tokenomics</h1>
-        <p className="text-lg leading-relaxed" style={{ color: "var(--text-secondary)", maxWidth: 580 }}>
-          $OLIX is the utility token of Neurolix Protocol. It powers confidential compute sessions,
-          secures node operators through collateral, and implements a Burn-and-Mint Equilibrium where Confidential Compute Credits (CCC) are burned in proportion to network usage.
+        <h1 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight" style={{ color: "var(--text-primary)" }}>
+          Tokenomics
+        </h1>
+        <p className="text-lg leading-relaxed max-w-[620px]" style={{ color: "var(--text-secondary)" }}>
+          $OLIX is the utility token of Neurolix Protocol. It powers confidential compute
+          sessions, secures node operators through collateral, and implements a
+          Burn-and-Mint Equilibrium where Confidential Compute Credits (CCC) are burned in
+          proportion to network usage.
         </p>
       </section>
 
