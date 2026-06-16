@@ -512,7 +512,7 @@ export default function NeurolixVisualizer() {
           </div>
 
           {/* HUD CARDS SCENE A */}
-          <div className="absolute left-0 right-0 bottom-4 md:bottom-[6vh] z-10 flex justify-center pointer-events-none px-4 md:px-6">
+          <div className="absolute left-0 right-0 bottom-8 md:bottom-[6vh] z-10 flex justify-center pointer-events-none px-4 md:px-6">
             <div className="relative w-full max-w-[560px] min-h-[136px] md:min-h-[104px] hudA">
               {[
                 { step: '01 / NETWORK', title: 'A mesh of confidential compute nodes', desc: 'Independent providers, each running a hardware-secured enclave.' },
@@ -557,7 +557,7 @@ export default function NeurolixVisualizer() {
             </a>
           </div>
 
-          <div className="absolute left-0 right-0 bottom-4 md:bottom-[6vh] z-10 flex justify-center pointer-events-none px-4 md:px-6">
+          <div className="absolute left-0 right-0 bottom-8 md:bottom-[6vh] z-10 flex justify-center pointer-events-none px-4 md:px-6">
             <div className="relative w-full max-w-[560px] min-h-[136px] md:min-h-[104px] hudB">
               {[
                 { step: '05 / COMPUTE', title: 'Inference runs inside the boundary', desc: 'GPT-2 · 124M params in an AMD SEV enclave. Data is in clear only inside.' },
