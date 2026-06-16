@@ -345,7 +345,7 @@ export default function NeurolixVisualizer() {
           glow(ctx, CP.x, CP.y, 3 + 5 * a_val, `rgba(0,229,255,${(0.9 * coreAlpha).toFixed(2)})`, 16 * a_val);
         }
 
-        const chainY = h * (isMobile() ? 0.82 : 0.86); const bs = isMobile() ? 15 : 20, gap = bs * 1.8;
+        const chainY = h * (isMobile() ? 0.68 : 0.86); const bs = isMobile() ? 15 : 20, gap = bs * 1.8;
         const blocks = [{ x: cx - gap, y: chainY }, { x: cx, y: chainY }, { x: cx + gap, y: chainY }];
         ctx.strokeStyle = 'rgba(0,229,255,0.25)'; ctx.lineWidth = 2;
         ctx.beginPath(); ctx.moveTo(blocks[0].x, chainY); ctx.lineTo(blocks[2].x, chainY); ctx.stroke();
@@ -513,7 +513,7 @@ export default function NeurolixVisualizer() {
 
           {/* HUD CARDS SCENE A */}
           <div className="absolute left-0 right-0 bottom-8 md:bottom-[6vh] z-10 flex justify-center pointer-events-none px-4 md:px-6">
-            <div className="relative w-full max-w-[560px] min-h-[136px] md:min-h-[104px] hudA">
+            <div className="relative w-full max-w-[560px] min-h-[90px] md:min-h-[104px] hudB">
               {[
                 { step: '01 / NETWORK', title: 'A mesh of confidential compute nodes', desc: 'Independent providers, each running a hardware-secured enclave.' },
                 { step: '02 / TARGET NODE', title: 'Zooming into a single provider', desc: "A workload is routed to one node's Trusted Execution Environment." },
