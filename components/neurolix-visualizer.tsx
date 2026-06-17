@@ -550,7 +550,7 @@ export default function NeurolixVisualizer() {
 
       {/* SCENE B (Compute -> Chain) */}
       <section id="sceneB" className="relative h-[360vh]">
-        <div className="sticky top-0 h-[100dvh] overflow-hidden flex flex-col">
+        <div className="sticky top-0 h-[100svh] overflow-hidden flex flex-col">
           {/* Canvas Wrapper */}
           <div className="flex-1 relative w-full">
             <canvas ref={canvasBRef} className="absolute inset-0 w-full h-full block" aria-hidden="true" />
