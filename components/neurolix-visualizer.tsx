@@ -205,9 +205,8 @@ export default function NeurolixVisualizer() {
       // SCENE A (Hero + Rete)
       const rectA = secA.getBoundingClientRect();
       if (rectA.bottom > -80 && rectA.top < window.innerHeight + 80) {
-        const P = progressOf(secA);
-        const { ctx, w, h: realH } = sizeA;
-        const h = isMobile() ? baseH : realH; // Layout matematico ancorato!
+       const P = progressOf(secA);
+        const { ctx, w, h } = sizeA;
         const m = Math.min(w, h) * 0.1;
         
         // Dissolvenza e parallasse per la Hero Text
@@ -231,7 +230,7 @@ export default function NeurolixVisualizer() {
         const cx = w / 2, cy = h / 2;
         const S = (pt: any) => ({ x: (pt.x - focus.x) * zoom + cx, y: (pt.y - focus.y) * zoom + cy });
         
-        ctx.clearRect(0, 0, w, realH); // Puliamo lo spazio effettivo
+        ctx.clearRect(0, 0, w, h);
         const iso = p3, edgeAlpha = 0.10 * (1 - 0.95 * iso), pulseAlpha = (1 - p1) * (1 - iso);
         
         ctx.lineWidth = Math.max(1, zoom * 0.5); ctx.strokeStyle = `rgba(0,229,255,${edgeAlpha.toFixed(3)})`; ctx.beginPath();
@@ -304,20 +303,19 @@ export default function NeurolixVisualizer() {
       const rectB = secB.getBoundingClientRect();
       if (rectB.bottom > -80 && rectB.top < window.innerHeight + 80) {
         const P = progressOf(secB);
-        const { ctx, w, h: realH } = sizeB;
-        const h = isMobile() ? baseH : realH; // Layout matematico ancorato!
+        const { ctx, w, h } = sizeB;
         
         const c_val = smooth(invlerp(0.00, 0.40, P));
         const a_val = smooth(invlerp(0.40, 0.70, P));
         const v_val = smooth(invlerp(0.70, 1.00, P));
-        ctx.clearRect(0, 0, w, realH);
+        ctx.clearRect(0, 0, w, h);
 
         const cx = w / 2;
         const isMob = isMobile();
-        const cy = isMob ? Math.max(90, h * 0.25) : (h * 0.40);
-        // Enclave più imponente su mobile (senza rompere il layout)
+        // Ripartizione aurea: Enclave al 25% dell'altezza disponibile
+        const cy = isMob ? (h * 0.25) : (h * 0.40);
         const encW = Math.min(w * 0.88, 580);
-        const encH = isMob ? 160 : Math.min(h * 0.45, 360);
+        const encH = isMob ? 140 : Math.min(h * 0.45, 360);
         const ex = cx - encW / 2, ey = cy - encH / 2;
 
         ctx.lineWidth = 3; ctx.strokeStyle = 'rgba(0,229,255,0.7)'; ctx.fillStyle = 'rgba(0,229,255,0.05)';
@@ -366,7 +364,8 @@ export default function NeurolixVisualizer() {
           glow(ctx, CP.x, CP.y, 3 + 5 * a_val, `rgba(0,229,255,${(0.9 * coreAlpha).toFixed(2)})`, 16 * a_val);
         }
 
-       const chainY = isMob ? (h * 0.48) : (h * 0.72); const bs = isMob ? 15 : 20, gap = bs * 1.8;
+       // Ripartizione aurea: Chain al 75% dell'altezza disponibile
+       const chainY = isMob ? (h * 0.75) : (h * 0.72); const bs = isMob ? 15 : 20, gap = bs * 1.8;
         const blocks = [{ x: cx - gap, y: chainY }, { x: cx, y: chainY }, { x: cx + gap, y: chainY }];
         ctx.strokeStyle = 'rgba(0,229,255,0.25)'; ctx.lineWidth = 2;
         ctx.beginPath(); ctx.moveTo(blocks[0].x, chainY); ctx.lineTo(blocks[2].x, chainY); ctx.stroke();
@@ -574,7 +573,7 @@ export default function NeurolixVisualizer() {
             <canvas ref={canvasBRef} className="absolute inset-0 w-full h-full block" aria-hidden="true" />
             <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(120% 100% at 50% 50%, transparent 60%, rgba(10,14,26,0.6) 100%)' }} aria-hidden="true"></div>
 
-            <div id="hashline" className="absolute left-0 right-0 bottom-[8%] md:bottom-auto md:top-[89%] md:-translate-y-1/2 z-10 flex flex-col items-center gap-1.5 px-4 md:px-6 pointer-events-none opacity-0 transition-opacity duration-500">
+            <div id="hashline" className="absolute left-0 right-0 top-[50%] -translate-y-1/2 md:top-[89%] z-10 flex flex-col items-center gap-1.5 px-4 md:px-6 pointer-events-none opacity-0 transition-opacity duration-500">
             <div id="hlLabel" className="font-mono text-[9px] md:text-[10px] tracking-[2px] text-[var(--accent)]">SHA-256 COMMITMENT · COMPUTING…</div>
             <code id="hashText" className="font-mono text-[10px] sm:text-[12px] md:text-[15px] text-[var(--text-primary)] border border-[var(--border)] rounded-lg px-3 py-1.5 md:px-4 md:py-2 max-w-[94vw] break-all text-center leading-[1.4]" style={{ background: 'rgba(17,24,39,0.85)', backdropFilter: 'blur(4px)' }}>
               ________________________________________________________________
