@@ -177,9 +177,9 @@ export default function NeurolixVisualizer() {
     let resizeTimeout;
 
     const handleResize = () => {
-      // 1. Blocchiamo alla radice i resize verticali su mobile (scroll della barra)
-      // Questo elimina il 99% del LAG impedendo a fit() di sovraccaricare la CPU
-      if (isMobile() && window.innerWidth === baseW) return;
+      // 1. Tolleranza di 50px: ignora micro-resize (es. scrollbar laterali mobili).
+      // Esegue il ricalcolo pesante SOLO se si ruota fisicamente il telefono.
+      if (isMobile() && Math.abs(window.innerWidth - baseW) < 50) return;
 
       // 2. Debounce sui resize reali (es. rotazione schermo o resize finestra PC)
       clearTimeout(resizeTimeout);
@@ -205,9 +205,10 @@ export default function NeurolixVisualizer() {
       // SCENE A (Hero + Rete)
       const rectA = secA.getBoundingClientRect();
       if (rectA.bottom > -80 && rectA.top < window.innerHeight + 80) {
-       const P = progressOf(secA);
+        // Calcolo P congelato: elimina il lag e l'effetto "inseguimento"
+        const viewportH = isMobile() ? baseH : window.innerHeight;
+        const P = clamp(-rectA.top / (rectA.height - viewportH), 0, 1);
         const { ctx, w, h } = sizeA;
-        const m = Math.min(w, h) * 0.1;
         
         // Dissolvenza e parallasse per la Hero Text
         if (heroText) {
@@ -302,7 +303,9 @@ export default function NeurolixVisualizer() {
       // SCENE B
       const rectB = secB.getBoundingClientRect();
       if (rectB.bottom > -80 && rectB.top < window.innerHeight + 80) {
-        const P = progressOf(secB);
+        // Calcolo P congelato: elimina il lag e l'effetto "inseguimento"
+        const viewportH = isMobile() ? baseH : window.innerHeight;
+        const P = clamp(-rectB.top / (rectB.height - viewportH), 0, 1);
         const { ctx, w, h } = sizeB;
         
         const c_val = smooth(invlerp(0.00, 0.40, P));
@@ -312,10 +315,10 @@ export default function NeurolixVisualizer() {
 
         const cx = w / 2;
         const isMob = isMobile();
-        // Ripartizione aurea: Enclave al 25% dell'altezza disponibile
-        const cy = isMob ? (h * 0.25) : (h * 0.40);
+        // Ripartizione aurea di Sicurezza: Enclave al 22% (più alta)
+        const cy = isMob ? (h * 0.22) : (h * 0.40);
         const encW = Math.min(w * 0.88, 580);
-        const encH = isMob ? 140 : Math.min(h * 0.45, 360);
+        const encH = isMob ? 130 : Math.min(h * 0.45, 360);
         const ex = cx - encW / 2, ey = cy - encH / 2;
 
         ctx.lineWidth = 3; ctx.strokeStyle = 'rgba(0,229,255,0.7)'; ctx.fillStyle = 'rgba(0,229,255,0.05)';
@@ -364,8 +367,8 @@ export default function NeurolixVisualizer() {
           glow(ctx, CP.x, CP.y, 3 + 5 * a_val, `rgba(0,229,255,${(0.9 * coreAlpha).toFixed(2)})`, 16 * a_val);
         }
 
-       // Ripartizione aurea: Chain al 75% dell'altezza disponibile
-       const chainY = isMob ? (h * 0.75) : (h * 0.72); const bs = isMob ? 15 : 20, gap = bs * 1.8;
+       // Ripartizione aurea di Sicurezza: Chain al 78% (più bassa)
+       const chainY = isMob ? (h * 0.78) : (h * 0.72); const bs = isMob ? 15 : 20, gap = bs * 1.8;
         const blocks = [{ x: cx - gap, y: chainY }, { x: cx, y: chainY }, { x: cx + gap, y: chainY }];
         ctx.strokeStyle = 'rgba(0,229,255,0.25)'; ctx.lineWidth = 2;
         ctx.beginPath(); ctx.moveTo(blocks[0].x, chainY); ctx.lineTo(blocks[2].x, chainY); ctx.stroke();
@@ -427,7 +430,7 @@ export default function NeurolixVisualizer() {
     <div ref={containerRef} className="neurolix-visualizer bg-[var(--bg-primary)] font-sans text-[var(--text-primary)]">
       
       {/* SCENE A (Hero + Network + Zoom) */}
-      <section id="sceneA" className="relative h-[600vh] md:h-[600vh]">
+      <section id="sceneA" className="relative h-[700vh] md:h-[600vh]">
         <div className="sticky top-0 h-[100dvh] overflow-hidden flex flex-col">
           {/* Canvas Wrapper - Occupa tutto lo spazio superiore dinamicamente */}
           <div className="flex-1 relative w-full">
@@ -565,8 +568,8 @@ export default function NeurolixVisualizer() {
         </div>
       </section>
 
-      {/* SCENE B (Compute -> Chain) */}
-      <section id="sceneB" className="relative h-[500vh]">
+       {/* SCENE B (Compute -> Chain) */}
+       <section id="sceneB" className="relative h-[600vh] md:h-[500vh]">
         <div className="sticky top-0 h-[100dvh] overflow-hidden flex flex-col">
           {/* Canvas Wrapper */}
           <div className="flex-1 relative w-full">
