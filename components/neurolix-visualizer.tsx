@@ -411,7 +411,7 @@ export default function NeurolixVisualizer() {
       
       {/* SCENE A (Hero + Network + Zoom) */}
       <section id="sceneA" className="relative h-[450vh] md:h-[450vh]">
-        <div className="sticky top-0 h-[100svh] overflow-hidden flex flex-col">
+        <div className="sticky top-0 h-screen overflow-hidden flex flex-col">
           {/* Canvas Wrapper - Occupa tutto lo spazio superiore dinamicamente */}
           <div className="flex-1 relative w-full">
             <canvas ref={canvasARef} className="absolute inset-0 w-full h-full block" aria-hidden="true" />
@@ -550,7 +550,7 @@ export default function NeurolixVisualizer() {
 
       {/* SCENE B (Compute -> Chain) */}
       <section id="sceneB" className="relative h-[360vh]">
-        <div className="sticky top-0 h-[100svh] overflow-hidden flex flex-col">
+        <div className="sticky top-0 h-screen overflow-hidden flex flex-col">
           {/* Canvas Wrapper */}
           <div className="flex-1 relative w-full">
             <canvas ref={canvasBRef} className="absolute inset-0 w-full h-full block" aria-hidden="true" />
