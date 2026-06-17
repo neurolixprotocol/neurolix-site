@@ -297,10 +297,9 @@ export default function NeurolixVisualizer() {
 
         const cx = w / 2;
         const isMob = isMobile();
-        const cy = isMob ? (h * 0.26) : (h * 0.40);
-        const encW = isMob ? Math.min(w * 0.90, 560) : Math.min(w * 0.82, 560);
-        const encH = isMob ? 135 : Math.min(h * 0.42, 340);
-        const chainY = isMob ? (h * 0.80) : (h * 0.86); const bs = isMob ? 15 : 20, gap = bs * 1.8;
+        const cy = isMob ? Math.max(105, h * 0.24) : (h * 0.40);
+        const encW = Math.min(w * 0.82, 560);
+        const encH = isMob ? 155 : Math.min(h * 0.42, 340)
         const ex = cx - encW / 2, ey = cy - encH / 2;
 
         ctx.lineWidth = 3; ctx.strokeStyle = 'rgba(0,229,255,0.7)'; ctx.fillStyle = 'rgba(0,229,255,0.05)';
@@ -557,7 +556,7 @@ export default function NeurolixVisualizer() {
             <canvas ref={canvasBRef} className="absolute inset-0 w-full h-full block" aria-hidden="true" />
             <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(120% 100% at 50% 50%, transparent 60%, rgba(10,14,26,0.6) 100%)' }} aria-hidden="true"></div>
 
-            <div id="hashline" className="absolute left-0 right-0 top-[54%] -translate-y-1/2 md:top-auto md:translate-y-0 md:bottom-[22vh] z-10 flex flex-col items-center gap-1.5 px-4 md:px-6 pointer-events-none opacity-0 transition-opacity duration-500">
+            <div id="hashline" className="absolute left-0 right-0 top-[57%] -translate-y-1/2 md:top-auto md:translate-y-0 md:bottom-[22vh] z-10 flex flex-col items-center gap-1.5 px-4 md:px-6 pointer-events-none opacity-0 transition-opacity duration-500">
             <div id="hlLabel" className="font-mono text-[9px] md:text-[10px] tracking-[2px] text-[var(--accent)]">SHA-256 COMMITMENT · COMPUTING…</div>
             <code id="hashText" className="font-mono text-[10px] sm:text-[12px] md:text-[15px] text-[var(--text-primary)] border border-[var(--border)] rounded-lg px-3 py-1.5 md:px-4 md:py-2 max-w-[94vw] break-all text-center leading-[1.4]" style={{ background: 'rgba(17,24,39,0.85)', backdropFilter: 'blur(4px)' }}>
               ________________________________________________________________
