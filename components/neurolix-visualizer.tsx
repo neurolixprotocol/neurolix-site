@@ -171,7 +171,16 @@ export default function NeurolixVisualizer() {
     let lastScramble = 0;
     let scrambleCache = "";
 
+    let lastWidth = window.innerWidth;
+    const setAppHeight = () => document.documentElement.style.setProperty('--app-height', `${window.innerHeight}px`);
+    setAppHeight(); // Lock iniziale al montaggio
+
     const handleResize = () => {
+      // Ignora i resize puramente verticali su mobile (scroll della barra degli indirizzi)
+      if (isMobile() && window.innerWidth === lastWidth) return;
+      lastWidth = window.innerWidth;
+      
+      setAppHeight();
       sizeA = fit(canvasA);
       sizeB = fit(canvasB);
     };
@@ -298,8 +307,8 @@ export default function NeurolixVisualizer() {
         const cx = w / 2;
         const isMob = isMobile();
         const cy = isMob ? Math.max(90, h * 0.25) : (h * 0.40);
-        const encW = Math.min(w * 0.82, 560);
-        const encH = isMob ? 135 : Math.min(h * 0.42, 340);
+        const encW = Math.min(w * 0.88, 620);
+        const encH = isMob ? 180 : Math.min(h * 0.48, 380);
         const ex = cx - encW / 2, ey = cy - encH / 2;
 
         ctx.lineWidth = 3; ctx.strokeStyle = 'rgba(0,229,255,0.7)'; ctx.fillStyle = 'rgba(0,229,255,0.05)';
@@ -348,7 +357,7 @@ export default function NeurolixVisualizer() {
           glow(ctx, CP.x, CP.y, 3 + 5 * a_val, `rgba(0,229,255,${(0.9 * coreAlpha).toFixed(2)})`, 16 * a_val);
         }
 
-       const chainY = isMob ? (h * 0.60) : (h * 0.72); const bs = isMob ? 15 : 20, gap = bs * 1.8;
+       const chainY = isMob ? (h * 0.68) : (h * 0.72); const bs = isMob ? 15 : 20, gap = bs * 1.8;
         const blocks = [{ x: cx - gap, y: chainY }, { x: cx, y: chainY }, { x: cx + gap, y: chainY }];
         ctx.strokeStyle = 'rgba(0,229,255,0.25)'; ctx.lineWidth = 2;
         ctx.beginPath(); ctx.moveTo(blocks[0].x, chainY); ctx.lineTo(blocks[2].x, chainY); ctx.stroke();
@@ -411,7 +420,7 @@ export default function NeurolixVisualizer() {
       
       {/* SCENE A (Hero + Network + Zoom) */}
       <section id="sceneA" className="relative h-[450vh] md:h-[450vh]">
-        <div className="sticky top-0 h-screen overflow-hidden flex flex-col">
+        <div className="sticky top-0 h-[100vh] h-[var(--app-height,100vh)] overflow-hidden flex flex-col">
           {/* Canvas Wrapper - Occupa tutto lo spazio superiore dinamicamente */}
           <div className="flex-1 relative w-full">
             <canvas ref={canvasARef} className="absolute inset-0 w-full h-full block" aria-hidden="true" />
@@ -550,7 +559,7 @@ export default function NeurolixVisualizer() {
 
       {/* SCENE B (Compute -> Chain) */}
       <section id="sceneB" className="relative h-[360vh]">
-        <div className="sticky top-0 h-screen overflow-hidden flex flex-col">
+        <div className="sticky top-0 h-[100vh] h-[var(--app-height,100vh)] overflow-hidden flex flex-col">
           {/* Canvas Wrapper */}
           <div className="flex-1 relative w-full">
             <canvas ref={canvasBRef} className="absolute inset-0 w-full h-full block" aria-hidden="true" />
