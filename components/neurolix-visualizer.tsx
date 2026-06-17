@@ -411,7 +411,7 @@ export default function NeurolixVisualizer() {
       
       {/* SCENE A (Hero + Network + Zoom) */}
       <section id="sceneA" className="relative h-[450vh] md:h-[450vh]">
-        <div className="sticky top-0 h-screen overflow-hidden flex flex-col">
+        <div className="sticky top-0 h-[100dvh] overflow-hidden flex flex-col">
           {/* Canvas Wrapper - Occupa tutto lo spazio superiore dinamicamente */}
           <div className="flex-1 relative w-full">
             <canvas ref={canvasARef} className="absolute inset-0 w-full h-full block" aria-hidden="true" />
@@ -550,13 +550,13 @@ export default function NeurolixVisualizer() {
 
       {/* SCENE B (Compute -> Chain) */}
       <section id="sceneB" className="relative h-[360vh]">
-        <div className="sticky top-0 h-screen overflow-hidden flex flex-col">
+        <div className="sticky top-0 h-[100dvh] overflow-hidden flex flex-col">
           {/* Canvas Wrapper */}
           <div className="flex-1 relative w-full">
             <canvas ref={canvasBRef} className="absolute inset-0 w-full h-full block" aria-hidden="true" />
             <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(120% 100% at 50% 50%, transparent 60%, rgba(10,14,26,0.6) 100%)' }} aria-hidden="true"></div>
 
-            <div id="hashline" className="absolute left-0 right-0 top-[57%] -translate-y-1/2 md:top-auto md:translate-y-0 md:bottom-[22vh] z-10 flex flex-col items-center gap-1.5 px-4 md:px-6 pointer-events-none opacity-0 transition-opacity duration-500">
+            <div id="hashline" className="absolute left-0 right-0 top-[56%] md:top-[73%] -translate-y-1/2 z-10 flex flex-col items-center gap-1.5 px-4 md:px-6 pointer-events-none opacity-0 transition-opacity duration-500">
             <div id="hlLabel" className="font-mono text-[9px] md:text-[10px] tracking-[2px] text-[var(--accent)]">SHA-256 COMMITMENT · COMPUTING…</div>
             <code id="hashText" className="font-mono text-[10px] sm:text-[12px] md:text-[15px] text-[var(--text-primary)] border border-[var(--border)] rounded-lg px-3 py-1.5 md:px-4 md:py-2 max-w-[94vw] break-all text-center leading-[1.4]" style={{ background: 'rgba(17,24,39,0.85)', backdropFilter: 'blur(4px)' }}>
               ________________________________________________________________
