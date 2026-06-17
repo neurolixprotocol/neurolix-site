@@ -309,9 +309,9 @@ export default function NeurolixVisualizer() {
         const cx = w / 2;
         const isMob = isMobile();
         const cy = isMob ? Math.max(90, h * 0.25) : (h * 0.40);
-        // Enclave leggermente più larga e alta, bilanciata per il nuovo layout flex
-        const encW = Math.min(w * 0.86, 580);
-        const encH = isMob ? 145 : Math.min(h * 0.45, 360);
+        // Enclave più imponente su mobile (senza rompere il layout)
+        const encW = Math.min(w * 0.88, 580);
+        const encH = isMob ? 160 : Math.min(h * 0.45, 360);
         const ex = cx - encW / 2, ey = cy - encH / 2;
 
         ctx.lineWidth = 3; ctx.strokeStyle = 'rgba(0,229,255,0.7)'; ctx.fillStyle = 'rgba(0,229,255,0.05)';
