@@ -408,11 +408,13 @@ export default function NeurolixVisualizer() {
       
       {/* SCENE A (Hero + Network + Zoom) */}
       <section id="sceneA" className="relative h-[450vh] md:h-[450vh]">
-        <div className="sticky top-0 h-screen overflow-hidden">
-          <canvas ref={canvasARef} className="absolute inset-0 w-full h-full block" aria-hidden="true" />
-          <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(120% 100% at 50% 50%, transparent 60%, rgba(10,14,26,0.6) 100%)' }} aria-hidden="true"></div>
-          
-        {/* HERO TEXT OVERLAY (Ottimizzato per Mobile) */}
+        <div className="sticky top-0 h-screen overflow-hidden flex flex-col">
+          {/* Canvas Wrapper - Occupa tutto lo spazio superiore dinamicamente */}
+          <div className="flex-1 relative w-full">
+            <canvas ref={canvasARef} className="absolute inset-0 w-full h-full block" aria-hidden="true" />
+            <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(120% 100% at 50% 50%, transparent 60%, rgba(10,14,26,0.6) 100%)' }} aria-hidden="true"></div>
+            
+          {/* HERO TEXT OVERLAY (Ottimizzato per Mobile) */}
           <div id="hero-text" 
             className="absolute inset-0 z-20 flex flex-col items-center justify-center px-6 text-center pb-[14vh] md:pb-0"
             style={{ transition: 'opacity 0.1s' }}
@@ -511,9 +513,11 @@ export default function NeurolixVisualizer() {
             </div>
           </div>
 
-          {/* HUD CARDS SCENE A */}
-          <div className="absolute left-0 right-0 bottom-8 md:bottom-[6vh] z-10 flex justify-center pointer-events-none px-4 md:px-6">
-            <div className="relative w-full max-w-[560px] min-h-[90px] md:min-h-[104px] hudB">
+          </div> {/* <-- Chiusura fondamentale del Canvas Wrapper */}
+
+          {/* HUD CARDS SCENE A - Inserito nel normale flusso flex */}
+          <div className="relative z-10 shrink-0 flex justify-center pointer-events-none px-4 md:px-6 pb-8 md:pb-[6vh] w-full">
+            <div className="relative w-full max-w-[560px] min-h-[90px] md:min-h-[104px] hudA">
               {[
                 { step: '01 / NETWORK', title: 'A mesh of confidential compute nodes', desc: 'Independent providers, each running a hardware-secured enclave.' },
                 { step: '02 / TARGET NODE', title: 'Zooming into a single provider', desc: "A workload is routed to one node's Trusted Execution Environment." },
@@ -543,11 +547,13 @@ export default function NeurolixVisualizer() {
 
       {/* SCENE B (Compute -> Chain) */}
       <section id="sceneB" className="relative h-[360vh]">
-        <div className="sticky top-0 h-screen overflow-hidden">
-          <canvas ref={canvasBRef} className="absolute inset-0 w-full h-full block" aria-hidden="true" />
-          <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(120% 100% at 50% 50%, transparent 60%, rgba(10,14,26,0.6) 100%)' }} aria-hidden="true"></div>
+        <div className="sticky top-0 h-screen overflow-hidden flex flex-col">
+          {/* Canvas Wrapper */}
+          <div className="flex-1 relative w-full">
+            <canvas ref={canvasBRef} className="absolute inset-0 w-full h-full block" aria-hidden="true" />
+            <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(120% 100% at 50% 50%, transparent 60%, rgba(10,14,26,0.6) 100%)' }} aria-hidden="true"></div>
 
-          <div id="hashline" className="absolute left-0 right-0 bottom-[24vh] md:bottom-[22vh] z-10 flex flex-col items-center gap-1.5 px-4 md:px-6 pointer-events-none opacity-0 transition-opacity duration-500">
+            <div id="hashline" className="absolute left-0 right-0 bottom-[24vh] md:bottom-[22vh] z-10 flex flex-col items-center gap-1.5 px-4 md:px-6 pointer-events-none opacity-0 transition-opacity duration-500">
             <div id="hlLabel" className="font-mono text-[9px] md:text-[10px] tracking-[2px] text-[var(--accent)]">SHA-256 COMMITMENT · COMPUTING…</div>
             <code id="hashText" className="font-mono text-[10px] sm:text-[12px] md:text-[15px] text-[var(--text-primary)] border border-[var(--border)] rounded-lg px-3 py-1.5 md:px-4 md:py-2 max-w-[94vw] break-all text-center leading-[1.4]" style={{ background: 'rgba(17,24,39,0.85)', backdropFilter: 'blur(4px)' }}>
               ________________________________________________________________
@@ -557,7 +563,10 @@ export default function NeurolixVisualizer() {
             </a>
           </div>
 
-          <div className="absolute left-0 right-0 bottom-8 md:bottom-[6vh] z-10 flex justify-center pointer-events-none px-4 md:px-6">
+          </div> {/* <-- Chiusura fondamentale del Canvas Wrapper */}
+
+          {/* HUD CARDS SCENE B - Inserito nel normale flusso flex */}
+          <div className="relative z-10 shrink-0 flex justify-center pointer-events-none px-4 md:px-6 pb-8 md:pb-[6vh] w-full">
             <div className="relative w-full max-w-[560px] min-h-[136px] md:min-h-[104px] hudB">
               {[
                 { step: '05 / COMPUTE', title: 'Inference runs inside the boundary', desc: 'GPT-2 · 124M params in an AMD SEV enclave. Data is in clear only inside.' },
