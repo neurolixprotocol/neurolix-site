@@ -171,21 +171,15 @@ export default function NeurolixVisualizer() {
     let lastScramble = 0;
     let scrambleCache = "";
 
-    // Congeliamo l'altezza base per prevenire il ricalcolo delle coordinate Y (salto visivo)
-    let baseW = window.innerWidth;
-    let baseH = window.innerHeight;
+    let lastW = window.innerWidth;
     let resizeTimeout;
 
     const handleResize = () => {
-      // 1. Tolleranza di 50px: ignora micro-resize (es. scrollbar laterali mobili).
-      // Esegue il ricalcolo pesante SOLO se si ruota fisicamente il telefono.
-      if (isMobile() && Math.abs(window.innerWidth - baseW) < 50) return;
-
-      // 2. Debounce sui resize reali (es. rotazione schermo o resize finestra PC)
+      if (isMobile() && Math.abs(window.innerWidth - lastW) < 50) return;
+      lastW = window.innerWidth;
+      
       clearTimeout(resizeTimeout);
       resizeTimeout = setTimeout(() => {
-        baseW = window.innerWidth;
-        baseH = window.innerHeight;
         sizeA = fit(canvasA);
         sizeB = fit(canvasB);
       }, 100);
@@ -205,9 +199,10 @@ export default function NeurolixVisualizer() {
       // SCENE A (Hero + Rete)
       const rectA = secA.getBoundingClientRect();
       if (rectA.bottom > -80 && rectA.top < window.innerHeight + 80) {
-        // Calcolo P congelato: elimina il lag e l'effetto "inseguimento"
-        const viewportH = isMobile() ? baseH : window.innerHeight;
-        const P = clamp(-rectA.top / (rectA.height - viewportH), 0, 1);
+        // Auto-heal leggerissimo: allinea i pixel se la barra 100dvh deforma il layout
+        if (canvasA.offsetWidth !== sizeA.w || canvasA.offsetHeight !== sizeA.h) sizeA = fit(canvasA);
+        
+        const P = clamp(-rectA.top / (rectA.height - window.innerHeight), 0, 1);
         const { ctx, w, h } = sizeA;
         
         // Dissolvenza e parallasse per la Hero Text
@@ -303,9 +298,10 @@ export default function NeurolixVisualizer() {
       // SCENE B
       const rectB = secB.getBoundingClientRect();
       if (rectB.bottom > -80 && rectB.top < window.innerHeight + 80) {
-        // Calcolo P congelato: elimina il lag e l'effetto "inseguimento"
-        const viewportH = isMobile() ? baseH : window.innerHeight;
-        const P = clamp(-rectB.top / (rectB.height - viewportH), 0, 1);
+        // Auto-heal contro l'effetto elastico o scattoso di Safari
+        if (canvasB.offsetWidth !== sizeB.w || canvasB.offsetHeight !== sizeB.h) sizeB = fit(canvasB);
+        
+        const P = clamp(-rectB.top / (rectB.height - window.innerHeight), 0, 1);
         const { ctx, w, h } = sizeB;
         
         const c_val = smooth(invlerp(0.00, 0.40, P));
@@ -315,10 +311,11 @@ export default function NeurolixVisualizer() {
 
         const cx = w / 2;
         const isMob = isMobile();
-        // Ripartizione aurea di Sicurezza: Enclave al 22% (più alta)
-        const cy = isMob ? (h * 0.22) : (h * 0.40);
+        
+        // ANCORAGGIO ASSOLUTO: Fissa l'Enclave a 110px dal Top per difenderla dalla UI
+        const cy = isMob ? 110 : (h * 0.40);
         const encW = Math.min(w * 0.88, 580);
-        const encH = isMob ? 130 : Math.min(h * 0.45, 360);
+        const encH = isMob ? 120 : Math.min(h * 0.45, 360);
         const ex = cx - encW / 2, ey = cy - encH / 2;
 
         ctx.lineWidth = 3; ctx.strokeStyle = 'rgba(0,229,255,0.7)'; ctx.fillStyle = 'rgba(0,229,255,0.05)';
@@ -367,8 +364,8 @@ export default function NeurolixVisualizer() {
           glow(ctx, CP.x, CP.y, 3 + 5 * a_val, `rgba(0,229,255,${(0.9 * coreAlpha).toFixed(2)})`, 16 * a_val);
         }
 
-       // Ripartizione aurea di Sicurezza: Chain al 78% (più bassa)
-       const chainY = isMob ? (h * 0.78) : (h * 0.72); const bs = isMob ? 15 : 20, gap = bs * 1.8;
+       // ANCORAGGIO ASSOLUTO: Incolla la Chain a 110px dal fondo (HUD)
+       const chainY = isMob ? (h - 110) : (h * 0.72); const bs = isMob ? 15 : 20, gap = bs * 1.8;
         const blocks = [{ x: cx - gap, y: chainY }, { x: cx, y: chainY }, { x: cx + gap, y: chainY }];
         ctx.strokeStyle = 'rgba(0,229,255,0.25)'; ctx.lineWidth = 2;
         ctx.beginPath(); ctx.moveTo(blocks[0].x, chainY); ctx.lineTo(blocks[2].x, chainY); ctx.stroke();
