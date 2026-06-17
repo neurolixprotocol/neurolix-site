@@ -171,15 +171,18 @@ export default function NeurolixVisualizer() {
     let lastScramble = 0;
     let scrambleCache = "";
 
-    let lastWidth = window.innerWidth;
+    // Congeliamo l'altezza base per prevenire il ricalcolo delle coordinate Y (salto visivo)
+    let baseW = window.innerWidth;
+    let baseH = window.innerHeight;
 
     const handleResize = () => {
-      // Blocca il ricalcolo distruttivo del Canvas se cambia solo l'altezza (scroll mobile)
-      if (isMobile() && window.innerWidth === lastWidth) return;
-      lastWidth = window.innerWidth;
-      
       sizeA = fit(canvasA);
       sizeB = fit(canvasB);
+      // Aggiorniamo la matematica di layout SOLO se cambia la larghezza (es. rotazione telefono)
+      if (!isMobile() || window.innerWidth !== baseW) {
+        baseW = window.innerWidth;
+        baseH = window.innerHeight;
+      }
     };
     window.addEventListener('resize', handleResize);
 
@@ -197,7 +200,8 @@ export default function NeurolixVisualizer() {
       const rectA = secA.getBoundingClientRect();
       if (rectA.bottom > -80 && rectA.top < window.innerHeight + 80) {
         const P = progressOf(secA);
-        const { ctx, w, h } = sizeA;
+        const { ctx, w, h: realH } = sizeA;
+        const h = isMobile() ? baseH : realH; // Layout matematico ancorato!
         const m = Math.min(w, h) * 0.1;
         
         // Dissolvenza e parallasse per la Hero Text
@@ -221,7 +225,7 @@ export default function NeurolixVisualizer() {
         const cx = w / 2, cy = h / 2;
         const S = (pt: any) => ({ x: (pt.x - focus.x) * zoom + cx, y: (pt.y - focus.y) * zoom + cy });
         
-        ctx.clearRect(0, 0, w, h);
+        ctx.clearRect(0, 0, w, realH); // Puliamo lo spazio effettivo
         const iso = p3, edgeAlpha = 0.10 * (1 - 0.95 * iso), pulseAlpha = (1 - p1) * (1 - iso);
         
         ctx.lineWidth = Math.max(1, zoom * 0.5); ctx.strokeStyle = `rgba(0,229,255,${edgeAlpha.toFixed(3)})`; ctx.beginPath();
@@ -294,17 +298,19 @@ export default function NeurolixVisualizer() {
       const rectB = secB.getBoundingClientRect();
       if (rectB.bottom > -80 && rectB.top < window.innerHeight + 80) {
         const P = progressOf(secB);
-        const { ctx, w, h } = sizeB;
+        const { ctx, w, h: realH } = sizeB;
+        const h = isMobile() ? baseH : realH; // Layout matematico ancorato!
         
         const c_val = smooth(invlerp(0.00, 0.40, P));
         const a_val = smooth(invlerp(0.40, 0.70, P));
         const v_val = smooth(invlerp(0.70, 1.00, P));
-        ctx.clearRect(0, 0, w, h);
+        ctx.clearRect(0, 0, w, realH);
 
         const cx = w / 2;
         const isMob = isMobile();
         const cy = isMob ? Math.max(90, h * 0.25) : (h * 0.40);
-        const encW = Math.min(w * 0.85, 580);
+        // Enclave leggermente più larga e alta, bilanciata per il nuovo layout flex
+        const encW = Math.min(w * 0.86, 580);
         const encH = isMob ? 145 : Math.min(h * 0.45, 360);
         const ex = cx - encW / 2, ey = cy - encH / 2;
 
@@ -354,7 +360,7 @@ export default function NeurolixVisualizer() {
           glow(ctx, CP.x, CP.y, 3 + 5 * a_val, `rgba(0,229,255,${(0.9 * coreAlpha).toFixed(2)})`, 16 * a_val);
         }
 
-       const chainY = isMob ? (h * 0.64) : (h * 0.72); const bs = isMob ? 15 : 20, gap = bs * 1.8;
+       const chainY = isMob ? (h * 0.63) : (h * 0.72); const bs = isMob ? 15 : 20, gap = bs * 1.8;
         const blocks = [{ x: cx - gap, y: chainY }, { x: cx, y: chainY }, { x: cx + gap, y: chainY }];
         ctx.strokeStyle = 'rgba(0,229,255,0.25)'; ctx.lineWidth = 2;
         ctx.beginPath(); ctx.moveTo(blocks[0].x, chainY); ctx.lineTo(blocks[2].x, chainY); ctx.stroke();
@@ -425,7 +431,7 @@ export default function NeurolixVisualizer() {
             
           {/* HERO TEXT OVERLAY (Ottimizzato per Mobile) */}
           <div id="hero-text" 
-            className="absolute inset-0 z-20 flex flex-col items-center justify-center px-6 text-center pb-[14vh] md:pb-0"
+            className="absolute inset-0 z-20 flex flex-col items-center justify-center px-6 text-center md:pb-0"
             style={{ transition: 'opacity 0.1s' }}
           >
             {/* Il Badge superiore */}
