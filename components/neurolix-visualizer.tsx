@@ -174,15 +174,21 @@ export default function NeurolixVisualizer() {
     // Congeliamo l'altezza base per prevenire il ricalcolo delle coordinate Y (salto visivo)
     let baseW = window.innerWidth;
     let baseH = window.innerHeight;
+    let resizeTimeout;
 
     const handleResize = () => {
-      sizeA = fit(canvasA);
-      sizeB = fit(canvasB);
-      // Aggiorniamo la matematica di layout SOLO se cambia la larghezza (es. rotazione telefono)
-      if (!isMobile() || window.innerWidth !== baseW) {
+      // 1. Blocchiamo alla radice i resize verticali su mobile (scroll della barra)
+      // Questo elimina il 99% del LAG impedendo a fit() di sovraccaricare la CPU
+      if (isMobile() && window.innerWidth === baseW) return;
+
+      // 2. Debounce sui resize reali (es. rotazione schermo o resize finestra PC)
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
         baseW = window.innerWidth;
         baseH = window.innerHeight;
-      }
+        sizeA = fit(canvasA);
+        sizeB = fit(canvasB);
+      }, 100);
     };
     window.addEventListener('resize', handleResize);
 
@@ -360,7 +366,7 @@ export default function NeurolixVisualizer() {
           glow(ctx, CP.x, CP.y, 3 + 5 * a_val, `rgba(0,229,255,${(0.9 * coreAlpha).toFixed(2)})`, 16 * a_val);
         }
 
-       const chainY = isMob ? (h * 0.63) : (h * 0.72); const bs = isMob ? 15 : 20, gap = bs * 1.8;
+       const chainY = isMob ? (h * 0.48) : (h * 0.72); const bs = isMob ? 15 : 20, gap = bs * 1.8;
         const blocks = [{ x: cx - gap, y: chainY }, { x: cx, y: chainY }, { x: cx + gap, y: chainY }];
         ctx.strokeStyle = 'rgba(0,229,255,0.25)'; ctx.lineWidth = 2;
         ctx.beginPath(); ctx.moveTo(blocks[0].x, chainY); ctx.lineTo(blocks[2].x, chainY); ctx.stroke();
@@ -422,7 +428,7 @@ export default function NeurolixVisualizer() {
     <div ref={containerRef} className="neurolix-visualizer bg-[var(--bg-primary)] font-sans text-[var(--text-primary)]">
       
       {/* SCENE A (Hero + Network + Zoom) */}
-      <section id="sceneA" className="relative h-[450vh] md:h-[450vh]">
+      <section id="sceneA" className="relative h-[600vh] md:h-[600vh]">
         <div className="sticky top-0 h-[100dvh] overflow-hidden flex flex-col">
           {/* Canvas Wrapper - Occupa tutto lo spazio superiore dinamicamente */}
           <div className="flex-1 relative w-full">
@@ -561,7 +567,7 @@ export default function NeurolixVisualizer() {
       </section>
 
       {/* SCENE B (Compute -> Chain) */}
-      <section id="sceneB" className="relative h-[360vh]">
+      <section id="sceneB" className="relative h-[500vh]">
         <div className="sticky top-0 h-[100dvh] overflow-hidden flex flex-col">
           {/* Canvas Wrapper */}
           <div className="flex-1 relative w-full">
