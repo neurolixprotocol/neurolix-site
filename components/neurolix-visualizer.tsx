@@ -1,5 +1,3 @@
-'use client';
-
 import React, { useEffect, useRef } from 'react';
 
 const COMMIT_HASH = "ec52836f23170a1b601dd7e475107f314ca004186707f69836f7615901a665bd";
@@ -96,7 +94,6 @@ function makeTravelers(num: number, edgeCount: number, rng: () => number) { cons
 
 function progressOf(sectionEl: HTMLElement) {
   const rect = sectionEl.getBoundingClientRect();
-  // Usa l'altezza esatta (fissa) del blocco sticky figlio come track-reference
   const stickyChild = sectionEl.firstElementChild as HTMLElement;
   const vh = stickyChild ? stickyChild.getBoundingClientRect().height : window.innerHeight;
   const track = rect.height - vh;
@@ -230,7 +227,7 @@ export default function NeurolixVisualizer() {
         const cx = w / 2, cy = h / 2;
         const S = (pt: { x: number, y: number }) => ({ x: (pt.x - focus.x) * zoom + cx, y: (pt.y - focus.y) * zoom + cy });
         
-        ctx.clearRect(0, 0, w, realH); // Puliamo lo spazio effettivo
+        ctx.clearRect(0, 0, w, h); // Puliamo lo spazio effettivo
         const iso = p3, edgeAlpha = 0.10 * (1 - 0.95 * iso), pulseAlpha = (1 - p1) * (1 - iso);
         
         ctx.lineWidth = Math.max(1, zoom * 0.5); ctx.strokeStyle = `rgba(0,229,255,${edgeAlpha.toFixed(3)})`; ctx.beginPath();
