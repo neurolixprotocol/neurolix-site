@@ -94,8 +94,11 @@ function buildField(count: number, seed: number) {
 function layout(n: { x: number, y: number }, W: number, H: number, m: number) { return { x: m + n.x * (W - 2 * m), y: m + n.y * (H - 2 * m) }; }
 function makeTravelers(num: number, edgeCount: number, rng: () => number) { const t: { e: number, t: number, s: number }[] = []; for (let i = 0; i < num; i++) t.push({ e: Math.floor(rng() * edgeCount), t: rng(), s: 0.10 + rng() * 0.18 }); return t; }
 
-function progressOf(sectionEl: HTMLElement, vh: number) {
+function progressOf(sectionEl: HTMLElement) {
   const rect = sectionEl.getBoundingClientRect();
+  // Usa l'altezza esatta (fissa) del blocco sticky figlio come track-reference
+  const stickyChild = sectionEl.firstElementChild as HTMLElement;
+  const vh = stickyChild ? stickyChild.getBoundingClientRect().height : window.innerHeight;
   const track = rect.height - vh;
   if (track <= 0) return 0;
   return clamp(-rect.top / track, 0, 1);
@@ -173,17 +176,20 @@ export default function NeurolixVisualizer() {
 
     // Congeliamo l'altezza base per prevenire il ricalcolo delle coordinate Y (salto visivo)
     let baseW = window.innerWidth;
-    let baseH = window.innerHeight;
 
     const handleResize = () => {
-      // Ignora i resize verticali su mobile (comparsa/scomparsa URL bar) per non resettare le canvas
+      // Ignora i resize verticali su mobile per non innescare salti elastici
       if (isMobile() && window.innerWidth === baseW) return;
       
+      // Aggiorna l'altezza solo se cambia la larghezza (es. rotazione telefono)
+      document.documentElement.style.setProperty('--app-height', `${window.innerHeight}px`);
       sizeA = fit(canvasA);
       sizeB = fit(canvasB);
       baseW = window.innerWidth;
-      baseH = window.innerHeight;
     };
+    
+    // Inizializza l'altezza reale (congelata) al primo mount
+    document.documentElement.style.setProperty('--app-height', `${window.innerHeight}px`);
     window.addEventListener('resize', handleResize);
 
     let isRunning = true;
@@ -199,9 +205,8 @@ export default function NeurolixVisualizer() {
       // SCENE A (Hero + Rete)
       const rectA = secA.getBoundingClientRect();
       if (rectA.bottom > -80 && rectA.top < window.innerHeight + 80) {
-        const P = progressOf(secA, isMobile() ? baseH : window.innerHeight);
-        const { ctx, w, h: realH } = sizeA;
-        const h = isMobile() ? baseH : realH; // Layout matematico ancorato!
+        const P = progressOf(secA);
+        const { ctx, w, h } = sizeA;
         const m = Math.min(w, h) * 0.1;
         
         // Dissolvenza e parallasse per la Hero Text
@@ -297,19 +302,18 @@ export default function NeurolixVisualizer() {
       // SCENE B
       const rectB = secB.getBoundingClientRect();
       if (rectB.bottom > -80 && rectB.top < window.innerHeight + 80) {
-        const P = progressOf(secB, isMobile() ? baseH : window.innerHeight);
-        const { ctx, w, h: realH } = sizeB;
-        const h = isMobile() ? baseH : realH; // Layout matematico ancorato!
+        const P = progressOf(secB);
+        const { ctx, w, h } = sizeB;
         
         const c_val = smooth(invlerp(0.00, 0.40, P));
         const a_val = smooth(invlerp(0.40, 0.70, P));
         const v_val = smooth(invlerp(0.70, 1.00, P));
-        ctx.clearRect(0, 0, w, realH);
+        ctx.clearRect(0, 0, w, h);
 
         const cx = w / 2;
         const isMob = isMobile();
-        // Ripartizione geometrica rigida per mobile: Enclave bloccata nel terzo superiore (evita collisioni con Hash)
-        const cy = isMob ? h * 0.24 : (h * 0.40);
+        // Lieve ritocco all'Enclave per farla respirare
+        const cy = isMob ? h * 0.26 : (h * 0.40);
         const encW = Math.min(w * 0.86, 580);
         const encH = isMob ? 130 : Math.min(h * 0.45, 360);
         const ex = cx - encW / 2, ey = cy - encH / 2;
@@ -360,8 +364,8 @@ export default function NeurolixVisualizer() {
           glow(ctx, CP.x, CP.y, 3 + 5 * a_val, `rgba(0,229,255,${(0.9 * coreAlpha).toFixed(2)})`, 16 * a_val);
         }
 
-       // Mainnet chain ancorata saldamente al fondo della visuale su mobile (lascia libero il centro per l'Hash)
-       const chainY = isMob ? (h * 0.86) : (h * 0.72); const bs = isMob ? 15 : 20, gap = bs * 1.8;
+       // Alziamo la Mainnet chain al 68% per non far coprire il testo dall'HUD sottostante
+       const chainY = isMob ? (h * 0.68) : (h * 0.72); const bs = isMob ? 15 : 20, gap = bs * 1.8;
         const blocks = [{ x: cx - gap, y: chainY }, { x: cx, y: chainY }, { x: cx + gap, y: chainY }];
         ctx.strokeStyle = 'rgba(0,229,255,0.25)'; ctx.lineWidth = 2;
         ctx.beginPath(); ctx.moveTo(blocks[0].x, chainY); ctx.lineTo(blocks[2].x, chainY); ctx.stroke();
@@ -423,8 +427,8 @@ export default function NeurolixVisualizer() {
     <div ref={containerRef} className="neurolix-visualizer bg-[var(--bg-primary)] font-sans text-[var(--text-primary)]">
       
       {/* SCENE A (Hero + Network + Zoom) */}
-      <section id="sceneA" className="relative h-[450vh] md:h-[450vh]">
-        <div className="sticky top-0 h-[100dvh] overflow-hidden flex flex-col">
+      <section id="sceneA" className="relative" style={{ height: 'calc(var(--app-height, 100vh) * 4.5)' }}>
+        <div className="sticky top-0 overflow-hidden flex flex-col" style={{ height: 'var(--app-height, 100vh)' }}>
           {/* Canvas Wrapper - Occupa tutto lo spazio superiore dinamicamente */}
           <div className="flex-1 relative w-full">
             <canvas ref={canvasARef} className="absolute inset-0 w-full h-full block" aria-hidden="true" />
@@ -562,14 +566,14 @@ export default function NeurolixVisualizer() {
       </section>
 
       {/* SCENE B (Compute -> Chain) */}
-      <section id="sceneB" className="relative h-[360vh]">
-        <div className="sticky top-0 h-[100dvh] overflow-hidden flex flex-col">
+      <section id="sceneB" className="relative" style={{ height: 'calc(var(--app-height, 100vh) * 3.6)' }}>
+        <div className="sticky top-0 overflow-hidden flex flex-col" style={{ height: 'var(--app-height, 100vh)' }}>
           {/* Canvas Wrapper */}
           <div className="flex-1 relative w-full">
             <canvas ref={canvasBRef} className="absolute inset-0 w-full h-full block" aria-hidden="true" />
             <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(120% 100% at 50% 50%, transparent 60%, rgba(10,14,26,0.6) 100%)' }} aria-hidden="true"></div>
 
-            <div id="hashline" className="absolute left-0 right-0 top-[56%] -translate-y-1/2 md:top-[89%] md:-translate-y-1/2 z-10 flex flex-col items-center gap-1.5 px-4 md:px-6 pointer-events-none opacity-0 transition-opacity duration-500">
+            <div id="hashline" className="absolute left-0 right-0 top-[52%] -translate-y-1/2 md:top-[89%] md:-translate-y-1/2 z-10 flex flex-col items-center gap-1.5 px-4 md:px-6 pointer-events-none opacity-0 transition-opacity duration-500">
             <div id="hlLabel" className="font-mono text-[9px] md:text-[10px] tracking-[2px] text-[var(--accent)]">SHA-256 COMMITMENT · COMPUTING…</div>
             <code id="hashText" className="font-mono text-[10px] sm:text-[12px] md:text-[15px] text-[var(--text-primary)] border border-[var(--border)] rounded-lg px-3 py-1.5 md:px-4 md:py-2 max-w-[94vw] break-all text-center leading-[1.4]" style={{ background: 'rgba(17,24,39,0.85)', backdropFilter: 'blur(4px)' }}>
               ________________________________________________________________
