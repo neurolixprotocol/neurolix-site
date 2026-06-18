@@ -74,7 +74,7 @@ function drawHexToken(ctx: CanvasRenderingContext2D, x: number, y: number, r: nu
 }
 
 function buildField(count: number, seed: number) {
-  const rng = mulberry32(seed); const nodes: any[] = [];
+  const rng = mulberry32(seed); const nodes: { x: number, y: number, ph: number }[] = [];
   const cols = Math.ceil(Math.sqrt(count * 1.4)), rows = Math.ceil(count / cols); let made = 0;
   for (let r = 0; r < rows && made < count; r++) for (let c = 0; c < cols && made < count; c++) {
     const gx = (c + 0.5) / cols, gy = (r + 0.5) / rows;
@@ -91,12 +91,12 @@ function buildField(count: number, seed: number) {
   return { nodes, edges, target: ti };
 }
 
-function layout(n: any, W: number, H: number, m: number) { return { x: m + n.x * (W - 2 * m), y: m + n.y * (H - 2 * m) }; }
-function makeTravelers(num: number, edgeCount: number, rng: () => number) { const t: any[] = []; for (let i = 0; i < num; i++) t.push({ e: Math.floor(rng() * edgeCount), t: rng(), s: 0.10 + rng() * 0.18 }); return t; }
+function layout(n: { x: number, y: number }, W: number, H: number, m: number) { return { x: m + n.x * (W - 2 * m), y: m + n.y * (H - 2 * m) }; }
+function makeTravelers(num: number, edgeCount: number, rng: () => number) { const t: { e: number, t: number, s: number }[] = []; for (let i = 0; i < num; i++) t.push({ e: Math.floor(rng() * edgeCount), t: rng(), s: 0.10 + rng() * 0.18 }); return t; }
 
-function progressOf(sectionEl: HTMLElement) {
+function progressOf(sectionEl: HTMLElement, vh: number) {
   const rect = sectionEl.getBoundingClientRect();
-  const track = rect.height - window.innerHeight;
+  const track = rect.height - vh;
   if (track <= 0) return 0;
   return clamp(-rect.top / track, 0, 1);
 }
@@ -171,18 +171,18 @@ export default function NeurolixVisualizer() {
     let lastScramble = 0;
     let scrambleCache = "";
 
-    let lastW = window.innerWidth;
-    let resizeTimeout;
+    // Congeliamo l'altezza base per prevenire il ricalcolo delle coordinate Y (salto visivo)
+    let baseW = window.innerWidth;
+    let baseH = window.innerHeight;
 
     const handleResize = () => {
-      if (isMobile() && Math.abs(window.innerWidth - lastW) < 50) return;
-      lastW = window.innerWidth;
+      // Ignora i resize verticali su mobile (comparsa/scomparsa URL bar) per non resettare le canvas
+      if (isMobile() && window.innerWidth === baseW) return;
       
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(() => {
-        sizeA = fit(canvasA);
-        sizeB = fit(canvasB);
-      }, 100);
+      sizeA = fit(canvasA);
+      sizeB = fit(canvasB);
+      baseW = window.innerWidth;
+      baseH = window.innerHeight;
     };
     window.addEventListener('resize', handleResize);
 
@@ -199,11 +199,10 @@ export default function NeurolixVisualizer() {
       // SCENE A (Hero + Rete)
       const rectA = secA.getBoundingClientRect();
       if (rectA.bottom > -80 && rectA.top < window.innerHeight + 80) {
-        // Auto-heal leggerissimo: allinea i pixel se la barra 100dvh deforma il layout
-        if (canvasA.offsetWidth !== sizeA.w || canvasA.offsetHeight !== sizeA.h) sizeA = fit(canvasA);
-        
-        const P = clamp(-rectA.top / (rectA.height - window.innerHeight), 0, 1);
-        const { ctx, w, h } = sizeA;
+        const P = progressOf(secA, isMobile() ? baseH : window.innerHeight);
+        const { ctx, w, h: realH } = sizeA;
+        const h = isMobile() ? baseH : realH; // Layout matematico ancorato!
+        const m = Math.min(w, h) * 0.1;
         
         // Dissolvenza e parallasse per la Hero Text
         if (heroText) {
@@ -224,9 +223,9 @@ export default function NeurolixVisualizer() {
         const zoom = lerp(1, Z, p1);
         const focus = { x: lerp(fieldC.x, tgt.x, p1), y: lerp(fieldC.y, tgt.y, p1) };
         const cx = w / 2, cy = h / 2;
-        const S = (pt: any) => ({ x: (pt.x - focus.x) * zoom + cx, y: (pt.y - focus.y) * zoom + cy });
+        const S = (pt: { x: number, y: number }) => ({ x: (pt.x - focus.x) * zoom + cx, y: (pt.y - focus.y) * zoom + cy });
         
-        ctx.clearRect(0, 0, w, h);
+        ctx.clearRect(0, 0, w, realH); // Puliamo lo spazio effettivo
         const iso = p3, edgeAlpha = 0.10 * (1 - 0.95 * iso), pulseAlpha = (1 - p1) * (1 - iso);
         
         ctx.lineWidth = Math.max(1, zoom * 0.5); ctx.strokeStyle = `rgba(0,229,255,${edgeAlpha.toFixed(3)})`; ctx.beginPath();
@@ -298,24 +297,21 @@ export default function NeurolixVisualizer() {
       // SCENE B
       const rectB = secB.getBoundingClientRect();
       if (rectB.bottom > -80 && rectB.top < window.innerHeight + 80) {
-        // Auto-heal contro l'effetto elastico o scattoso di Safari
-        if (canvasB.offsetWidth !== sizeB.w || canvasB.offsetHeight !== sizeB.h) sizeB = fit(canvasB);
-        
-        const P = clamp(-rectB.top / (rectB.height - window.innerHeight), 0, 1);
-        const { ctx, w, h } = sizeB;
+        const P = progressOf(secB, isMobile() ? baseH : window.innerHeight);
+        const { ctx, w, h: realH } = sizeB;
+        const h = isMobile() ? baseH : realH; // Layout matematico ancorato!
         
         const c_val = smooth(invlerp(0.00, 0.40, P));
         const a_val = smooth(invlerp(0.40, 0.70, P));
         const v_val = smooth(invlerp(0.70, 1.00, P));
-        ctx.clearRect(0, 0, w, h);
+        ctx.clearRect(0, 0, w, realH);
 
         const cx = w / 2;
         const isMob = isMobile();
-        
-        // ANCORAGGIO ASSOLUTO: Fissa l'Enclave a 110px dal Top per difenderla dalla UI
-        const cy = isMob ? 110 : (h * 0.40);
-        const encW = Math.min(w * 0.88, 580);
-        const encH = isMob ? 120 : Math.min(h * 0.45, 360);
+        // Ripartizione geometrica rigida per mobile: Enclave bloccata nel terzo superiore (evita collisioni con Hash)
+        const cy = isMob ? h * 0.24 : (h * 0.40);
+        const encW = Math.min(w * 0.86, 580);
+        const encH = isMob ? 130 : Math.min(h * 0.45, 360);
         const ex = cx - encW / 2, ey = cy - encH / 2;
 
         ctx.lineWidth = 3; ctx.strokeStyle = 'rgba(0,229,255,0.7)'; ctx.fillStyle = 'rgba(0,229,255,0.05)';
@@ -330,10 +326,10 @@ export default function NeurolixVisualizer() {
         const CP = { x: cx, y: ey + encH - padY * 0.4 };
         const wave = (t * 0.45) % 1;
         const netAlpha = (0.25 + 0.75 * c_val) * (1 - a_val);
-        const L = netLayers.length; const pts: any[] = [];
+        const L = netLayers.length; const pts: { x: number, y: number, lf: number }[][] = [];
         
         for (let li = 0; li < L; li++) {
-          const lx0 = ex + padX + innerW * (L === 1 ? 0.5 : li / (L - 1)); const n = netLayers[li]; const col: any[] = [];
+          const lx0 = ex + padX + innerW * (L === 1 ? 0.5 : li / (L - 1)); const n = netLayers[li]; const col: { x: number, y: number, lf: number }[] = [];
           for (let k = 0; k < n; k++) {
             const ly = ey + padY + innerH * (n === 1 ? 0.5 : k / (n - 1));
             col.push({ x: lerp(lx0, CP.x, a_val), y: lerp(ly, CP.y, a_val), lf: (L === 1 ? 0 : li / (L - 1)) });
@@ -364,8 +360,8 @@ export default function NeurolixVisualizer() {
           glow(ctx, CP.x, CP.y, 3 + 5 * a_val, `rgba(0,229,255,${(0.9 * coreAlpha).toFixed(2)})`, 16 * a_val);
         }
 
-       // ANCORAGGIO ASSOLUTO: Incolla la Chain a 110px dal fondo (HUD)
-       const chainY = isMob ? (h - 110) : (h * 0.72); const bs = isMob ? 15 : 20, gap = bs * 1.8;
+       // Mainnet chain ancorata saldamente al fondo della visuale su mobile (lascia libero il centro per l'Hash)
+       const chainY = isMob ? (h * 0.86) : (h * 0.72); const bs = isMob ? 15 : 20, gap = bs * 1.8;
         const blocks = [{ x: cx - gap, y: chainY }, { x: cx, y: chainY }, { x: cx + gap, y: chainY }];
         ctx.strokeStyle = 'rgba(0,229,255,0.25)'; ctx.lineWidth = 2;
         ctx.beginPath(); ctx.moveTo(blocks[0].x, chainY); ctx.lineTo(blocks[2].x, chainY); ctx.stroke();
@@ -427,7 +423,7 @@ export default function NeurolixVisualizer() {
     <div ref={containerRef} className="neurolix-visualizer bg-[var(--bg-primary)] font-sans text-[var(--text-primary)]">
       
       {/* SCENE A (Hero + Network + Zoom) */}
-      <section id="sceneA" className="relative h-[700vh] md:h-[600vh]">
+      <section id="sceneA" className="relative h-[450vh] md:h-[450vh]">
         <div className="sticky top-0 h-[100dvh] overflow-hidden flex flex-col">
           {/* Canvas Wrapper - Occupa tutto lo spazio superiore dinamicamente */}
           <div className="flex-1 relative w-full">
@@ -565,15 +561,15 @@ export default function NeurolixVisualizer() {
         </div>
       </section>
 
-       {/* SCENE B (Compute -> Chain) */}
-       <section id="sceneB" className="relative h-[600vh] md:h-[500vh]">
+      {/* SCENE B (Compute -> Chain) */}
+      <section id="sceneB" className="relative h-[360vh]">
         <div className="sticky top-0 h-[100dvh] overflow-hidden flex flex-col">
           {/* Canvas Wrapper */}
           <div className="flex-1 relative w-full">
             <canvas ref={canvasBRef} className="absolute inset-0 w-full h-full block" aria-hidden="true" />
             <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(120% 100% at 50% 50%, transparent 60%, rgba(10,14,26,0.6) 100%)' }} aria-hidden="true"></div>
 
-            <div id="hashline" className="absolute left-0 right-0 top-[50%] -translate-y-1/2 md:top-[89%] z-10 flex flex-col items-center gap-1.5 px-4 md:px-6 pointer-events-none opacity-0 transition-opacity duration-500">
+            <div id="hashline" className="absolute left-0 right-0 top-[56%] -translate-y-1/2 md:top-[89%] md:-translate-y-1/2 z-10 flex flex-col items-center gap-1.5 px-4 md:px-6 pointer-events-none opacity-0 transition-opacity duration-500">
             <div id="hlLabel" className="font-mono text-[9px] md:text-[10px] tracking-[2px] text-[var(--accent)]">SHA-256 COMMITMENT · COMPUTING…</div>
             <code id="hashText" className="font-mono text-[10px] sm:text-[12px] md:text-[15px] text-[var(--text-primary)] border border-[var(--border)] rounded-lg px-3 py-1.5 md:px-4 md:py-2 max-w-[94vw] break-all text-center leading-[1.4]" style={{ background: 'rgba(17,24,39,0.85)', backdropFilter: 'blur(4px)' }}>
               ________________________________________________________________
