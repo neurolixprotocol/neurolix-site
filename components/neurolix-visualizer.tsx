@@ -1,15 +1,18 @@
-import React, { useEffect, useRef } from 'react';
+'use client';
+
+import { useEffect, useRef } from 'react';
 
 const COMMIT_HASH = "ec52836f23170a1b601dd7e475107f314ca004186707f69836f7615901a665bd";
 const HEX = "0123456789abcdef";
 
 const clamp = (v: number, a: number, b: number) => v < a ? a : v > b ? b : v;
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
-const smooth = (t: number) => { t = clamp(t, 0, 1); return t * t * (3 - 2 * t); };
+const smooth = (val: number) => { const t = clamp(val, 0, 1); return t * t * (3 - 2 * t); };
 const invlerp = (a: number, b: number, v: number) => clamp((v - a) / (b - a), 0, 1);
 const isMobile = () => typeof window !== 'undefined' ? window.innerWidth < 768 : false;
 
-function mulberry32(seed: number) {
+function mulberry32(initialSeed: number) {
+  let seed = initialSeed;
   return function () {
     seed |= 0; seed = seed + 0x6D2B79F5 | 0;
     let t = Math.imul(seed ^ seed >>> 15, 1 | seed);
@@ -19,9 +22,9 @@ function mulberry32(seed: number) {
 }
 
 function rr(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) {
-  r = Math.min(r, w / 2, h / 2); ctx.beginPath();
-  ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r);
-  ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
+  const rad = Math.min(r, w / 2, h / 2); ctx.beginPath();
+  ctx.moveTo(x + rad, y); ctx.arcTo(x + w, y, x + w, y + h, rad); ctx.arcTo(x + w, y + h, x, y + h, rad);
+  ctx.arcTo(x, y + h, x, y, rad); ctx.arcTo(x, y, x + w, y, rad); ctx.closePath();
 }
 
 function fit(canvas: HTMLCanvasElement) {
@@ -78,7 +81,7 @@ function buildField(count: number, seed: number) {
     const gx = (c + 0.5) / cols, gy = (r + 0.5) / rows;
     nodes.push({ x: clamp(gx + (rng() - 0.5) * 0.7 / cols, 0.04, 0.96), y: clamp(gy + (rng() - 0.5) * 0.7 / rows, 0.06, 0.94), ph: rng() * Math.PI * 2 }); made++;
   }
-  const edges: number[][] = [], seen = new Set();
+  const edges: number[][] = [], seen = new Set<string>();
   for (let i = 0; i < nodes.length; i++) {
     const d: number[][] = [];
     for (let j = 0; j < nodes.length; j++) { if (i === j) continue; const dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y; d.push([dx * dx + dy * dy, j]); }
@@ -320,7 +323,7 @@ export default function NeurolixVisualizer() {
         ctx.save(); ctx.shadowColor = 'rgba(0,229,255,0.5)'; ctx.shadowBlur = 16; rr(ctx, ex, ey, encW, encH, 22); ctx.stroke(); ctx.restore();
         drawLock(ctx, cx, ey - 6, 26, 1);
         
-        ctx.globalAlpha = 0.4 + 0.5 * v_val; ctx.fillStyle = 'rgba(154,184,196,0.9)'; ctx.font = `${isMobile() ? '10px' : '11px'} ui-monospace, 'SF Mono', Menlo, monospace`;
+        ctx.globalAlpha = 0.4 + 0.5 * v_val; ctx.fillStyle = 'rgba(154,184,196,0.9)'; ctx.font = `${isMob ? '10px' : '11px'} ui-monospace, 'SF Mono', Menlo, monospace`;
         ctx.textAlign = 'center'; ctx.fillText('memory encrypted · data never leaves', cx, ey + encH + 20); ctx.globalAlpha = 1;
 
         const padX = encW * 0.12, padY = encH * 0.20, innerW = encW - 2 * padX, innerH = encH - 2 * padY;
@@ -361,7 +364,6 @@ export default function NeurolixVisualizer() {
           glow(ctx, CP.x, CP.y, 3 + 5 * a_val, `rgba(0,229,255,${(0.9 * coreAlpha).toFixed(2)})`, 16 * a_val);
         }
 
-       // Alziamo la Mainnet chain al 68% per non far coprire il testo dall'HUD sottostante
        const chainY = isMob ? (h * 0.68) : (h * 0.72); const bs = isMob ? 15 : 20, gap = bs * 1.8;
         const blocks = [{ x: cx - gap, y: chainY }, { x: cx, y: chainY }, { x: cx + gap, y: chainY }];
         ctx.strokeStyle = 'rgba(0,229,255,0.25)'; ctx.lineWidth = 2;
@@ -383,7 +385,7 @@ export default function NeurolixVisualizer() {
           const px = lerp(from.x, to.x, tt), py = lerp(from.y, to.y, tt);
           ctx.strokeStyle = 'rgba(0,229,255,0.25)'; ctx.setLineDash([3, 5]); ctx.lineWidth = 1.5;
           ctx.beginPath(); ctx.moveTo(from.x, from.y); ctx.lineTo(px, py); ctx.stroke(); ctx.setLineDash([]);
-          drawHexToken(ctx, px, py, isMobile() ? 8 : 11, 1);
+          drawHexToken(ctx, px, py, isMob ? 8 : 11, 1);
         }
 
         if (P > 0.34) {
@@ -426,7 +428,7 @@ export default function NeurolixVisualizer() {
       {/* SCENE A (Hero + Network + Zoom) */}
       <section id="sceneA" className="relative" style={{ height: 'calc(var(--app-height, 100vh) * 4.5)' }}>
         <div className="sticky top-0 overflow-hidden flex flex-col" style={{ height: 'var(--app-height, 100vh)' }}>
-          {/* Canvas Wrapper - Occupa tutto lo spazio superiore dinamicamente */}
+          {/* Canvas Wrapper */}
           <div className="flex-1 relative w-full">
             <canvas ref={canvasARef} className="absolute inset-0 w-full h-full block" aria-hidden="true" />
             <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(120% 100% at 50% 50%, transparent 60%, rgba(10,14,26,0.6) 100%)' }} aria-hidden="true"></div>
@@ -436,7 +438,6 @@ export default function NeurolixVisualizer() {
             className="absolute inset-0 z-20 flex flex-col items-center justify-center px-6 text-center md:pb-0"
             style={{ transition: 'opacity 0.1s' }}
           >
-            {/* Il Badge superiore */}
             <span style={{
               display: 'inline-block',
               marginBottom: '28px',
@@ -455,7 +456,6 @@ export default function NeurolixVisualizer() {
               Building in public · Base L2 · Confidential AI
             </span>
             
-            {/* Il Titolo Principale - Forzatura contrasto e formato nativo */}
             <h1 style={{
               fontFamily: "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
               fontSize: "clamp(38px, 5.2vw, 60px)",
@@ -477,7 +477,6 @@ export default function NeurolixVisualizer() {
               </span>
             </h1>
 
-            {/* Il Paragrafo Descrittivo */}
             <p style={{
               fontFamily: "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
               fontSize: "17px",
@@ -491,7 +490,6 @@ export default function NeurolixVisualizer() {
               Hardware-enforced privacy in TEE enclaves, cryptographic attestation anchored to Base L2.
             </p>
             
-            {/* I Pulsanti di Azione */}
             <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
               <a href="https://medium.com/@neurolixprotocol" target="_blank" rel="noopener noreferrer"
                  style={{
@@ -530,9 +528,9 @@ export default function NeurolixVisualizer() {
             </div>
           </div>
 
-          </div> {/* <-- Chiusura fondamentale del Canvas Wrapper */}
+          </div> {/* <-- Chiusura Canvas Wrapper */}
 
-          {/* HUD CARDS SCENE A - Inserito nel normale flusso flex */}
+          {/* HUD CARDS SCENE A */}
           <div className="relative z-10 shrink-0 flex justify-center pointer-events-none px-4 md:px-6 pb-8 md:pb-[6vh] w-full">
             <div className="relative w-full max-w-[560px] min-h-[90px] md:min-h-[104px] hudA">
               {[
@@ -551,7 +549,7 @@ export default function NeurolixVisualizer() {
           </div>
 
           {/* RAILS SCENE A */}
-          <div className="hidden md:block absolute top-1/2 right-[22px] -translate-y-1/2 z-10 w-[2px] h-[180px] bg-[var(--border)] rounded-sm overflow-hidden opacity-0 transition-opacity duration-500" style={{ opacity: 1 }}> {/* La rail potrebbe essere nascosta in hero phase volendo */}
+          <div className="hidden md:block absolute top-1/2 right-[22px] -translate-y-1/2 z-10 w-[2px] h-[180px] bg-[var(--border)] rounded-sm overflow-hidden opacity-0 transition-opacity duration-500" style={{ opacity: 1 }}>
             <div className="rail-fill-a absolute top-0 left-0 w-full bg-[var(--accent)] h-0 transition-all duration-100" style={{ boxShadow: '0 0 10px var(--accent)' }}></div>
           </div>
           <div className="hidden md:flex absolute top-1/2 right-[30px] -translate-y-1/2 z-10 flex-col justify-between h-[180px] steps-a">
@@ -580,9 +578,9 @@ export default function NeurolixVisualizer() {
             </a>
           </div>
 
-          </div> {/* <-- Chiusura fondamentale del Canvas Wrapper */}
+          </div> {/* <-- Chiusura Canvas Wrapper */}
 
-          {/* HUD CARDS SCENE B - Inserito nel normale flusso flex */}
+          {/* HUD CARDS SCENE B */}
           <div className="relative z-10 shrink-0 flex justify-center pointer-events-none px-4 md:px-6 pb-8 md:pb-[6vh] w-full">
             <div className="relative w-full max-w-[560px] min-h-[136px] md:min-h-[104px] hudB">
               {[
