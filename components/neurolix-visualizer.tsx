@@ -312,8 +312,8 @@ export default function NeurolixVisualizer() {
 
         const cx = w / 2;
         const isMob = isMobile();
-        // Lieve ritocco all'Enclave per farla respirare
-        const cy = isMob ? h * 0.26 : (h * 0.40);
+        // Posizionamento alto dell'enclave per liberare lo spazio centrale del canvas
+        const cy = isMob ? h * 0.22 : (h * 0.40);
         const encW = Math.min(w * 0.86, 580);
         const encH = isMob ? 130 : Math.min(h * 0.45, 360);
         const ex = cx - encW / 2, ey = cy - encH / 2;
@@ -364,7 +364,8 @@ export default function NeurolixVisualizer() {
           glow(ctx, CP.x, CP.y, 3 + 5 * a_val, `rgba(0,229,255,${(0.9 * coreAlpha).toFixed(2)})`, 16 * a_val);
         }
 
-       const chainY = isMob ? (h * 0.68) : (h * 0.72); const bs = isMob ? 15 : 20, gap = bs * 1.8;
+       // Posizioniamo la blockchain al 52% (al centro perfetto della visuale mobile)
+       const chainY = isMob ? (h * 0.52) : (h * 0.72); const bs = isMob ? 15 : 20, gap = bs * 1.8;
         const blocks = [{ x: cx - gap, y: chainY }, { x: cx, y: chainY }, { x: cx + gap, y: chainY }];
         ctx.strokeStyle = 'rgba(0,229,255,0.25)'; ctx.lineWidth = 2;
         ctx.beginPath(); ctx.moveTo(blocks[0].x, chainY); ctx.lineTo(blocks[2].x, chainY); ctx.stroke();
@@ -568,7 +569,7 @@ export default function NeurolixVisualizer() {
             <canvas ref={canvasBRef} className="absolute inset-0 w-full h-full block" aria-hidden="true" />
             <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(120% 100% at 50% 50%, transparent 60%, rgba(10,14,26,0.6) 100%)' }} aria-hidden="true"></div>
 
-            <div id="hashline" className="absolute left-0 right-0 top-[52%] -translate-y-1/2 md:top-[89%] md:-translate-y-1/2 z-10 flex flex-col items-center gap-1.5 px-4 md:px-6 pointer-events-none opacity-0 transition-opacity duration-500">
+            <div id="hashline" className="absolute left-0 right-0 top-[74%] -translate-y-1/2 md:top-[89%] md:-translate-y-1/2 z-10 flex flex-col items-center gap-1.5 px-4 md:px-6 pointer-events-none opacity-0 transition-opacity duration-500">
             <div id="hlLabel" className="font-mono text-[9px] md:text-[10px] tracking-[2px] text-[var(--accent)]">SHA-256 COMMITMENT · COMPUTING…</div>
             <code id="hashText" className="font-mono text-[10px] sm:text-[12px] md:text-[15px] text-[var(--text-primary)] border border-[var(--border)] rounded-lg px-3 py-1.5 md:px-4 md:py-2 max-w-[94vw] break-all text-center leading-[1.4]" style={{ background: 'rgba(17,24,39,0.85)', backdropFilter: 'blur(4px)' }}>
               ________________________________________________________________
