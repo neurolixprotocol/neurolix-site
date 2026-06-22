@@ -14,7 +14,7 @@ export default function HomePage() {
           {[
             { label: "Attestation contract", value: "Base Mainnet" },
             { label: "TEE hardware", value: "AMD SEV (PoC)" },
-            { label: "Contract suite", value: "v1.16 · 52 patches integrated" },
+            { label: "Contract suite", value: "v1.16 · 16 contracts" },
           ].map((s) => (
             <div key={s.label}>
               <p className="text-xs mb-1 font-mono uppercase tracking-[2px]" style={{ color: "var(--accent)" }}>{s.label}</p>

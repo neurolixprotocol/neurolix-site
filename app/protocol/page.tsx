@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { CONTRACTS, PROOF, LINKS } from "@/lib/constants";
 
-// IMPORTANTE: Assicurati di importare il diagramma statico
+// NOTE: Ensure the static diagram component is imported
 import { ProtocolFlowDiagram } from "@/components/protocol-flow-diagram";
 
 export const metadata: Metadata = {
   title: "Protocol Architecture — TEE, Attestation, Base L2",
-  description: "Technical architecture of Neurolix Protocol: Confidential AI compute layer on Base L2. Smart contract suite v1.16 — 9 contracts, 52 cumulative patches across 6 cross-LLM adversarial review rounds. 128/128 Foundry tests passing.",
+  description: "Technical architecture of Neurolix Protocol: Confidential AI compute layer on Base L2. Smart contract suite v1.16 — 16 contracts, 52 cumulative patches across 6 adversarial cross-model review cycles. 128/128 Foundry tests passing.",
 };
 
 export default function ProtocolPage() {
@@ -28,7 +28,7 @@ export default function ProtocolPage() {
         </p>
       </section>
 
-      {/* HOW IT WORKS (Recuperato dalla Home e ottimizzato) */}
+      {/* HOW IT WORKS */}
       <section className="py-20" style={{ backgroundColor: "var(--bg-secondary)", borderBottom: "1px solid var(--border)" }}>
         <div className="mx-auto max-w-[1100px] px-6">
           <div className="mb-12">
@@ -40,17 +40,13 @@ export default function ProtocolPage() {
               A step-by-step breakdown of how data remains encrypted in transit and in use, ensuring that only the cryptographic commitment leaves the secure boundary.
             </p>
           </div>
-          
-          {/* Il contenitore per il diagramma. 
-            Se il diagramma non è nativamente responsive, potremmo aver bisogno di 
-            un overflow-x-auto per consentire lo scroll orizzontale su mobile senza rompere il layout.
-          */}
+
           <div className="w-full overflow-x-auto pb-4 custom-scrollbar">
-             <div className="min-w-[800px] md:min-w-full">
-               <ProtocolFlowDiagram />
-             </div>
+            <div className="min-w-[800px] md:min-w-full">
+              <ProtocolFlowDiagram />
+            </div>
           </div>
-          
+
         </div>
       </section>
 
@@ -94,22 +90,29 @@ export default function ProtocolPage() {
       {/* SMART CONTRACT SUITE */}
       <section className="mx-auto max-w-[1100px] px-6 py-20" style={{ borderBottom: "1px solid var(--border)" }}>
         <p className="text-xs uppercase tracking-widest mb-3" style={{ color: "var(--accent)" }}>Smart Contracts</p>
-        <h2 className="text-3xl font-bold mb-3" style={{ color: "var(--text-primary)" }}>Contract suite v1.16 — 9 contracts</h2>
+        <h2 className="text-3xl font-bold mb-3" style={{ color: "var(--text-primary)" }}>Contract suite v1.16 — 16 contracts</h2>
         <p className="text-sm mb-10" style={{ color: "var(--text-secondary)" }}>
-          52 cumulative patches across 6 cross-LLM adversarial review rounds. 128/128 Foundry tests passing.
+          52 cumulative patches across 6 adversarial cross-model review cycles. 128/128 Foundry tests passing.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
             { name: "NeurolixAttestation.sol", desc: "Commitment hash anchoring. Live on Base Mainnet.", status: "mainnet" },
             { name: "OLIXToken.sol", desc: "ERC-20 utility token. Hard cap 100M. No transfer tax.", status: "pre-testnet" },
             { name: "NodeRegistry.sol", desc: "Node operator registration, staking (min 10K OLIX), slashing.", status: "pre-testnet" },
-            { name: "LiquidityVault.sol", desc: "BME buyback and burn mechanics. Counter-cyclical pricing.", status: "pre-testnet" },
+            { name: "LiquidityVault.sol", desc: "On-chain reserve custody — 8M OLIX + USDC. Counter-cyclical price stabilization.", status: "pre-testnet" },
             { name: "NeurolixGovernor.sol", desc: "OpenZeppelin Governor pattern. Requires VotingEscrow.sol (under development) before deployment.", status: "pre-testnet" },
             { name: "PriceOracle.sol", desc: "Triple-feed median oracle with MEV-resistant execution.", status: "pre-testnet" },
             { name: "Interfaces.sol", desc: "Shared ABI boundary across all v1.16 contracts.", status: "pre-testnet" },
             { name: "AttestationOracle.sol", desc: "TEE attestation verifier with ECDSA. Replay protection via session-bound hardware salt.", status: "pre-testnet" },
             { name: "SlashingManager.sol", desc: "Multi-tier slashing state machine (T0–T4). Challenge window for behavioral breaches.", status: "pre-testnet" },
-           ].map((c) => (
+            { name: "CCCLedger.sol", desc: "Internal Credit Ledger — B2B non-transferable CCC issued against USDC settlement. Zero-ERC20. Eliminates crypto-accounting overhead.", status: "pre-testnet" },
+            { name: "ComputeSession.sol", desc: "TEE session lifecycle FSM — Model B, Pull/Claim, SLA enforcement and workload commitment.", status: "pre-testnet" },
+            { name: "HardwareRefreshAllowance.sol", desc: "Bootstrap hardware reserve allocation for node operators.", status: "pre-testnet" },
+            { name: "ICCCLedger.sol", desc: "Shared interface for CCCLedger across the v1.16 contract suite.", status: "pre-testnet" },
+            { name: "NeurolixAttestationVerifier.sol", desc: "EIP-712 signature verification with ECDSA and session-bound nonce anti-replay.", status: "pre-testnet" },
+            { name: "NeurolixGateway.sol", desc: "Protocol entry-point v1.3 — USDC to CCC conversion with take-rate routing (8/4/88 split).", status: "pre-testnet" },
+            { name: "ProtocolBuybackEngineV16.sol", desc: "Anti-MEV buyback engine (inherited). Routes USDC settlement proceeds to LiquidityVault.", status: "pre-testnet" },
+          ].map((c) => (
             <div key={c.name} className="flex items-start gap-4 p-4 rounded-sm" style={{ backgroundColor: "var(--bg-card)", border: "1px solid var(--border)" }}>
               <div className="flex-1">
                 <p className="text-sm font-medium font-chain mb-1" style={{ color: "var(--text-primary)" }}>{c.name}</p>
@@ -133,26 +136,26 @@ export default function ProtocolPage() {
         <p className="text-xs uppercase tracking-widest mb-3" style={{ color: "var(--accent)" }}>Transparency</p>
         <h2 className="text-3xl font-bold mb-3" style={{ color: "var(--text-primary)" }}>Open mainnet blockers</h2>
         <p className="text-sm mb-8" style={{ color: "var(--text-secondary)", maxWidth: 580 }}>
-          These three issues were identified in v1.16 and are addressed by the v1.17 workstream (ComputeSession.sol + NeurolixGateway.sol + CCCToken.sol, specification v0.2.2 complete, code generation in progress).
+          These three issues were identified in v1.16 and are addressed by the v1.17 workstream (ComputeSession.sol + NeurolixGateway.sol + CCCLedger.sol, specification v0.2.2 complete — code generated, compile-clean; adversarial cross-model review in progress).
           These are not deployment blockers for testnet — they are blockers for mainnet token launch.
         </p>
         <div className="flex flex-col gap-4" style={{ maxWidth: 680 }}>
           {[
             {
-            id: "01",
-            title: "Heartbeat farming — in resolution",
-            desc: "Resolved by sessionId-bound workload commitment (spec v0.2.2 §8, patch P6). Deployment pending ComputeSession.sol.",
-           },
-           {
-           id: "02",
-           title: "MEV exit during SLA breach — in resolution",
-           desc: "Resolved by NodeRegistry transfer gating with investigation flag (spec v0.2.2 §7, patches P5+P13+P17).",
-           },
-           {
-           id: "03",
-           title: "SLA parameter trust — in resolution",
-           desc: "Resolved by EIP-712 bilateral signature scheme (spec v0.2.2 §5). Deployment pending ComputeSession.sol.",
-           },
+              id: "01",
+              title: "Heartbeat farming — in resolution",
+              desc: "Resolved by sessionId-bound workload commitment (spec v0.2.2 §8, patch P6). ComputeSession.sol compile-clean; pending adversarial cross-model review and testnet deployment.",
+            },
+            {
+              id: "02",
+              title: "MEV exit during SLA breach — in resolution",
+              desc: "Resolved by NodeRegistry transfer gating with investigation flag (spec v0.2.2 §7, patches P5+P13+P17).",
+            },
+            {
+              id: "03",
+              title: "SLA parameter trust — in resolution",
+              desc: "Resolved by EIP-712 bilateral signature scheme (spec v0.2.2 §5). ComputeSession.sol compile-clean; pending adversarial cross-model review and testnet deployment.",
+            },
           ].map((issue) => (
             <div key={issue.id} className="flex gap-4 p-5 rounded-sm"
               style={{ backgroundColor: "var(--bg-card)", border: "1px solid var(--border)" }}>

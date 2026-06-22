@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "$OLIX Tokenomics — BME, Hard Cap 100M, Base L2",
-  description: "$OLIX utility token economics. 100,000,000 hard cap. Burn-and-Mint Equilibrium with session-level deflation. 10,000 OLIX minimum node stake. MiCA-compliant utility token on Base L2.",
+  title: "$OLIX Tokenomics — CCCLedger, Hard Cap 100M, Base L2",
+  description: "$OLIX utility token economics. 100,000,000 hard cap. CCCLedger internal prepaid credit model — USDC-settled, non-transferable. 10,000 OLIX minimum node stake. MiCA-compliant utility token on Base L2.",
 };
 
 export default function TokenomicsPage() {
@@ -18,10 +18,11 @@ export default function TokenomicsPage() {
           Tokenomics
         </h1>
         <p className="text-lg leading-relaxed max-w-[620px]" style={{ color: "var(--text-secondary)" }}>
-          $OLIX is the utility token of Neurolix Protocol. It powers confidential compute
-          sessions, secures node operators through collateral, and implements a
-          Burn-and-Mint Equilibrium where Confidential Compute Credits (CCC) are burned in
-          proportion to network usage.
+          $OLIX is the utility token of Neurolix Protocol. It secures node operators through
+          slashable collateral and funds the on-chain LiquidityVault. Confidential Compute
+          Credits (CCC) are governed by the CCCLedger — an internal credit ledger that issues
+          non-transferable prepaid credits against USDC settlement, eliminating
+          crypto-accounting overhead for enterprise clients.
         </p>
       </section>
 
@@ -33,7 +34,7 @@ export default function TokenomicsPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
             { label: "Hard Cap", value: "100,000,000", unit: "$OLIX", note: "Immutable at deployment" },
-            { label: "Token Model", value: "BME", unit: "Burn-and-Mint Equilibrium", note: "No transfer tax" },
+            { label: "Credit Model", value: "CCCLedger", unit: "Prepaid Internal Credits", note: "Non-transferable · USDC-settled" },
             { label: "Min Node Stake", value: "10,000", unit: "$OLIX", note: "Slashable · Anti-Sybil baseline" },
           ].map((p) => (
             <div key={p.label} className="p-6 rounded-sm"
@@ -47,7 +48,7 @@ export default function TokenomicsPage() {
         </div>
       </section>
 
-      {/* BURN MECHANISM — WIP */}
+      {/* CCC CREDIT MODEL — IN DEVELOPMENT */}
       <section className="mx-auto max-w-[1100px] px-6 py-16" style={{ borderBottom: "1px solid var(--border)" }}>
         <div className="p-6 rounded-sm" style={{ backgroundColor: "var(--bg-card)", border: "1px solid var(--warning)", maxWidth: 680 }}>
           <div className="flex items-center gap-2 mb-4">
@@ -56,13 +57,19 @@ export default function TokenomicsPage() {
               IN DEVELOPMENT
             </span>
             <h3 className="text-lg font-semibold" style={{ color: "var(--text-primary)" }}>
-              Burn-and-Mint Equilibrium
+              CCCLedger — Internal Credit Model
             </h3>
           </div>
           <p className="text-sm leading-relaxed" style={{ color: "var(--text-secondary)" }}>
-            Confidential Compute Credits (CCC) are burned at session settlement as the protocol's demand-pull primitive. 
-            A portion of USDC collected at session opening is routed to the on-chain Buyback Engine, which acquires and burns OLIX on the open market. 
-            Exact buyback parameters and CCC-to-OLIX conversion math will be published in the public whitepaper.
+            Confidential Compute Credits (CCC) are issued by the CCCLedger contract as
+            prepaid, non-transferable internal credits. When a session is opened, the
+            enterprise client settles in USDC — the protocol credits the equivalent CCC
+            balance to their on-chain account. Credits are consumed proportionally to the
+            agreed compute allocation at session completion; credits within an SLA breach
+            window are forfeited per the SlashingManager state machine. Enterprise clients
+            never hold protocol tokens — only USDC-denominated credit balances. A portion of
+            USDC settlement is routed to the LiquidityVault for protocol buyback operations;
+            exact routing parameters will be published in the public whitepaper.
           </p>
         </div>
       </section>
@@ -112,7 +119,7 @@ export default function TokenomicsPage() {
           </div>
         </div>
       </section>
-    
+
     </>
   );
 }

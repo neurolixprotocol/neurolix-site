@@ -11,34 +11,34 @@ const phases = [
     title: "Proof of Concept",
     status: "completed",
     items: [
-      "GPT-2 inference inside AMD SEV enclave on Google Cloud Confidential Computing",
+      "Open-source language model inference inside AMD SEV enclave on Google Cloud Confidential Computing",
       "Commitment hash anchored on Base Sepolia testnet",
       "NeurolixAttestation.sol live on Base Mainnet",
-      "Core smart contract suite at v1.16 — 9 contracts, 52 cumulative patches across 6 cross-LLM adversarial review rounds, 128/128 Foundry tests passing",
+      "Core smart contract suite at v1.16 — 16 contracts, 52 cumulative patches across 6 adversarial cross-model review cycles, 128/128 Foundry tests passing",
     ],
   },
   {
     id: "02",
-  title: "Protocol Hardening",
-  status: "current",
-  items: [
-    "ComputeSession.sol — session lifecycle FSM (spec v0.2.2 complete, code generation in progress)",
-    "- NeurolixGateway.sol v1.0 — USDC to CCC conversion and take rate routing (8/4/88) — code generated, compile-clean under solc 0.8.20 + optimizer-runs=200, 221 SLOC, awaiting cross-LLM adversarial review on 7 candidate areas",
-    "CCCToken.sol — non-transferable Confidential Compute Credit ERC-20",
-    "VotingEscrow.sol — IVotes source for Governor (required for governance deployment)",
-    "Composability debt audit + deploy dependency refactor (initializeOnce() pattern)"
-  ]
-},
+    title: "Protocol Hardening",
+    status: "current",
+    items: [
+      "ComputeSession.sol — session lifecycle FSM (spec v0.2.2 complete — code generated, compile-clean; adversarial cross-model review pending)",
+      "NeurolixGateway.sol v1.0 — USDC to CCC conversion and take-rate routing (8/4/88) — compile-clean, 221 SLOC, awaiting adversarial cross-model review on 7 candidate areas",
+      "CCCLedger.sol — Internal Credit Ledger: non-transferable prepaid CCC issued against USDC settlement (Zero-ERC20)",
+      "VotingEscrow.sol — IVotes source for Governor (required for governance deployment)",
+      "Composability debt audit + deploy dependency refactor (initializeOnce() pattern)",
+    ],
+  },
   {
     id: "03",
     title: "Testnet Deployment",
     status: "next",
-   items: [
-  "Full v1.16 suite live on Base Sepolia",
-  "Bug bounty program — Immunefi (payouts in $OLIX at TGE) + Code4rena or Sherlock community-tier contest",
-  "Off-chain monitoring infrastructure — L2 sequencer and TEE vendor health watchers",
-  "Public testnet open for node operator onboarding",
-   ],
+    items: [
+      "Full v1.16 suite live on Base Sepolia",
+      "Bug bounty program — Immunefi (payouts in $OLIX at TGE) + Code4rena or Sherlock community-tier contest",
+      "Off-chain monitoring infrastructure — L2 sequencer and TEE vendor health watchers",
+      "Public testnet open for node operator onboarding",
+    ],
   },
   {
     id: "04",
@@ -94,7 +94,7 @@ const statusConfig = {
 export default function RoadmapPage() {
   return (
     <>
-      {/* 1. AGGIUNGI QUESTO BLOCCO HERO CENTRATO */}
+      {/* Hero */}
       <section className="mx-auto max-w-[1100px] px-6 py-20 text-center flex flex-col items-center" style={{ borderBottom: "1px solid var(--border)" }}>
         <span className="inline-block mb-6 text-xs px-3 py-1.5 rounded-full font-medium tracking-wide"
           style={{ backgroundColor: "var(--accent-dim)", border: "1px solid var(--accent)", color: "var(--accent)" }}>
