@@ -63,7 +63,7 @@ export default function HomePage() {
 
       {/* 4. THE PROBLEM & SOLUTION */}
       <section className="mx-auto max-w-[1100px] px-6 py-20 md:py-28">
-        <div style={{ maxWidth: 720 }}>
+        <div className="mx-auto" style={{ maxWidth: 720 }}>
           
           <div className="mb-16">
             <p className="text-xs font-mono uppercase tracking-widest mb-4" style={{ color: "var(--accent)" }}>
