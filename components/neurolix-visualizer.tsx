@@ -145,6 +145,7 @@ export default function NeurolixVisualizer() {
     const canvasB = canvasBRef.current;
     
     const heroText = containerRef.current.querySelector('#hero-text') as HTMLElement;
+    const scrollHint = containerRef.current.querySelector('#scrollHint') as HTMLElement;
     const capsA = Array.from(containerRef.current.querySelectorAll('.cap-a')) as HTMLElement[];
     const capsB = Array.from(containerRef.current.querySelectorAll('.cap-b')) as HTMLElement[];
     const stepsA = Array.from(containerRef.current.querySelectorAll('.steps-a span')) as HTMLElement[];
@@ -209,13 +210,14 @@ export default function NeurolixVisualizer() {
         const { ctx, w, h } = sizeA;
         const m = Math.min(w, h) * 0.1;
         
-        // Dissolvenza e parallasse per la Hero Text
+        // Dissolvenza e parallasse per la Hero Text + scroll hint
+        const heroOp = clamp(1 - (P * 12), 0, 1);
         if (heroText) {
-          const heroOp = clamp(1 - (P * 12), 0, 1);
           heroText.style.opacity = heroOp.toString();
           heroText.style.pointerEvents = heroOp > 0.1 ? 'auto' : 'none';
           heroText.style.transform = `translateY(${P * 150}px)`; 
         }
+        if (scrollHint) scrollHint.style.opacity = heroOp.toString();
 
         // Calcolo Animazioni (Spaziate per lasciar respirare la Hero)
         const p1 = smooth(invlerp(0.28, 0.48, P));
@@ -553,6 +555,12 @@ export default function NeurolixVisualizer() {
               <span key={i} data-step={i} className="font-mono text-[9px] text-[var(--text-secondary)] tracking-[1px] transition-colors duration-300">{s}</span>
             ))}
           </div>
+
+          {/* Scroll hint — anchored to the full-height sticky hero; fades out via heroOp */}
+          <div id="scrollHint" className="scroll-hint font-chain" aria-hidden="true" style={{ opacity: 1 }}>
+            SCROLL
+            <span className="chev" />
+          </div>
         </div>
       </section>
 
@@ -580,7 +588,7 @@ export default function NeurolixVisualizer() {
           <div className="relative z-10 shrink-0 flex justify-center pointer-events-none px-4 md:px-6 pb-8 md:pb-[6vh] w-full">
             <div className="relative w-full max-w-[560px] min-h-[136px] md:min-h-[104px] hudB">
               {[
-                { step: '05 / COMPUTE', title: 'Inference runs inside the boundary', desc: 'GPT-2 · 124M params in an AMD SEV enclave. Data is in clear only inside.' },
+               { step: '05 / COMPUTE', title: 'Inference runs inside the boundary', desc: 'Open-source LM · 124M params in an AMD SEV enclave. Data is in clear only inside.' },
                 { step: '06 / ATTESTATION', title: 'The session is hashed into a SHA-256 commitment', desc: 'A cryptographic commitment is produced — proof, not data.' },
                 { step: '07 / VERIFY', title: 'Anchored on Base Mainnet', desc: 'Only the commitment leaves the enclave. Anyone can verify it on-chain.' }
               ].map((cap, i) => (

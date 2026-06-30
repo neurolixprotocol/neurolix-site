@@ -193,6 +193,35 @@ body {
   50%       { transform: scale(1.4); opacity: 0.4; }
 }
 
+/* Hero scroll hint — bouncing chevron (fades with hero overlay) */
+.scroll-hint {
+  position: fixed; /* Sganciamo la freccia dal layout del sito e la incolliamo al monitor */
+  bottom: 40px; /* Altezza fissa sicura dal fondo dello schermo */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999; /* Livello altissimo per non farla mai coprire */
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--text-secondary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+}
+.scroll-hint .chev {
+  width: 14px;
+  height: 14px;
+  border-right: 1.5px solid var(--accent);
+  border-bottom: 1.5px solid var(--accent);
+  transform: rotate(45deg);
+  animation: bob 1.8s ease-in-out infinite;
+}
+@keyframes bob {
+  0%, 100% { transform: rotate(45deg) translate(0, 0);    opacity: 0.4; }
+  50%       { transform: rotate(45deg) translate(3px, 3px); opacity: 1; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

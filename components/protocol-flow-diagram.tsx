@@ -1,46 +1,56 @@
+import { Fragment } from "react";
+
 export function ProtocolFlowDiagram() {
   const steps = [
-    { label: "STEP 01", line1: "Confidential", line2: "VM", sub: "AMD SEV-SNP", x: 20 },
-    { label: "STEP 02", line1: "AI Execution", line2: "in Enclave",  sub: "GPT-2 Inference", x: 220 },
-    { label: "STEP 03", line1: "Attestation",  line2: "Token",       sub: "OIDC · GCP", x: 420 },
-    { label: "STEP 04", line1: "Commitment",   line2: "Hash",        sub: "SHA-256", x: 620 },
-    { label: "STEP 05", line1: "On-Chain",     line2: "Anchoring",   sub: "Base Mainnet L2", x: 820 },
+    { label: "STEP 01", title: "Confidential VM",         sub: "AMD SEV-SNP" },
+    { label: "STEP 02", title: "AI Execution in Enclave", sub: "Open-source LM · Inference" },
+    { label: "STEP 03", title: "Attestation Token",       sub: "OIDC · GCP" },
+    { label: "STEP 04", title: "Commitment Hash",         sub: "SHA-256" },
+    { label: "STEP 05", title: "On-Chain Anchoring",      sub: "Base Mainnet L2" },
   ];
 
-  const arrows = [180, 380, 580, 780];
-
   return (
-    <div className="w-full overflow-x-auto">
-      <svg
-        viewBox="0 0 1000 160"
-        className="w-full min-w-[640px]"
-        aria-label="TEE to Attestation to Base L2 protocol flow"
-      >
-        {steps.map((s) => (
-          <g key={s.label}>
-            <rect x={s.x} y={28} width={160} height={104} rx={2}
-              fill="var(--bg-card)" stroke="var(--border)" strokeWidth={1} />
-            <text x={s.x + 80} y={54} textAnchor="middle" fontSize={9}
-              fill="#9ca3af" letterSpacing="1.5">{s.label}</text>
-            <text x={s.x + 80} y={76} textAnchor="middle" fontSize={12}
-              fill="#f3f4f6" fontWeight={600}>{s.line1}</text>
-            <text x={s.x + 80} y={92} textAnchor="middle" fontSize={12}
-              fill="#f3f4f6" fontWeight={600}>{s.line2}</text>
-            <text x={s.x + 80} y={116} textAnchor="middle" fontSize={9}
-              fill="#00E5FF">{s.sub}</text>
-          </g>
-        ))}
+    <div
+      className="flex flex-col md:flex-row md:items-stretch gap-3 md:gap-2 w-full"
+      role="list"
+      aria-label="TEE to Attestation to Base L2 protocol flow"
+    >
+      {steps.map((s, i) => (
+        <Fragment key={s.label}>
+          {/* Step card */}
+          <div
+            role="listitem"
+            className="w-full md:flex-1 md:w-auto p-5 rounded-sm text-center flex flex-col justify-center"
+            style={{ backgroundColor: "var(--bg-card)", border: "1px solid var(--border)" }}
+          >
+            <p className="text-[10px] font-chain tracking-[1.5px] mb-2" style={{ color: "var(--text-secondary)" }}>
+              {s.label}
+            </p>
+            <p className="text-sm font-semibold leading-tight" style={{ color: "var(--text-primary)" }}>
+              {s.title}
+            </p>
+            <p className="text-[10px] font-chain mt-2" style={{ color: "var(--accent)" }}>
+              {s.sub}
+            </p>
+          </div>
 
-        {arrows.map((x, i) => (
-          <g key={`arrow-${i}`}>
-            <line x1={x} y1={80} x2={x + 40} y2={80}
-              stroke="var(--border)" strokeWidth={1} />
-            <circle cx={x} cy={80} r={3.5} fill="#00E5FF"
-              className={`pulse-dot pulse-dot-${i + 1}`}
-              style={{ filter: "drop-shadow(0 0 4px #00E5FF)" }} />
-          </g>
-        ))}
-      </svg>
+          {/* Connector — vertical on mobile (rotated), horizontal from md: up */}
+          {i < steps.length - 1 && (
+            <div className="flex items-center justify-center py-2 md:py-0 md:shrink-0" aria-hidden="true">
+              <div className="relative h-[7px] w-[40px] rotate-90 md:rotate-0">
+                <span
+                  className="absolute left-0 top-1/2 h-px w-full -translate-y-1/2"
+                  style={{ backgroundColor: "var(--border)" }}
+                />
+                <span
+                  className={`pulse-dot pulse-dot-${i + 1} absolute left-0 top-0 h-[7px] w-[7px] rounded-full`}
+                  style={{ backgroundColor: "var(--accent)", filter: "drop-shadow(0 0 4px var(--accent))" }}
+                />
+              </div>
+            </div>
+          )}
+        </Fragment>
+      ))}
     </div>
   );
 }

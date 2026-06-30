@@ -41,11 +41,7 @@ export default function ProtocolPage() {
             </p>
           </div>
 
-          <div className="w-full overflow-x-auto pb-4 custom-scrollbar">
-            <div className="min-w-[800px] md:min-w-full">
-              <ProtocolFlowDiagram />
-            </div>
-          </div>
+          <ProtocolFlowDiagram />
 
         </div>
       </section>
