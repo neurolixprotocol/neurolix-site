@@ -14,7 +14,7 @@ export default function TokenomicsPage() {
           style={{ backgroundColor: "var(--accent-dim)", border: "1px solid var(--accent)", color: "var(--accent)" }}>
           $OLIX · Base L2 · Utility Token
         </span>
-        <h1 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight" style={{ color: "var(--text-primary)" }}>
+        <h1 className="title-gradient text-5xl md:text-6xl font-extrabold mb-6 tracking-tighter">
           Tokenomics
         </h1>
         <p className="text-lg leading-relaxed max-w-[620px]" style={{ color: "var(--text-secondary)" }}>

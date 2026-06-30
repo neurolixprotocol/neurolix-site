@@ -18,7 +18,7 @@ export default function ProtocolPage() {
           style={{ backgroundColor: "var(--accent-dim)", border: "1px solid var(--accent)", color: "var(--accent)" }}>
           Architecture · v1.16 · Base L2
         </span>
-        <h1 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight" style={{ color: "var(--text-primary)" }}>
+        <h1 className="title-gradient text-5xl md:text-6xl font-extrabold mb-6 tracking-tighter">
           The Protocol
         </h1>
         <p className="text-lg leading-relaxed max-w-[620px]" style={{ color: "var(--text-secondary)" }}>

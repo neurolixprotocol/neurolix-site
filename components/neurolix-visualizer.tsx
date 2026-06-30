@@ -469,13 +469,8 @@ export default function NeurolixVisualizer() {
               WebkitFontSmoothing: "antialiased",
               MozOsxFontSmoothing: "grayscale"
             }}>
-              <span style={{ color: "#FFFFFF" }}>Confidential AI Compute.</span><br />
-              <span style={{ 
-                color: "#00E5FF",
-                textShadow: "0 0 30px rgba(0, 229, 255, 0.35)" 
-              }}>
-                Verified On-Chain.
-              </span>
+              <span className="title-gradient">Confidential AI Compute.</span><br />
+              <span className="title-gradient">Verified On-Chain.</span>
             </h1>
 
             <p style={{

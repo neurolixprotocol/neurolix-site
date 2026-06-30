@@ -100,7 +100,7 @@ export default function RoadmapPage() {
           style={{ backgroundColor: "var(--accent-dim)", border: "1px solid var(--accent)", color: "var(--accent)" }}>
           No dates — sequential milestones
         </span>
-        <h1 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight" style={{ color: "var(--text-primary)" }}>
+        <h1 className="title-gradient text-5xl md:text-6xl font-extrabold mb-6 tracking-tighter">
           Roadmap
         </h1>
         <p className="text-lg leading-relaxed max-w-[620px]" style={{ color: "var(--text-secondary)" }}>
@@ -134,7 +134,7 @@ export default function RoadmapPage() {
 
                   {/* Content */}
                   <div className="flex-1 pb-2">
-                    <div className="flex flex-wrap items-center gap-3 mb-4">
+                    <div className="flex flex-col items-start gap-2 mb-4 md:flex-row md:flex-wrap md:items-center md:gap-3">
                       <h3 className="text-xl font-bold" style={{ color: "var(--text-primary)" }}>
                         {phase.title}
                       </h3>

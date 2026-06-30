@@ -157,6 +157,15 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
+/* Title treatment — prototype-faithful white→steel gradient (monochrome) */
+.title-gradient {
+  background: linear-gradient(135deg, #ffffff 0%, #9ab8c4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #9ab8c4; /* fallback for browsers without background-clip:text */
+}
+
 @keyframes dataFlow {
   0%   { stroke-dashoffset: 600; opacity: 0; }
   8%   { opacity: 1; }
