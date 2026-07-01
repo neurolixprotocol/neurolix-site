@@ -25,7 +25,7 @@ export const LINKS = {
   github:    "https://github.com/neurolixprotocol",
   loomEmbed: "https://www.loom.com/embed/bc8aa2bbdc6745d1a1568d29b1b124e8",
   loomShare: "https://www.loom.com/share/bc8aa2bbdc6745d1a1568d29b1b124e8",
-  blockscout:"https://base-sepolia.blockscout.com/tx/0x6c9a8e68ddc3b96b70b09785e1efbc519b371132aaf7b7ac5e428954de010046",
+  blockscout:"https://sepolia.basescan.org/tx/0x6c9a8e68ddc3b96b70b09785e1efbc519b371132aaf7b7ac5e428954de010046",
   basescan:  "https://basescan.org/address/0xDcCCda8662996b479bE5C5d44115a03a43a92F1B",
 } as const;
 

@@ -28,7 +28,7 @@ export default function TokenomicsPage() {
 
       {/* PUBLIC PARAMS */}
       <section className="mx-auto max-w-[1100px] px-6 py-16" style={{ borderBottom: "1px solid var(--border)" }}>
-        <p className="text-xs uppercase tracking-widest mb-8" style={{ color: "var(--text-secondary)" }}>
+        <p className="text-xs uppercase tracking-widest mb-8 text-center" style={{ color: "var(--text-secondary)" }}>
           Confirmed Parameters
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -50,7 +50,7 @@ export default function TokenomicsPage() {
 
       {/* CCC CREDIT MODEL — IN DEVELOPMENT */}
       <section className="mx-auto max-w-[1100px] px-6 py-16" style={{ borderBottom: "1px solid var(--border)" }}>
-        <div className="p-6 rounded-sm" style={{ backgroundColor: "var(--bg-card)", border: "1px solid var(--warning)", maxWidth: 680 }}>
+        <div className="p-6 rounded-sm" style={{ backgroundColor: "var(--bg-card)", border: "1px solid var(--warning)" }}>
           <div className="flex items-center gap-2 mb-4">
             <span className="text-xs px-2 py-1 rounded font-medium"
               style={{ backgroundColor: "rgba(251,191,36,0.1)", color: "var(--warning)" }}>
@@ -76,7 +76,7 @@ export default function TokenomicsPage() {
 
       {/* COMING SOON SECTION */}
       <section className="mx-auto max-w-[1100px] px-6 py-16" style={{ borderBottom: "1px solid var(--border)" }}>
-        <p className="text-xs uppercase tracking-widest mb-8" style={{ color: "var(--text-secondary)" }}>
+        <p className="text-xs uppercase tracking-widest mb-8 text-center" style={{ color: "var(--text-secondary)" }}>
           Full Specification
         </p>
         <div className="relative rounded-sm overflow-hidden" style={{ border: "1px solid var(--border)" }}>

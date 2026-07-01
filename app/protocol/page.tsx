@@ -36,7 +36,7 @@ export default function ProtocolPage() {
             <h2 className="text-3xl font-bold" style={{ color: "var(--text-primary)" }}>
               The TEE → Attestation → Base L2 loop.
             </h2>
-            <p className="text-sm mt-4 leading-relaxed text-slate-400 max-w-[620px]">
+            <p className="text-sm mt-4 leading-relaxed text-slate-400">
               A step-by-step breakdown of how data remains encrypted in transit and in use, ensuring that only the cryptographic commitment leaves the secure boundary.
             </p>
           </div>
@@ -133,11 +133,11 @@ export default function ProtocolPage() {
       <section className="mx-auto max-w-[1100px] px-6 py-20" style={{ borderBottom: "1px solid var(--border)" }}>
         <p className="text-xs uppercase tracking-widest mb-3" style={{ color: "var(--accent)" }}>Transparency</p>
         <h2 className="text-3xl font-bold mb-3" style={{ color: "var(--text-primary)" }}>Open mainnet blockers</h2>
-        <p className="text-sm mb-8" style={{ color: "var(--text-secondary)", maxWidth: 580 }}>
+        <p className="text-sm mb-8" style={{ color: "var(--text-secondary)" }}>
           These three issues were identified in v1.16 and are addressed by the v1.17 workstream (ComputeSession.sol + NeurolixGateway.sol + CCCLedger.sol, specification v0.2.2 complete — code generated, compile-clean; adversarial cross-model review in progress).
           These are not deployment blockers for testnet — they are blockers for mainnet token launch.
         </p>
-        <div className="flex flex-col gap-4" style={{ maxWidth: 680 }}>
+        <div className="flex flex-col gap-4 w-full">
           {[
             {
               id: "01",
@@ -170,10 +170,10 @@ export default function ProtocolPage() {
       {/* ON-CHAIN PROOF */}
       <section className="mx-auto max-w-[1100px] px-6 py-16">
         <p className="text-xs uppercase tracking-widest mb-6" style={{ color: "var(--text-secondary)" }}>On-chain references</p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4" style={{ maxWidth: 680 }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
           {[
             { label: "Attestation contract", value: `${CONTRACTS.attestation.slice(0,10)}...${CONTRACTS.attestation.slice(-6)}`, href: LINKS.basescan, badge: "Base Mainnet" },
-            { label: "Commitment hash", value: `${PROOF.commitmentHash.slice(0,10)}...${PROOF.commitmentHash.slice(-6)}`, href: LINKS.blockscout, badge: "SHA-256" },
+            { label: "Commitment hash", value: `${PROOF.commitmentHash.slice(0,10)}...${PROOF.commitmentHash.slice(-6)}`, href: `https://sepolia.basescan.org/tx/${PROOF.sepoliaTx}`, badge: "Base Sepolia" },
           ].map((item) => (
             <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer"
               className="proof-card flex flex-col gap-1.5 p-4 rounded-sm no-underline">
