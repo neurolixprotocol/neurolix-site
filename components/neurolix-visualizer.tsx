@@ -438,13 +438,13 @@ export default function NeurolixVisualizer() {
             <canvas ref={canvasARef} className="absolute inset-0 w-full h-full block" aria-hidden="true" />
             <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(120% 100% at 50% 50%, transparent 60%, rgba(10,14,26,0.6) 100%)' }} aria-hidden="true"></div>
 
-            {/* Mobile-only scrim — isolates hero text from network noise; fades with heroOp */}
+            {/* Mobile-only scrim — lightened to let cyan nodes pop through naturally */}
             <div id="heroScrim" className="md:hidden absolute inset-0 z-10 pointer-events-none" aria-hidden="true"
-              style={{ background: 'radial-gradient(78% 55% at 50% 42%, rgba(10,14,26,0.92) 0%, rgba(10,14,26,0.68) 45%, transparent 80%)' }}></div>
+              style={{ background: 'radial-gradient(85% 60% at 50% 40%, rgba(10,14,26,0.6) 0%, rgba(10,14,26,0.25) 55%, transparent 100%)' }}></div>
 
           {/* HERO TEXT OVERLAY (Ottimizzato per Mobile) */}
           <div id="hero-text" 
-            className="absolute inset-0 z-20 flex flex-col items-center justify-start md:justify-center pt-28 pb-24 md:py-0 gap-4 md:gap-8 px-6 text-center antialiased"
+            className="absolute inset-0 z-20 flex flex-col items-center justify-start md:justify-center pt-16 pb-14 md:py-0 gap-4 md:gap-8 px-6 text-center antialiased"
             style={{ transition: 'opacity 0.1s' }}
           >
             <span
