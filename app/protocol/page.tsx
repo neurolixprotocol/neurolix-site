@@ -109,19 +109,21 @@ export default function ProtocolPage() {
             { name: "NeurolixGateway.sol", desc: "Protocol entry-point v1.3 — USDC to CCC conversion with take-rate routing (8/4/88 split).", status: "pre-testnet" },
             { name: "ProtocolBuybackEngineV16.sol", desc: "Anti-MEV buyback engine (inherited). Routes USDC settlement proceeds to LiquidityVault.", status: "pre-testnet" },
           ].map((c) => (
-            <div key={c.name} className="flex items-start gap-4 p-4 rounded-sm" style={{ backgroundColor: "var(--bg-card)", border: "1px solid var(--border)" }}>
+            <div key={c.name} className="flex flex-col p-4 rounded-sm h-full" style={{ backgroundColor: "var(--bg-card)", border: "1px solid var(--border)" }}>
               <div className="flex-1">
-                <p className="text-sm font-medium font-chain mb-1" style={{ color: "var(--text-primary)" }}>{c.name}</p>
+                <p className="text-sm font-medium font-chain mb-1 break-all" style={{ color: "var(--text-primary)" }}>{c.name}</p>
                 <p className="text-xs leading-relaxed" style={{ color: "var(--text-secondary)" }}>{c.desc}</p>
               </div>
-              <span className="text-xs px-2 py-0.5 rounded flex-shrink-0"
-                style={{
-                  backgroundColor: c.status === "mainnet" ? "var(--accent-dim)" : "rgba(255,255,255,0.05)",
-                  color: c.status === "mainnet" ? "var(--accent)" : "var(--text-secondary)",
-                  border: `1px solid ${c.status === "mainnet" ? "var(--accent)" : "var(--border)"}`,
-                }}>
-                {c.status}
-              </span>
+              <div className="flex justify-end mt-4">
+                <span className="text-xs px-2 py-0.5 rounded shrink-0"
+                  style={{
+                    backgroundColor: c.status === "mainnet" ? "var(--accent-dim)" : "rgba(255,255,255,0.05)",
+                    color: c.status === "mainnet" ? "var(--accent)" : "var(--text-secondary)",
+                    border: `1px solid ${c.status === "mainnet" ? "var(--accent)" : "var(--border)"}`,
+                  }}>
+                  {c.status}
+                </span>
+              </div>
             </div>
           ))}
         </div>
