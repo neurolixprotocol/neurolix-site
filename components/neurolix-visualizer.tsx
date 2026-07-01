@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { LINKS } from "@/lib/constants";
 
 const COMMIT_HASH = "ec52836f23170a1b601dd7e475107f314ca004186707f69836f7615901a665bd";
 const HEX = "0123456789abcdef";
@@ -226,6 +227,13 @@ export default function NeurolixVisualizer() {
         const p2 = smooth(invlerp(0.52, 0.72, P));
         const p3 = smooth(invlerp(0.76, 0.95, P));
         const Z = isMobile() ? 2.8 : 4.6;
+
+        // Ambient mesh: bilanciata (0.65) per un glow elegante ma non invadente
+        const ambient = lerp(0.65, 1, smooth(invlerp(0.04, 0.16, P)));
+        // Nodi ridimensionati al calibro perfetto (2.0 desktop, 1.7 mobile)
+        const nodeScale = lerp(isMobile() ? 1.7 : 2.0, 1, p1);
+        // Luminosità mobile bilanciata
+        const nodeDim = isMobile() ? 0.8 : 1;
         
         const fieldC = layout({ x: 0.5, y: 0.5 }, w, h, m);
         const tgt = layout(fieldA.nodes[fieldA.target], w, h, m);
@@ -235,7 +243,9 @@ export default function NeurolixVisualizer() {
         const S = (pt: { x: number, y: number }) => ({ x: (pt.x - focus.x) * zoom + cx, y: (pt.y - focus.y) * zoom + cy });
         
         ctx.clearRect(0, 0, w, h); // Puliamo lo spazio effettivo
-        const iso = p3, edgeAlpha = 0.10 * (1 - 0.95 * iso), pulseAlpha = (1 - p1) * (1 - iso);
+        // Il target node resta mimetizzato a riposo (P=0) e si illumina gradualmente con lo scroll
+        const scrollWakeup = smooth(invlerp(0.02, 0.15, P));
+        const iso = p3, edgeAlpha = 0.10 * (1 - 0.95 * iso) * ambient, pulseAlpha = (1 - p1) * (1 - iso);
         
         ctx.lineWidth = Math.max(1, zoom * 0.5); ctx.strokeStyle = `rgba(0,229,255,${edgeAlpha.toFixed(3)})`; ctx.beginPath();
         for (const [i, j] of fieldA.edges) {
@@ -257,13 +267,13 @@ export default function NeurolixVisualizer() {
         for (let i = 0; i < fieldA.nodes.length; i++) {
           if (i === fieldA.target) continue;
           const p = S(layout(fieldA.nodes[i], w, h, m));
-          const s = zoom * 10 * (1 + 0.05 * Math.sin(t * 1.4 + fieldA.nodes[i].ph));
-          const a = 0.85 * (1 - 0.85 * iso);
+          const s = zoom * 10 * nodeScale * (1 + 0.05 * Math.sin(t * 1.4 + fieldA.nodes[i].ph));
+          const a = 0.85 * (1 - 0.85 * iso) * ambient * nodeDim;
           if (a > 0.02) drawPC(ctx, p.x, p.y, s, a, false);
         }
         
         const targetC = S(tgt);
-        const baseS = zoom * 11, encS = baseS * lerp(1, 2.4, Math.max(p2 * 0.4, p3));
+        const baseS = zoom * 11 * nodeScale, encS = baseS * lerp(1, 2.4, Math.max(p2 * 0.4, p3));
         const boundaryT = Math.max(p2, p3);
         
         if (boundaryT > 0.01) {
@@ -278,8 +288,15 @@ export default function NeurolixVisualizer() {
           } ctx.globalAlpha = 1;
         }
         
-        drawPC(ctx, targetC.x, targetC.y - (p3 * encS * 0.15), encS, 1, true);
-        glow(ctx, targetC.x, targetC.y - (p3 * encS * 0.15), 2.5 * Math.max(0.4, p1), 'rgba(0,229,255,0.8)', 14 * p1);
+        // Il target node calcola la sua opacità partendo da quella base dei nodi, per poi accendersi a 1 con lo scroll
+        const targetBaseAlpha = 0.85 * (1 - 0.85 * iso) * ambient * nodeDim;
+        const targetFinalAlpha = lerp(targetBaseAlpha, 1, scrollWakeup);
+        drawPC(ctx, targetC.x, targetC.y - (p3 * encS * 0.15), encS, targetFinalAlpha, scrollWakeup > 0.05);
+        
+        // Il glow interno si attiva solo quando inizia lo scroll
+        if (scrollWakeup > 0.01) {
+          glow(ctx, targetC.x, targetC.y - (p3 * encS * 0.15), 2.5 * Math.max(0.4, p1) * scrollWakeup, 'rgba(0,229,255,0.8)', 14 * p1);
+        }
         
         if (p2 > 0.01 && p3 < 0.99) {
           const userPos = { x: targetC.x - encS * 2.2, y: targetC.y }, entry = { x: targetC.x - encS * 1.05, y: targetC.y };
@@ -444,7 +461,7 @@ export default function NeurolixVisualizer() {
 
           {/* HERO TEXT OVERLAY (Ottimizzato per Mobile) */}
           <div id="hero-text" 
-            className="absolute inset-0 z-20 flex flex-col items-center justify-between md:justify-center pt-24 pb-16 md:py-0 md:gap-8 px-6 text-center antialiased"
+            className="absolute inset-0 z-20 flex flex-col items-center justify-between md:justify-center pt-24 pb-16 md:py-0 md:gap-16 px-6 text-center antialiased"
             style={{ transition: 'opacity 0.1s' }}
           >
             {/* Blocco Superiore: Narrativa (Spinta in alto da justify-between) */}
@@ -490,7 +507,7 @@ export default function NeurolixVisualizer() {
                  }}>
                 Read the documentation
               </a>
-              <a href="https://base-sepolia.blockscout.com/tx/0x7028c7a621f262753cfce13f060f388be00afabcc0e5930248dbadc1f09e5c5b" target="_blank" rel="noopener noreferrer"
+              <a href={LINKS.basescan} target="_blank" rel="noopener noreferrer"
                  className="w-full sm:w-auto justify-center"
                  style={{
                    display: 'inline-flex',
