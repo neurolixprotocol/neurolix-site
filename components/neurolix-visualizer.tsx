@@ -154,6 +154,8 @@ export default function NeurolixVisualizer() {
     const stepsB = Array.from(containerRef.current.querySelectorAll('.steps-b span')) as HTMLElement[];
     const railFillA = containerRef.current.querySelector('.rail-fill-a') as HTMLElement;
     const railFillB = containerRef.current.querySelector('.rail-fill-b') as HTMLElement;
+    const stepsContainerA = containerRef.current.querySelector('.steps-a') as HTMLElement;
+    const railContainerA = railFillA?.parentElement;
     
     const hashline = containerRef.current.querySelector('#hashline') as HTMLElement;
     const hashText = containerRef.current.querySelector('#hashText') as HTMLElement;
@@ -313,7 +315,17 @@ export default function NeurolixVisualizer() {
         }
         if (p3 > 0.15) drawLock(ctx, targetC.x, targetC.y - encS * 1.25, encS * 0.5, p3);
         
-        setHUD(capsA, stepsA, phaseA(P), hudRefA);
+        const currentPhaseA = phaseA(P);
+        setHUD(capsA, stepsA, currentPhaseA, hudRefA);
+        
+        // Attiva la barra laterale (NET-NODE-IN-SEAL) solo se siamo usciti dalla Hero Phase (-1)
+        if (railContainerA && stepsContainerA) {
+          const isHeroMode = currentPhaseA === -1;
+          railContainerA.style.opacity = isHeroMode ? '0' : '1';
+          railContainerA.style.pointerEvents = isHeroMode ? 'none' : 'auto';
+          stepsContainerA.style.opacity = isHeroMode ? '0' : '1';
+          stepsContainerA.style.pointerEvents = isHeroMode ? 'none' : 'auto';
+        }
         
         // RailFill non deve crescere durante la Hero Phase (-1)
         const railP = clamp(invlerp(0.08, 1, P), 0, 1);
@@ -549,10 +561,10 @@ export default function NeurolixVisualizer() {
           </div>
 
           {/* RAILS SCENE A */}
-          <div className="hidden md:block absolute top-1/2 right-[22px] -translate-y-1/2 z-10 w-[2px] h-[180px] bg-[var(--border)] rounded-sm overflow-hidden opacity-0 transition-opacity duration-500" style={{ opacity: 1 }}>
+          <div className="hidden md:block absolute top-1/2 right-[22px] -translate-y-1/2 z-10 w-[2px] h-[180px] bg-[var(--border)] rounded-sm overflow-hidden transition-opacity duration-500" style={{ opacity: 0 }}>
             <div className="rail-fill-a absolute top-0 left-0 w-full bg-[var(--accent)] h-0 transition-all duration-100" style={{ boxShadow: '0 0 10px var(--accent)' }}></div>
           </div>
-          <div className="hidden md:flex absolute top-1/2 right-[30px] -translate-y-1/2 z-10 flex-col justify-between h-[180px] steps-a">
+          <div className="hidden md:flex absolute top-1/2 right-[30px] -translate-y-1/2 z-10 flex-col justify-between h-[180px] steps-a transition-opacity duration-500" style={{ opacity: 0 }}>
             {['NET', 'NODE', 'IN', 'SEAL'].map((s, i) => (
               <span key={i} data-step={i} className="font-mono text-[9px] text-[var(--text-secondary)] tracking-[1px] transition-colors duration-300">{s}</span>
             ))}
