@@ -444,32 +444,36 @@ export default function NeurolixVisualizer() {
 
           {/* HERO TEXT OVERLAY (Ottimizzato per Mobile) */}
           <div id="hero-text" 
-            className="absolute inset-0 z-20 flex flex-col items-center justify-start md:justify-center pt-16 pb-14 md:py-0 gap-4 md:gap-8 px-6 text-center antialiased"
+            className="absolute inset-0 z-20 flex flex-col items-center justify-between md:justify-center pt-24 pb-16 md:py-0 md:gap-8 px-6 text-center antialiased"
             style={{ transition: 'opacity 0.1s' }}
           >
-            <span
-              className="inline-block rounded-full font-semibold uppercase text-[10px] md:text-[11px] tracking-[0.04em] md:tracking-[0.08em] px-3 py-1.5"
-              style={{
-                border: '1px solid #00E5FF',
-                backgroundColor: 'rgba(0, 229, 255, 0.08)',
-                color: '#00E5FF',
-                backdropFilter: 'blur(4px)',
-              }}
-            >
-              Building in public · Base L2 · Confidential AI
-            </span>
-            
-            <h1 className="font-extrabold tracking-[-0.03em] text-3xl leading-[1.2] md:text-6xl md:leading-[1.05]">
-              <span className="title-gradient">Confidential AI Compute.</span><br />
-              <span className="title-gradient">Verified On-Chain.</span>
-            </h1>
+            {/* Blocco Superiore: Narrativa (Spinta in alto da justify-between) */}
+            <div className="flex flex-col items-center gap-4 md:gap-6">
+              <span
+                className="inline-block rounded-full font-semibold uppercase text-[10px] md:text-[11px] tracking-[0.04em] md:tracking-[0.08em] px-3 py-1.5"
+                style={{
+                  border: '1px solid #00E5FF',
+                  backgroundColor: 'rgba(0, 229, 255, 0.08)',
+                  color: '#00E5FF',
+                  backdropFilter: 'blur(4px)',
+                }}
+              >
+                Building in public · Base L2 · Confidential AI
+              </span>
 
-            <p className="text-[15px] md:text-[17px] leading-relaxed max-w-[540px]" style={{ color: "#9ca3af" }}>
-              DePIN infrastructure for AI training and inference on regulated data.
-              Hardware-enforced privacy in TEE enclaves, cryptographic attestation anchored to Base L2.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-3 sm:gap-4 w-full max-w-[340px] sm:max-w-none sm:w-auto mt-auto md:mt-0">
+              <h1 className="font-extrabold tracking-[-0.03em] text-3xl leading-[1.2] md:text-6xl md:leading-[1.05]">
+                <span className="title-gradient">Confidential AI Compute.</span><br />
+                <span className="title-gradient">Verified On-Chain.</span>
+              </h1>
+
+              <p className="text-[15px] md:text-[17px] leading-relaxed max-w-[540px]" style={{ color: "#9ca3af" }}>
+                DePIN infrastructure for AI training and inference on regulated data.
+                Hardware-enforced privacy in TEE enclaves, cryptographic attestation anchored to Base L2.
+              </p>
+            </div>
+
+            {/* Blocco Inferiore: Azioni (Spinto sul fondo da justify-between) */}
+            <div className="flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-3 sm:gap-4 w-full max-w-[340px] sm:max-w-none sm:w-auto">
               <a href="https://medium.com/@neurolixprotocol" target="_blank" rel="noopener noreferrer"
                  className="w-full sm:w-auto justify-center"
                  style={{
