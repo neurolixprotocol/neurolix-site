@@ -491,7 +491,7 @@ export default function NeurolixVisualizer() {
               </span>
 
               <h1 className="font-extrabold tracking-[-0.03em] text-3xl leading-[1.2] md:text-6xl md:leading-[1.05]">
-                <span className="title-gradient">Confidential AI Compute.</span><br />
+                <span className="title-gradient">Confidential AI&nbsp;Compute.</span><br />
                 <span className="title-gradient">Verified On-Chain.</span>
               </h1>
 
