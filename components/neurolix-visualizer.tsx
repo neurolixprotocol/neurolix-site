@@ -146,6 +146,7 @@ export default function NeurolixVisualizer() {
     
     const heroText = containerRef.current.querySelector('#hero-text') as HTMLElement;
     const scrollHint = containerRef.current.querySelector('#scrollHint') as HTMLElement;
+    const heroScrim = containerRef.current.querySelector('#heroScrim') as HTMLElement;
     const capsA = Array.from(containerRef.current.querySelectorAll('.cap-a')) as HTMLElement[];
     const capsB = Array.from(containerRef.current.querySelectorAll('.cap-b')) as HTMLElement[];
     const stepsA = Array.from(containerRef.current.querySelectorAll('.steps-a span')) as HTMLElement[];
@@ -218,6 +219,7 @@ export default function NeurolixVisualizer() {
           heroText.style.transform = `translateY(${P * 150}px)`; 
         }
         if (scrollHint) scrollHint.style.opacity = heroOp.toString();
+        if (heroScrim) heroScrim.style.opacity = heroOp.toString();
 
         // Calcolo Animazioni (Spaziate per lasciar respirare la Hero)
         const p1 = smooth(invlerp(0.28, 0.48, P));
@@ -435,61 +437,41 @@ export default function NeurolixVisualizer() {
           <div className="flex-1 relative w-full">
             <canvas ref={canvasARef} className="absolute inset-0 w-full h-full block" aria-hidden="true" />
             <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(120% 100% at 50% 50%, transparent 60%, rgba(10,14,26,0.6) 100%)' }} aria-hidden="true"></div>
-            
+
+            {/* Mobile-only scrim — isolates hero text from network noise; fades with heroOp */}
+            <div id="heroScrim" className="md:hidden absolute inset-0 z-10 pointer-events-none" aria-hidden="true"
+              style={{ background: 'radial-gradient(78% 55% at 50% 42%, rgba(10,14,26,0.92) 0%, rgba(10,14,26,0.68) 45%, transparent 80%)' }}></div>
+
           {/* HERO TEXT OVERLAY (Ottimizzato per Mobile) */}
           <div id="hero-text" 
-            className="absolute inset-0 z-20 flex flex-col items-center justify-center px-6 text-center md:pb-0"
+            className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-6 md:gap-8 px-6 text-center antialiased"
             style={{ transition: 'opacity 0.1s' }}
           >
-            <span style={{
-              display: 'inline-block',
-              marginBottom: '28px',
-              fontSize: '11px',
-              padding: '6px 14px',
-              borderRadius: '9999px',
-              fontWeight: 600,
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
-              border: '1px solid #00E5FF',
-              backgroundColor: 'rgba(0, 229, 255, 0.08)',
-              color: '#00E5FF',
-              backdropFilter: 'blur(4px)',
-              fontFamily: "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-            }}>
+            <span
+              className="inline-block rounded-full font-semibold uppercase text-[10px] md:text-[11px] tracking-[0.04em] md:tracking-[0.08em] px-3 py-1.5"
+              style={{
+                border: '1px solid #00E5FF',
+                backgroundColor: 'rgba(0, 229, 255, 0.08)',
+                color: '#00E5FF',
+                backdropFilter: 'blur(4px)',
+              }}
+            >
               Building in public · Base L2 · Confidential AI
             </span>
             
-            <h1 style={{
-              fontFamily: "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-              fontSize: "clamp(38px, 5.2vw, 60px)",
-              lineHeight: "1.05",
-              letterSpacing: "-0.04em",
-              textTransform: "none",
-              fontWeight: "800",
-              margin: "0 0 24px 0",
-              padding: 0,
-              WebkitFontSmoothing: "antialiased",
-              MozOsxFontSmoothing: "grayscale"
-            }}>
+            <h1 className="font-extrabold tracking-[-0.03em] text-3xl leading-[1.2] md:text-6xl md:leading-[1.05]">
               <span className="title-gradient">Confidential AI Compute.</span><br />
               <span className="title-gradient">Verified On-Chain.</span>
             </h1>
 
-            <p style={{
-              fontFamily: "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-              fontSize: "17px",
-              lineHeight: "1.6",
-              color: "#9ca3af",
-              maxWidth: "540px",
-              margin: "0 0 40px 0",
-              WebkitFontSmoothing: "antialiased"
-            }}>
+            <p className="text-[15px] md:text-[17px] leading-relaxed max-w-[540px]" style={{ color: "#9ca3af" }}>
               DePIN infrastructure for AI training and inference on regulated data.
               Hardware-enforced privacy in TEE enclaves, cryptographic attestation anchored to Base L2.
             </p>
             
-            <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
+            <div className="flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-3 sm:gap-4 w-full max-w-[340px] sm:max-w-none sm:w-auto">
               <a href="https://medium.com/@neurolixprotocol" target="_blank" rel="noopener noreferrer"
+                 className="w-full sm:w-auto justify-center"
                  style={{
                    display: 'inline-flex',
                    alignItems: 'center',
@@ -500,12 +482,12 @@ export default function NeurolixVisualizer() {
                    textDecoration: 'none',
                    backgroundColor: '#00E5FF',
                    color: '#0a0e1a',
-                   fontFamily: "Inter, -apple-system, sans-serif",
                    transition: 'background-color 0.2s'
                  }}>
                 Read the documentation
               </a>
               <a href="https://base-sepolia.blockscout.com/tx/0x7028c7a621f262753cfce13f060f388be00afabcc0e5930248dbadc1f09e5c5b" target="_blank" rel="noopener noreferrer"
+                 className="w-full sm:w-auto justify-center"
                  style={{
                    display: 'inline-flex',
                    alignItems: 'center',
@@ -518,7 +500,6 @@ export default function NeurolixVisualizer() {
                    backgroundColor: 'rgba(17,24,39,0.75)',
                    color: '#f3f4f6',
                    backdropFilter: 'blur(4px)',
-                   fontFamily: "Inter, -apple-system, sans-serif",
                    transition: 'border-color 0.2s'
                  }}>
                 View on-chain proof →
