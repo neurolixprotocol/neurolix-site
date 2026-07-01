@@ -444,7 +444,7 @@ export default function NeurolixVisualizer() {
 
           {/* HERO TEXT OVERLAY (Ottimizzato per Mobile) */}
           <div id="hero-text" 
-            className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-6 md:gap-8 px-6 text-center antialiased"
+            className="absolute inset-0 z-20 flex flex-col items-center justify-start md:justify-center pt-28 pb-24 md:py-0 gap-4 md:gap-8 px-6 text-center antialiased"
             style={{ transition: 'opacity 0.1s' }}
           >
             <span
@@ -469,7 +469,7 @@ export default function NeurolixVisualizer() {
               Hardware-enforced privacy in TEE enclaves, cryptographic attestation anchored to Base L2.
             </p>
             
-            <div className="flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-3 sm:gap-4 w-full max-w-[340px] sm:max-w-none sm:w-auto">
+            <div className="flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-3 sm:gap-4 w-full max-w-[340px] sm:max-w-none sm:w-auto mt-auto md:mt-0">
               <a href="https://medium.com/@neurolixprotocol" target="_blank" rel="noopener noreferrer"
                  className="w-full sm:w-auto justify-center"
                  style={{
