@@ -14,7 +14,7 @@ const phases = [
       "Open-source language model inference inside AMD SEV enclave on Google Cloud Confidential Computing",
       "Commitment hash anchored on Base Sepolia testnet",
       "NeurolixAttestation.sol live on Base Mainnet",
-      "Core smart contract suite at v1.16 — 16 contracts, 52 cumulative patches across 6 adversarial cross-model review cycles, 128/128 Foundry tests passing",
+      "Core smart contract suite at v1.17 (Zero-ERC20) — successfully rewritten, tested (76/76 Foundry tests passing), and frozen on GitHub",
     ],
   },
   {
@@ -22,11 +22,11 @@ const phases = [
     title: "Protocol Hardening",
     status: "current",
     items: [
-      "ComputeSession.sol — session lifecycle FSM (spec v0.2.2 complete — code generated, compile-clean; adversarial cross-model review pending)",
-      "NeurolixGateway.sol v1.0 — USDC to CCC conversion and take-rate routing (8/4/88) — compile-clean, 221 SLOC, awaiting adversarial cross-model review on 7 candidate areas",
-      "CCCLedger.sol — Internal Credit Ledger: non-transferable prepaid CCC issued against USDC settlement (Zero-ERC20)",
+      "ComputeSession.sol — Session lifecycle FSM aligned to v1.17 (Forfeit Flat-Q penalty and pull-based OLIX compensation)",
+      "NeurolixGateway.sol — USDC to CCC conversion and take-rate routing (8/4/88) fully validated",
+      "CCCLedger.sol — Pseudonymous state mapping via 'bytes32 clientRef' (Absolute Zero-ERC20 compliance)",
       "VotingEscrow.sol — IVotes source for Governor (required for governance deployment)",
-      "Composability debt audit + deploy dependency refactor (initializeOnce() pattern)",
+      "Composability debt audit + deploy dependency refactor",
     ],
   },
   {
@@ -34,7 +34,7 @@ const phases = [
     title: "Testnet Deployment",
     status: "next",
     items: [
-      "Full v1.16 suite live on Base Sepolia",
+      "Full v1.17 suite live on Base Sepolia",
       "Bug bounty program — Immunefi (payouts in $OLIX at TGE) + Code4rena or Sherlock community-tier contest",
       "Off-chain monitoring infrastructure — L2 sequencer and TEE vendor health watchers",
       "Public testnet open for node operator onboarding",

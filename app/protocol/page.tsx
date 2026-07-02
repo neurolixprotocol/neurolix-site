@@ -6,7 +6,7 @@ import { ProtocolFlowDiagram } from "@/components/protocol-flow-diagram";
 
 export const metadata: Metadata = {
   title: "Protocol Architecture — TEE, Attestation, Base L2",
-  description: "Technical architecture of Neurolix Protocol: Confidential AI compute layer on Base L2. Smart contract suite v1.16 — 16 contracts, 52 cumulative patches across 6 adversarial cross-model review cycles. 128/128 Foundry tests passing.",
+  description: "Technical architecture of Neurolix Protocol: Confidential AI compute layer on Base L2. Smart contract suite v1.17 — 19 contracts with pseudonymized client ledger mapping and Forfeit Flat-Q abort tokenomics. 76/76 Foundry tests passing.",
 };
 
 export default function ProtocolPage() {
@@ -16,7 +16,7 @@ export default function ProtocolPage() {
       <section className="mx-auto max-w-[1100px] px-6 py-20 text-center flex flex-col items-center" style={{ borderBottom: "1px solid var(--border)" }}>
         <span className="inline-block mb-6 text-xs px-3 py-1.5 rounded-full font-medium tracking-wide"
           style={{ backgroundColor: "var(--accent-dim)", border: "1px solid var(--accent)", color: "var(--accent)" }}>
-          Architecture · v1.16 · Base L2
+          Architecture · v1.17 · Base L2
         </span>
         <h1 className="title-gradient text-5xl md:text-6xl font-extrabold mb-6 tracking-tighter">
           The Protocol
@@ -86,9 +86,9 @@ export default function ProtocolPage() {
       {/* SMART CONTRACT SUITE */}
       <section className="mx-auto max-w-[1100px] px-6 py-20" style={{ borderBottom: "1px solid var(--border)" }}>
         <p className="text-xs uppercase tracking-widest mb-3" style={{ color: "var(--accent)" }}>Smart Contracts</p>
-        <h2 className="text-3xl font-bold mb-3" style={{ color: "var(--text-primary)" }}>Contract suite v1.16 — 16 contracts</h2>
+        <h2 className="text-3xl font-bold mb-3" style={{ color: "var(--text-primary)" }}>Contract suite v1.17 — 19 contracts</h2>
         <p className="text-sm mb-10" style={{ color: "var(--text-secondary)" }}>
-          52 cumulative patches across 6 adversarial cross-model review cycles. 128/128 Foundry tests passing.
+          Frozen architecture enforcing Zero-ERC20 B2B credits and Flat-Q forfeit penalties. 76/76 Foundry tests passing.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
@@ -98,16 +98,19 @@ export default function ProtocolPage() {
             { name: "LiquidityVault.sol", desc: "On-chain reserve custody — 8M OLIX + USDC. Counter-cyclical price stabilization.", status: "pre-testnet" },
             { name: "NeurolixGovernor.sol", desc: "OpenZeppelin Governor pattern. Requires VotingEscrow.sol (under development) before deployment.", status: "pre-testnet" },
             { name: "PriceOracle.sol", desc: "Triple-feed median oracle with MEV-resistant execution.", status: "pre-testnet" },
-            { name: "Interfaces.sol", desc: "Shared ABI boundary across all v1.16 contracts.", status: "pre-testnet" },
+            { name: "Interfaces.sol", desc: "Shared ABI boundary across all v1.17 contracts.", status: "pre-testnet" },
             { name: "AttestationOracle.sol", desc: "TEE attestation verifier with ECDSA. Replay protection via session-bound hardware salt.", status: "pre-testnet" },
             { name: "SlashingManager.sol", desc: "Multi-tier slashing state machine (T0–T4). Challenge window for behavioral breaches.", status: "pre-testnet" },
-            { name: "CCCLedger.sol", desc: "Internal Credit Ledger — B2B non-transferable CCC issued against USDC settlement. Zero-ERC20. Eliminates crypto-accounting overhead.", status: "pre-testnet" },
-            { name: "ComputeSession.sol", desc: "TEE session lifecycle FSM — Model B, Pull/Claim, SLA enforcement and workload commitment.", status: "pre-testnet" },
+            { name: "CCCLedger.sol", desc: "Internal Credit Ledger — B2B non-transferable CCC. Pseudonymized mapping via bytes32 clientRef.", status: "pre-testnet" },
+            { name: "ComputeSession.sol", desc: "TEE session lifecycle FSM — Model B, Pull/Claim, Forfeit Flat-Q penalty enforcement.", status: "pre-testnet" },
             { name: "HardwareRefreshAllowance.sol", desc: "Bootstrap hardware reserve allocation for node operators.", status: "pre-testnet" },
-            { name: "ICCCLedger.sol", desc: "Shared interface for CCCLedger across the v1.16 contract suite.", status: "pre-testnet" },
+            { name: "ICCCLedger.sol", desc: "Shared interface for CCCLedger across the v1.17 contract suite.", status: "pre-testnet" },
             { name: "NeurolixAttestationVerifier.sol", desc: "EIP-712 signature verification with ECDSA and session-bound nonce anti-replay.", status: "pre-testnet" },
-            { name: "NeurolixGateway.sol", desc: "Protocol entry-point v1.3 — USDC to CCC conversion with take-rate routing (8/4/88 split).", status: "pre-testnet" },
+            { name: "NeurolixGateway.sol", desc: "Protocol entry-point v1.17 — USDC to CCC conversion with take-rate routing (8/4/88 split).", status: "pre-testnet" },
             { name: "ProtocolBuybackEngineV16.sol", desc: "Anti-MEV buyback engine (inherited). Routes USDC settlement proceeds to LiquidityVault.", status: "pre-testnet" },
+            { name: "SubsidyPool.sol", desc: "Phase 2a / Fork 2 — Automates pull-based miner compensation and Flat-Q penalty allocation.", status: "pre-testnet" },
+            { name: "AuditAnchor.sol", desc: "Cryptographic notary for local audit trails, securing compliance logs and verifiable hardware states.", status: "pre-testnet" },
+            { name: "Mocks.sol", desc: "Foundry testing suite simulating complex TEE enclave behaviors to ensure 100% test coverage.", status: "pre-testnet" },
           ].map((c) => (
             <div key={c.name} className="flex flex-col p-4 rounded-sm h-full" style={{ backgroundColor: "var(--bg-card)", border: "1px solid var(--border)" }}>
               <div className="flex-1">
@@ -129,63 +132,35 @@ export default function ProtocolPage() {
         </div>
       </section>
 
-      {/* THREAT MODEL */}
-      <section className="mx-auto max-w-[1100px] px-6 py-20" style={{ borderBottom: "1px solid var(--border)" }}>
-        <p className="text-xs uppercase tracking-widest mb-3" style={{ color: "var(--accent)" }}>Transparency</p>
-        <h2 className="text-3xl font-bold mb-3" style={{ color: "var(--text-primary)" }}>Open mainnet blockers</h2>
-        <p className="text-sm mb-8" style={{ color: "var(--text-secondary)" }}>
-          These three issues were identified in v1.16 and are addressed by the v1.17 workstream (ComputeSession.sol + NeurolixGateway.sol + CCCLedger.sol, specification v0.2.2 complete — code generated, compile-clean; adversarial cross-model review in progress).
-          These are not deployment blockers for testnet — they are blockers for mainnet token launch.
-        </p>
-        <div className="flex flex-col gap-4 w-full">
-          {[
-            {
-              id: "01",
-              title: "Heartbeat farming — in resolution",
-              desc: "Resolved by sessionId-bound workload commitment (spec v0.2.2 §8, patch P6). ComputeSession.sol compile-clean; pending adversarial cross-model review and testnet deployment.",
-            },
-            {
-              id: "02",
-              title: "MEV exit during SLA breach — in resolution",
-              desc: "Resolved by NodeRegistry transfer gating with investigation flag (spec v0.2.2 §7, patches P5+P13+P17).",
-            },
-            {
-              id: "03",
-              title: "SLA parameter trust — in resolution",
-              desc: "Resolved by EIP-712 bilateral signature scheme (spec v0.2.2 §5). ComputeSession.sol compile-clean; pending adversarial cross-model review and testnet deployment.",
-            },
-          ].map((issue) => (
-            <div key={issue.id} className="flex gap-4 p-5 rounded-sm"
-              style={{ backgroundColor: "var(--bg-card)", border: "1px solid var(--border)" }}>
-              <span className="text-xs font-chain flex-shrink-0 mt-0.5" style={{ color: "var(--accent)" }}>#{issue.id}</span>
-              <div>
-                <p className="text-sm font-semibold mb-1" style={{ color: "var(--text-primary)" }}>{issue.title}</p>
-                <p className="text-sm leading-relaxed" style={{ color: "var(--text-secondary)" }}>{issue.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* ON-CHAIN PROOF */}
-      <section className="mx-auto max-w-[1100px] px-6 py-16">
-        <p className="text-xs uppercase tracking-widest mb-6" style={{ color: "var(--text-secondary)" }}>On-chain references</p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
-          {[
-            { label: "Attestation contract", value: `${CONTRACTS.attestation.slice(0,10)}...${CONTRACTS.attestation.slice(-6)}`, href: LINKS.basescan, badge: "Base Mainnet" },
-            { label: "Commitment hash", value: `${PROOF.commitmentHash.slice(0,10)}...${PROOF.commitmentHash.slice(-6)}`, href: `https://sepolia.basescan.org/tx/${PROOF.sepoliaTx}`, badge: "Base Sepolia" },
-          ].map((item) => (
-            <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer"
-              className="proof-card flex flex-col gap-1.5 p-4 rounded-sm no-underline">
-              <div className="flex items-center justify-between">
-                <span className="text-xs" style={{ color: "var(--text-secondary)" }}>{item.label}</span>
-                <span className="text-xs px-1.5 py-0.5 rounded" style={{ backgroundColor: "var(--accent-dim)", color: "var(--accent)" }}>{item.badge}</span>
-              </div>
-              <span className="text-sm font-chain" style={{ color: "var(--text-primary)" }}>{item.value}</span>
-            </a>
-          ))}
-        </div>
-      </section>
+  <section className="mx-auto max-w-[1100px] px-6 py-16">
+    <p className="text-xs uppercase tracking-widest mb-6" style={{ color: "var(--text-secondary)" }}>On-chain references</p>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+      {[
+        { label: "Attestation contract", value: `${CONTRACTS.attestation.slice(0,10)}...${CONTRACTS.attestation.slice(-6)}`, href: LINKS.basescan, badge: "Base Mainnet" },
+        { label: "Commitment hash", value: `${PROOF.commitmentHash.slice(0,10)}...${PROOF.commitmentHash.slice(-6)}`, href: `https://sepolia.basescan.org/tx/${PROOF.sepoliaTx}`, badge: "Base Sepolia" },
+      ].map((item) => (
+        <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer"
+          className="proof-card flex flex-col p-4 rounded-sm no-underline"
+          style={{ backgroundColor: "var(--bg-card)", border: "1px solid var(--border)" }}>
+          <div className="flex-1">
+            <span className="text-xs block mb-1" style={{ color: "var(--text-secondary)" }}>{item.label}</span>
+            <span className="text-sm font-chain break-all" style={{ color: "var(--text-primary)" }}>{item.value}</span>
+          </div>
+          <div className="flex justify-end mt-4">
+            <span className="text-xs px-2 py-0.5 rounded shrink-0"
+              style={{
+                backgroundColor: "var(--accent-dim)",
+                color: "var(--accent)",
+                border: "1px solid var(--accent)",
+              }}>
+              {item.badge}
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
     </>
   );
 }
